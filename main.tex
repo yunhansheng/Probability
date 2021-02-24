@@ -1,0 +1,310 @@
+\documentclass[hidelinks,11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[OT1]{fontenc}
+\usepackage{physics}
+\usepackage{tikz-cd}
+\usepackage{xpatch}
+\usepackage{nicefrac}
+
+\setlength\parindent{0pt}
+
+\newtheoremstyle{dotless}{}{}{\itshape}{}{\bfseries}{}{ }{}
+
+\newtheoremstyle{dotles}{}{}{\upshape}{}{\bfseries}{}{ }{}
+
+\theoremstyle{definition}
+\newtheorem*{defin}{DEF}
+
+\theoremstyle{dotles}
+\newtheorem{innercustomex}{EX}
+\newenvironment{exercise}[1]
+  {\renewcommand\theinnercustomex{#1}\innercustomex}
+  {\endinnercustomex}
+
+\theoremstyle{dotless}
+\newtheorem{prop}{PROP}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+
+\DeclareMathOperator{\Var}{Var}
+
+
+\begin{document}
+
+\section*{Preface}
+This is the note for STAT 381-382-385 sequence at UChicago taught by Alisa Knizel, which I took as a freshman and a sophomore in 2021. STAT 381 covers xxx, STAT 382 covers xxx, and STAT 385 covers xxx. All detailed proofs are attached in the appendices.
+\tableofcontents
+\newpage
+
+\section{Measure Theory}
+
+\subsection{Measures}
+
+\begin{prop}\label{Prop 1.1}
+Let $\mu^*$ be the Lebesgue outer measure and $\mu$ the Jordan measure, then\begin{itemize}
+    \item $\mu^*$ extends $\mu$.
+    \item $\mathcal{L}$ is a $\sigma$-algebra.
+    \item $\mu^*|_\mathcal{L}$ is a measure.
+\end{itemize}
+\end{prop}
+
+\begin{prop}\label{Prop 1.2}
+The following two properties for a finitely additive measure $\mu$ are equivalent:\begin{itemize}
+    \item \textup{(downward continuous)} For a decreasing sequence of sets $\{E_i\}_{i\geq1}$ such that $\mu(E_k)<\infty$ for some $k$,
+    \[\mu(\cap_{i\geq1}E_i)=\lim_{i\to\infty}\mu(E_i).\]
+    \item $\mu$ is countably additive.
+\end{itemize}
+\end{prop}
+
+\begin{prop}[Dynkin]\label{Prop 1.3}
+If $\mathcal{M}$ is a $\pi$-system and $\mathcal{N}$ is a $\lambda$-system, then $\mathcal{M}\subset\mathcal{N}$ implies $\sigma(\mathcal{M})\subset\mathcal{N}$.
+\end{prop}
+
+\begin{prop}[Carathéodory]\label{Prop 1.4}
+Every pre-measure $\mu_0$ on a Boolean algebra $\mathfrak{B}$ that is downward continuous can be extended to a measure $\mu$ on $\sigma(\mathfrak{B})$. If $\mu_0$ is $\sigma$-finite, then the extension is unique.
+\end{prop}
+
+\begin{prop}
+Let $f_i:(X,\mathcal{A})\to(Y,\mathcal{B})$
+\begin{itemize}
+    \item Compositions of measurable functions are measurable
+    \item If $\mathcal{B}=\sigma(\mathcal{C})$ and $\forall C\in\mathcal{C}:f_i^{-1}(C)\subset\mathcal{A}$, then $f_i$ is measurable
+    \item If $f=(f_1,f_2,\dots,f_n)$ then $f$ is measurable iff each $f_i$ is measurable
+\end{itemize}
+\end{prop}
+
+\subsection{Integration and the convergence theorems}
+
+\begin{prop}[properties of integration]
+Let $f$ and $g$ be non-negative measurable functions on $(X,\mathcal{A},\mu)$, then
+\begin{itemize}
+    \item $f\leq g\Rightarrow\int_Xf\,d\mu\leq\int_Xg\,d\mu$, and if $\int_Xf\,d\mu=\int_Xg\,d\mu<+\infty$, then $f=g$ a.e.
+\end{itemize}
+\end{prop}
+
+\begin{prop}[simple function approximation]
+Non-negative measurable functions can be pointwise approximate by a sequence of increasing simple functions.
+\end{prop}
+
+\begin{prop}[convergence theorems]
+Let $f_i$ be a sequence of measurable functions on measure space $(X,\mathcal{A},\mu)$
+\begin{itemize}
+    \item \textup{(Monotone Convergence Theorem, MCT)} If $f_i\geq0$ and $f_i\leq f_{i+1}$, then \[\int_X\lim_{i\to+\infty}f_i,d\mu=\lim_{i\to+\infty}\int_Xf_i\,d\mu\]
+    \item \textup{(Fatou's Lemma)} If $f_i\geq0$ then
+    \[\int_X\liminf_{i\to_\infty}{f_i}\,d\mu\leq\liminf_{i\to+\infty}\int_Xf_i\,d\mu\]
+    \item \textup{(Dominated Convergence Theorem, DCT)} If $\abs{f_i(x)}\leq g(x)$ and $g$ is integrable, then
+    \[\int_X\lim_{i\to+\infty}f_i\,d\mu=\lim_{i\to+\infty}\int_Xf_i\,d\mu\]
+\end{itemize}
+\end{prop}
+
+\subsection{Product measure}
+
+\begin{prop}[measurability on product spaces]\label{Prop 1.9}
+Let $(X,\mathcal{A},\mu)$ and $(Y,\mathcal{B})$ be measure spaces, $E\in\mathcal{A}\otimes\mathcal{B}$, and $f\in m(\mathcal{A}\otimes\mathcal{B})$, then\begin{itemize}
+    \item $\forall x\in X:E_x=\{y\in Y:(x,y)\in E\}\in\mathcal{B}$
+    \item $\forall x\in X:g_x\in m\mathcal{B}$, if $g_x:y\mapsto f(x,y)$
+    \item $h\in m\mathcal{B}$, if $h:y\mapsto\int_Xf(x,y)\,d\nu(y)$ and that the measure spaces are $\sigma$-finite
+\end{itemize}
+\end{prop}
+
+\begin{prop}[product measure]\label{Prop 1.10}
+Let $(X,\mathcal{A},\mu)$ and $(Y,\mathcal{B})$ be measure spaces, then there exists a measure $\sigma$ on $\mathcal{A}\otimes\mathcal{B}$ s.t.
+\[\forall A\in\mathcal{A}\,\forall B\in\mathcal{B}:\sigma(A\times B)=\mu(A)\nu(B)\]
+Moreover, $\sigma$ is unique if the measure spaces are $\sigma$-finite.
+\end{prop}
+
+\begin{prop}[Fubini-Tonelli]
+
+\end{prop}
+
+\section{Basic Probability}
+
+\subsection{Basic notions}
+
+\begin{prop}[properties of the distribution]\label{Prop 2.1}
+Let $X$ be a measurable function on $(\Omega,\mathcal{F},\mathbb{P})$, $F:\mathbb{R}\to[0,1]$ a non-decreasing, right continuous function with $\lim_{t\to-\infty}F(t)=0$ and $\lim_{t\to+\infty}F(t)=1$, and $\mu$ a Borel probability measure on $\mathbb{R}$. Given any one of them as a r.v., a cdf, and a law resp., the other two are determined. In particular the cdf and the law determines each other uniquely.
+\end{prop}
+
+\begin{prop}[convexity inequalities]
+
+\end{prop}
+
+\begin{prop}[concentration bounds]
+Let $(\Omega,\mathcal{F},\mathbb{P})$ be a measure space. For general r.v. $X$
+\begin{itemize}
+    \item \textup{(Markov)} if $X$ is non-negative then
+    \[\forall t>0:t\mathbb{P}(X\geq t)\leq\mathbb{E}(X)\]
+    \item \textup{(Chebyshev)} if $\mathbb{P}(X^2)<+\infty$ then
+    \[\forall t>0:t^2\mathbb{P}(\abs{X-\mathbb{E}(X)}\geq t)\leq\Var(X)\]
+    \item \textup{(Chernoff)} if the moment-generating function $m_X(t)=\mathbb{E}(e^{tX})<+\infty$ then
+    \[\forall t\in\mathbb{R}\,\forall \lambda\geq0:\mathbb{P}(X\geq t)\leq e^{-\lambda t}m_X(\lambda)\]
+\end{itemize}
+\end{prop}
+
+\subsection{Independence}
+
+\begin{prop}[criterion for m.i.]
+
+\end{prop}
+
+\begin{prop}[product distribution]
+
+\end{prop}
+
+\begin{prop}
+For a sequence of m.i. sub-Gaussian r.v. $\{X_i\}$ with mean $\mu_i$, or $\mathbb{E}(e^{\lambda(X_i-\mu_i)})\leq\exp{\frac{\sigma_i^2\lambda^2}{2}}$ for some sub-Gaussian parameter $\sigma_i>0$\begin{itemize}
+\item the tail behavior
+\[\forall t\geq0:\mathbb{P}(X_i-\mu_i)\geq t)\leq\exp{-\frac{t^2}{2\sigma_i^2}}\]
+\item \textup{(Hoeffding)}
+\[\forall t\geq0:\mathbb{P}\left(\sum_{i=1}^n(X_i-\mu_i)\geq t\right)\leq\exp{-\frac{t^2}{2\sum_{i=1}^n\sigma_i^2}}\]
+\end{itemize}
+\end{prop}
+
+\begin{prop}[Borel-Cantelli]
+Let $(\Omega,\mathcal{F},\mathbb{P})$ be the probability space and $\{A_n\}_{n\geq1}$ a sequence of events. If $\sum_{n\geq1}\mathbb{P}(A_n)<+\infty$ then $\mathbb{P}(\limsup_{n\to+\infty}A_n)=0$. Conversely if $\sum_{n\geq1}\mathbb{P}(A_n)=+\infty$ and that $A_i$s are m.i., then $\mathbb{P}(\limsup_{n\to+\infty}A_n)=1$
+\end{prop}
+
+\begin{prop}[0-1 laws]
+Modes I
+\end{prop}
+
+\subsection{Modes of convergence}
+
+\begin{defin}
+almost-sure convergence, convergence in probability, convergence in distribution/law (weak convergence), $L^p$-convergence ($L^1$-convergence is convergence in expectation); uniformly integrable
+\end{defin}
+
+\begin{prop}\label{2.9}
+The following implications holds:\begin{itemize}
+    \item Almost-sure convergence implies convergence in probability
+    \item For any $p$, $L^p$-convergence implies convergence in probability
+    \item Convergence in probability implies convergence in distribution
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+The following partial converses holds:\begin{itemize}
+    \item If a sequence of random variables is $L^p$-convergence or converges in probability, then there is a subsequence that converges almost surely
+    \item If a uniformly integrable sequence of random variables $\{X_n\}$ converges almost surely to $X$, then it converges to $X$ in expectation
+    \item If a sequence of uniformly bounded random variables converges in probability, then it converges in $L^p$ for any $p\in[1,+\infty)$
+    \item If $X_n\xrightarrow{d}X$, then $X_n$ converges in probability 
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+A sequence of random variables $\{X_n\}$ converges in distribution if and only if 
+\[\mathbb{E}(f(X_n))\to\mathbb{E}(f(X))\]
+for any bounded continuous real-valued functions.
+\end{prop}
+
+\subsection{Truncation and Laws of Large Numbers}
+
+\begin{defin}
+triangular array of random variables; truncation
+\end{defin}
+
+\begin{prop}[Weak Laws of Large Numbers]
+Let $\{X_i\}$ be a sequence of random variables, $\{Y_{n,k}\}$ a triangular array of random variables with $1\leq k\leq n$, and $S_n=\sum_{i=1}^nX_i$.
+\begin{itemize}
+    \item \textup{($L^2$ Weak Law)} If $\mathbb{E}(X_iX_j)=\mathbb{E}(X_i)\mathbb{E}(X_j)=\mu^2$ and $\Var(X_i)\leq c<\infty$, then
+    \[\frac{1}{n}S_n\xrightarrow{L^2}\mu\quad\textrm{and thus}\quad\frac{1}{n}S_n\xrightarrow{\mathbb{P}}\mu\]
+    \item If $a_n$ satisfies $a_n^{-2}\Var(S_n)\to0$, then $a_n^{-1}(S_n-\mathbb{E}(S_n))\to0$
+    \item \textup{(Triangular Array Weak Law)} Let $b_n\to\infty$ be a positive sequence and truncation $\overline{Y}_{n,k}=Y_{n,k}1_{\{\abs{Y_{n,k}}\leq b_n\}}$. If $\{Y_{n,k}\}$ is independent for every $n$ and satisfies
+    \[\sum_{k=1}^n\mathbb{P}(\abs{Y_{n,k}>b_n})\to0\quad\textrm{and}\quad\frac{1}{b_n^2}\sum_{k=1}^n\mathbb{E}(\overline{Y}_{n,k}^2)\to0\]
+    Then $b_n^{-1}(\sum_{i=1}^nY_{n,i}-\overline{\mu}_n)\xrightarrow{\mathbb{P}}0$ for $\overline{\mu}_n=\sum_{i=1}^n\mathbb{E}(\overline{Y}_{n,i})$
+    \item \textup{(Weak Law of Large Numbers)} Let truncation $\overline{X}_i=X_i1_{\{\abs{X_i}\leq n\}}$. If $\{X_i\}$ is independent and identically distributed with $n\mathbb{P}(\abs{X_i}>n)\to\infty$, then
+    \[\frac{1}{n}S_n\xrightarrow{\mathbb{P}}\mathbb{E}(\overline{X}_i)\]
+\end{itemize}
+\end{prop}
+
+example: coupon collector's problem
+
+\begin{prop}[Strong Law of Large Numbers, Etemadi]
+Let $\{X_i\}$ be a sequence of pairwise independent and identically distributed random variables with $\mathbb{E}(\abs{X_i})<\infty$, then for $\mathbb{E}(X_i)=\mu$
+\[\frac{1}{n}\sum_{i=1}^nX_i\xrightarrow{a.s.}\mu.\]
+\end{prop}
+
+\subsection{Characteristic function}
+
+\begin{defin}
+characteristic function
+\end{defin}
+
+\begin{prop}
+tail behavior
+\end{prop}
+
+example: characteristic function of Normal dist.
+
+\begin{prop}[Inversion Formula]
+rrr
+\end{prop}
+
+corollary: characteristic function iff cdf/pdf
+
+\newpage
+\appendix
+\section{Measure Theory}
+\begin{proof}[Proof of {\textup{\hyperref[Prop 1.1]{Prop 1.1}}}]
+As lemmas $\mu^*$ is countably sub-additive, and $\mu$ is downward continuous (shrink to closed boxes and apply the Heine-Borel property of $\mathbb{R}^d$).\medbreak
+By definition $\mu^*\leq\mu$ for Jordan measurable sets, hence we only need to prove the reverse. We only need to prove such for elementary sets, as the definition of Jordan measurability will extend them to any Jordan measurable sets.\medbreak
+To prove that $\mathcal{L}$ is a $\sigma$-algebra prove first for countable union. Then for complement prove that Lebesgue-outer null sets are Lebesgue measurable.\medbreak
+For the last part prove first that any countable intersection of elementary sets are Lebesgue measurable. Then prove that bounded Lebesgue measurable sets can be approximated above by countable intersections of open sets (which are Lebesgue measurable). Lastly prove the finite additivity for countable intersections of elementary sets, which can be extended to the countable additivity on Lebesgue measurable sets.
+\end{proof}
+
+\begin{proof}[Proof of {\textup{\hyperref[Prop 1.2]{Prop 1.2}}}]
+rr
+\end{proof}
+
+\begin{proof}[Proof of {\textup{\hyperref[Prop 1.3]{Prop 1.3}}}]
+Check that $\lambda(\mathcal{M})$ is closed under intersection, and hence a $\sigma$-algebra.
+\end{proof}
+
+\begin{proof}[Proof of {\textup{\hyperref[Prop 1.4]{Prop 1.4}}}]
+The existence follows roughly the proof of \hyperref[Prop 1.1]{Prop 1.1}. The uniqueness is a consequence of \hyperref[Prop 1.3]{Prop 1.3}
+\end{proof}
+
+\begin{proof}[Proof of {\textup{\hyperref[Prop 1.5]{Prop 1.5}}}]
+rr
+\end{proof}
+
+
+\section{Basic Probability}
+
+\begin{proof}[Proof of {\textup{\hyperref[Prop 2.1]{Prop 2.1}}}]
+To illustrate
+\[
+  \begin{tikzcd}
+    F\begin{cases}
+\textrm{non-decreasing }\mathbb{R}\to[0,1]\\
+\textrm{right-continuous}\\
+\lim_{t\to-\infty}F(t)=0\textrm{ and }\lim_{t\to+\infty}F(t)=1
+\end{cases}\textrm{(cdf)} \arrow{r}{!} & \textrm{Borel probability measure }\mu\textrm{ on }\mathbb{R}\textrm{ (law)}\arrow{l} \arrow{d} \\
+     & \textrm{measurable }X\textrm{ (r.v.)} \arrow{ul}
+  \end{tikzcd}
+\]
+Given a probability space $(\Omega,\mathcal{F},\mathbb{P})$ and a r.v. $X$, the distribution $F_X$ is by definition non-decreasing, $\lim_{t\to-\infty}F_X(t)=0$, and $\lim_{t\to+\infty}F_X(t)=1$. The right-continuity results from \hyperref[Prop 1.2]{Prop 1.2}: if $t_n\to t$ then
+$F_X(t_n)=\mathbb{P}(X\leq t_n)\to F_X(t)=\mathbb{P}(X\leq t)$.\medbreak
+A law uniquely defines a cdf by definition. Conversely, given a function $F$ with the above properties define $\mu_F((a,b])=F(b)-F(a)$, which is a pre-measure on the Boolean algebra of finite unions of disjoint half-open intervals. If $\mu_F$ is downward continuous we apply \hyperref[Prop 1.4]{Prop 1.4} to extend $\mu_F$ to the Borel probability measure. Indeed,\medbreak
+$\mu_F$ agrees with $F$ on the $\pi$-system of all half-open intervals which generates $\mathcal{B}(\mathbb{R})$. Hence by \hyperref[Prop 1.3]{Prop 1.3} $\mu_F$ obtained is unique.\medbreak
+Given a Borel probability measure $\mu$ on $\mathbb{R}$ and the Lebesgue measure space $((0,1),\mathcal{B}(0,1),m)$. For the corresponding cdf $F_\mu$ define $X(\omega)=\inf\{t\in\mathbb{R}:F_\mu(t)\geq\omega\}$. Then $X$ is measurable, and $\mu$ is the law of $X$:
+\begin{align*}
+\mathbb{P}(X\in(a,b])&=m(\{\omega\in(0,1):a<X(\omega)\leq b\})\\
+&=m(\{\omega\in(0,1):F(a)<\omega\leq F(b)\})=F(b)-F(a)=\mu((a,b])
+\end{align*}
+\end{proof}
+
+
+\end{document}
