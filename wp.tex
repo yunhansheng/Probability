@@ -219,18 +219,39 @@ Let $\phi$ be a function and $t_1<t_2<\cdots<t_n$. Let $A$ be a matrix with entr
 \end{itemize}
 \end{prop}
 
-\begin{prop}[Central Limit Theorem, Classical]
-Let $\{X_i\}_{i\geq1}$ be a sequence of independent and identically ditributed random variables with $\E(X_1)=\mu$ and $\Var(E_1)=\sigma^2<\infty$. Then
-\[\frac{\sum_{i=1}^nX^i-\mu}{\sigma\sqrt{n}}\xrightarrow{d}\mathcal{N}(0,1).\]
-\end{prop}
-
 \begin{prop}[Central Limit Theorem]
-
+Let $\{X_i\}_{i\geq1}$ be a sequence of independent and identically ditributed random variables with $\E(X_1)=\mu$ and $\Var(E_1)=\sigma^2<\infty$. Then
+\[S_n=\frac{\sum_{i=1}^nX_i-\mu}{\sigma\sqrt{n}}\xrightarrow{d}\mathcal{N}(0,1).\]
 \end{prop}
+\begin{proof}
+We shall only prove the case when $\mu=0$ and $\sigma=1$. The general case follows. By Lévy's Continuity Theorem we only need to prove that $\phi_{S_n}(t)\to e^{-t^2/2}$. For preparation we need two lemmas:\begin{itemize}
+    \item By Lagrange remainder of Taylor expansion and
+    \[\abs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\abs{e^{ix}-1-ix}+\frac{x^2}{2}\leq\frac{x^2}{2}+\frac{x^2}{2}=x^2,\]
+    we conclude that $\abs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\min\{x^2,\abs{x}^3/6\}$.
+    \item For $\abs{a_i}\leq1$ and $\abs{b_i}\leq1$,
+    \begin{align*}
+    \abs{\prod_{i=1}^na_i-\prod_{i=1}^nb_i}&\leq\sum_{i=1}^n\abs{a_1\cdots a_{i-1}b_i\cdots b_n-a_1\cdots a_ib_{i+1}\cdots b_n}\\
+    &=\sum_{i=1}^n\abs{a_1\cdots a_{i-1}(b_i-a_i)b_{i+1}\cdots b_n}\leq\sum_{i=1}^n\abs{b_i-a_i}.
+    \end{align*}
+\end{itemize}
+Now by independence and properties of characteristic function $\phi_{s_n}(t)=\prod_{i=1}^n\phi_{X_i}(t/\sqrt{n})=\phi_{X_1}^n(t/\sqrt{n})$
+\end{proof}
 
-\begin{corollary}[Central Limit Theorem]
+\begin{remark}
+The above Central Limit Theorem is the classical result. A stronger one that reduces the identical distribution condition is Lindeberg-Feller Central Limit Theorem:\smallbreak
+\textit{Let $\{k_n\}_{n\geq1}$ be a sequence of positive integers with $k_n\to\infty$. Let $\{X_{n,i}\}_{1\leq i\leq k_n}$ be a collection of independent random variables and denote $\mu_{n,i}=\E(X_{n,i})$, $\sigma_{n,i}^2=\Var(X_{n,i})$, and $S_n^2=\sum_{i=1}^{k_n}\sigma_{n,i}^2$. If $\{X_{n,i}\}$ satisfies Lindeberg condition:}
+\[\forall\epsilon>0:\frac{1}{S_n^2}\sum_{i=1}^{k_n}\E\left[(X_{n,i}-\mu_{n,i})^2\textbf{1}_{\{\abs{X_{n,i}-\mu_{n,i}}\geq\epsilon S_n\}}\right]\to0.\]
+\textit{Then}
+\[\frac{1}{S_n}\sum_{i=1}^{k_n}(X_{n,i}-\mu_{n,i})\xrightarrow{d}\mathcal{N}(0,1).\]
+As a corollary to the Lindeberg-Feller Central Limit Theorem is Lyapunov Central Limit Theorem:\smallbreak
+\textit{Let $\{X_i\}_{i\geq1}$ be a sequence of independent random variables with $\E(X_i)=\mu_i$, $\sigma_i^2=\Var(X_i)<\infty$ and $S_n^2=\sum_{i=1}^n\sigma_i^2$. If $\{X_i\}$ satisfies Lyapunov condition:}
+\[\exists\delta>0:\frac{1}{S_n^{2+\delta}}\sum_{i=1}^n\E\left[\abs{X_i-\mu_i}^{2+\delta}\right]\to0.\]
+\textit{Then}
+\[\frac{1}{S_n}\sum_{i=1}^n(X_i-\mu_i)\xrightarrow{d}\mathcal{N}(0,1).\]
+\end{remark}
 
-\end{corollary}
+\bigbreak
+\subsection{Probability theory on seperable metric spaces}
 
 
 
