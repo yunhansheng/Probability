@@ -100,14 +100,21 @@ Let $\{X_i\}$ be a sequence of pairwise independent and identically distributed 
 \[\frac{1}{n}\sum_{i=1}^nX_i\xrightarrow{a.s.}\mu.\]
 \end{prop}
 \begin{proof}
-The proof is due to Etemadi (1981). Assume for simplicity that $X_i\geq0$. Let $k_n=\left\lfloor{\alpha^n}\right\rfloor$ for some arbitrary $\alpha>1$. We will show that it suffices to show that $\frac{1}{k_n}\sum_{i=k_1}^{k_n}(Y_i-\E(Y_i))\to0$ as $n\to\infty$ for $Y_i=X_i\textbf{1}_{\{X_i<i\}}$.\smallbreak
-Indeed, since
-\[.\]
-By Borel-Cantelli Lemma $\mathbb{P}(X_i\neq Y_i\textrm{ infinitely often})=0$. Hence $\sum_{i=1}^nX_i\xrightarrow{a.s.}\sum_{i=1}^nY_i$.On the other hand, since xxx, by Dominated Convergence Theorem,
-\[,\]
-which implies that $\frac{1}{n}\sum_{i=1}^n\E(Y_i)\xrightarrow{a.s.}\mu$. Hence our previous claim. Finally, for all $m$ such that $k_n\leq m<k_{n+1}$, the desired result follows from
-\[.\]
-Now We prove the deduced statement.
+The proof is due to Etemadi (1981). As a lemma, $y\sum_{k>y}k^{-2}\leq2$ for $y\geq0$.\smallbreak
+Assume for simplicity that $X_i\geq0$. Let $k_n=\left\lfloor{\alpha^n}\right\rfloor$ for some arbitrary $\alpha>1$, $Y_i=X_i\textbf{1}_{\{X_i<i\}}$, and $Z_n=\frac{1}{n}\sum_{i=1}^n(Y_i-\E(Y_i))$.\smallbreak
+By Chebyshev's inequality,  Fubini-Tonelli Theorem, and the fact that $\alpha^n\leq2\left\lfloor{\alpha^n}\right\rfloor$,
+\begin{align*}
+\sum_{n=1}^\infty\mathbb{P}(\abs{Z_{k_n}}>\epsilon)&\leq\epsilon^{-2}\sum_{n=1}^\infty k_n^{-2}\sum_{i=k_1}^{k_n}\Var(Y_i)\\
+&=\epsilon^{-2}\sum_{i=1}^\infty\Var(Y_i)\sum_{n:k_n\geq i}k_n^{-2}\leq4(1-\alpha^{-2})^{-1}\epsilon^{-2}\sum_{i=1}^\infty i^{-2}\Var(Y_i).
+\end{align*}
+Since by Fubini-Tonelli Theorem, the lemma, and the assumption $\E(\abs{X_i})<\infty$
+\[\sum_{i=1}^\infty i^{-2}\Var(Y_i)\leq\sum_{i=1}^\infty i^{-2}\E(Y_i^2)\leq2\int_0^\infty\,dy\left\{\sum_{i=1}^\infty i^{-2}\textbf{1}_{\{y<k\}}\right\}y\mathbb{P}(\abs{X_1}>y)\leq4\E(\abs{X_i})<\infty,\]
+we conclude that $\mathbb{P}(\abs{Z_{n_k}}>\epsilon)\to0$, or $k_n^{-1}\sum_{i=k_1}^{k_n}Y_i\to k_n^{-1}\sum_{i=k_1}^{k_n}\E(Y_i)$. To deal with middle values note that for $k_n<m<k_{n+1}$
+\[k_{n+1}^{-1}\sum_{i=1}^{k_n}Y_i\leq m^{-1}\sum_{i=1}^mY_i\leq k_n^{-1}\sum_{i=k_1}^{k_{n+1}}Y_i.\]
+Hence $n^{-1}\sum_{i=1}^nY_i\to n^{-1}\sum_{i=1}^n\E(Y_i)$.\smallbreak
+Since $\sum_{i=1}^\infty\mathbb{P}(X_i\neq Y_i)=\sum_{i=1}^\infty\mathbb{P}(X_1\geq i)\leq\E(X_1)<\infty$, by Borel Cantelli Lemma $\mathbb{P}(X_i\neq Y_i,\textrm{ infinitely often})=0$, which implies that $n^{-1}\sum_{i=1}^nX_i\xrightarrow{a.s.}n^{-1}\sum_{i=1}^nY_i$.\smallbreak
+Lastly by Dominated Convergence Theorem $\E(Y_i)-\mu=\E(X_1\textbf{1}_{\{X_i\geq i\}})\to0$, which implies that $n^{-1}\sum_{i=1}^n\E(Y_i)\to\mu$. Combining these result and the statement follows:
+\[n^{-1}\sum_{i=1}^nX_i\xrightarrow{a.s.}n^{-1}\sum_{i=1}^nY_i\to n^{-1}\sum_{i=1}^n\E(Y_i)\to\mu\]
 \end{proof}
 
 \bigbreak
@@ -208,13 +215,12 @@ Let $at=2$, then by prop xxx $\limsup_{n\to\infty}\mathbb{P}(\abs{X_n}\geq t)\le
 \end{proof}
 
 \begin{prop}
-Let $\phi$ be a function and $t_1<t_2<\cdots<t_n$. Let $A$ be a matrix with entries $a_{ij}=\phi(t_i-t_j)$.\begin{itemize}
-    \item \textup{(Bochner's Theorem)} If\begin{itemize}
+Let $\phi$ be a function and $t_1<t_2<\cdots<t_n$. Let $A_{ij}=\phi(t_i-t_j)$ be a $n\times n$ matrix.\begin{itemize}
+    \item \textup{(Bochner's Theorem)} Then $\phi$ is the characteristic function of some random variable if\begin{itemize}
         \item A is Hermitian: $A^*=\overline{A^T=A}$,
         \item A is positive semi-definite: for any $\forall v\in\mathbb{C}^n:v^TAv\geq0$,
         \item $\phi$ is continuous at 0 with $\phi(0)=1$,
     \end{itemize}
-    Then $\phi$ is the characteristic function of some random variable.
     \item Conversely if $\phi$ is a characteristic function of some random variable, then it satisfies those properties.
 \end{itemize}
 \end{prop}
@@ -224,7 +230,7 @@ Let $\{X_i\}_{i\geq1}$ be a sequence of independent and identically ditributed r
 \[S_n=\frac{\sum_{i=1}^nX_i-\mu}{\sigma\sqrt{n}}\xrightarrow{d}\mathcal{N}(0,1).\]
 \end{prop}
 \begin{proof}
-We shall only prove the case when $\mu=0$ and $\sigma=1$. The general case follows. By Lévy's Continuity Theorem we only need to prove that $\phi_{S_n}(t)\to e^{-t^2/2}$. For preparation we need two lemmas:\begin{itemize}
+We shall only prove the case when $\mu=0$ and $\sigma=1$. The general case follows. By Lévy's Continuity Theorem we only need to prove that $\phi_{S_n}(t)\to e^{-t^2/2}$. We need two lemmas:\begin{itemize}
     \item By Lagrange remainder of Taylor expansion and
     \[\abs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\abs{e^{ix}-1-ix}+\frac{x^2}{2}\leq\frac{x^2}{2}+\frac{x^2}{2}=x^2,\]
     we conclude that $\abs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\min\{x^2,\abs{x}^3/6\}$.
@@ -234,7 +240,13 @@ We shall only prove the case when $\mu=0$ and $\sigma=1$. The general case follo
     &=\sum_{i=1}^n\abs{a_1\cdots a_{i-1}(b_i-a_i)b_{i+1}\cdots b_n}\leq\sum_{i=1}^n\abs{b_i-a_i}.
     \end{align*}
 \end{itemize}
-Now by independence and properties of characteristic function $\phi_{s_n}(t)=\prod_{i=1}^n\phi_{X_i}(t/\sqrt{n})=\phi_{X_1}^n(t/\sqrt{n})$
+Now by independence and properties of characteristic function $\phi_{s_n}(t)=\prod_{i=1}^n\phi_{X_i}(t/\sqrt{n})=\phi_{X_1}^n(t/\sqrt{n})$. Choose large enough $n$ such that $t^2\leq2n$ and note that since $(1-\frac{t^2}{2n})^n\to e^{-t^2/2}$,
+\begin{align*}
+    \abs{\phi_{X_1}^n(t/\sqrt{n})-(1-\frac{t^2}{2n})^n}&\leq\sum_{i=1}^n\abs{\phi_{X_1}(t/\sqrt{n})-(1-\frac{t^2}{2n})}\\
+    &=n\abs{\E\left(e^{itX_i/\sqrt{n}}-1-\frac{itX_1}{\sqrt{n}}+\frac{x^2t^2}{2n}\right)}\\
+    &\leq n\E\left(\min\left\{t^2x^2,\frac{\abs{t}^3\abs{X_1}^3}{6\sqrt{n}}\right\}\right).
+\end{align*}
+The result then follows.
 \end{proof}
 
 \begin{remark}
@@ -252,7 +264,16 @@ As a corollary to the Lindeberg-Feller Central Limit Theorem is Lyapunov Central
 
 \bigbreak
 \subsection{Probability theory on seperable metric spaces}
-
+\begin{defin}
+If we don't limit ourselves to $\mathbb{R}$, we have\begin{itemize}
+    \item \textbf{random variable}: measurable $X:(\Omega,\mathcal{F},\mathbb{P})\to\mathbb{R}^d$,
+    \item \textbf{law} of $X$: $\mu_X(A)=\mathbb{P}(X\in A)\quad\forall A\in\mathcal{B}(\mathbb{R}^d)$,
+    \item \textbf{distribution function} of $X$: $F_X(t_1,\cdots,t_d)=\mathbb{P}(X_1\leq t_1\textrm{ and }\cdots\textrm{ and }X_d\leq t_d)$,
+    \item \textbf{probability density function} of $X$: $f:\mathbb{R}^d\to[0,\infty]$ such that
+    \[\mathbb{P}(X\in A)=\int_Af(x_1,\cdots,x_d)\,dx_1\cdots dx_d\quad A\in\mathcal{B}(\mathbb{R}^d)\].
+\end{itemize}
+Concepts are associated with product measure, and related results still holds in the multivariable sense.
+\end{defin}
 
 
 \end{document}

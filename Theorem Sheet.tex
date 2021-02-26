@@ -1,0 +1,119 @@
+\documentclass[hidelinks,11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[OT1]{fontenc}
+\usepackage{physics}
+\usepackage{tikz-cd}
+\usepackage{xpatch}
+\usepackage{nicefrac}
+\usepackage{mathtools}
+\usepackage{environ}
+
+\setlength\parindent{0pt}
+
+\newtheoremstyle{dotless}{}{}{\itshape}{}{\bfseries}{}{ }{}
+
+\theoremstyle{definition}
+\newtheorem*{defin}{DEF}
+
+\theoremstyle{dotless}
+\newtheorem{prop}{PROP}[section]
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\R}{\mathbb{R}}
+
+\let\oldproof\proof
+\renewcommand{\proof}{\color{blue}\oldproof}
+
+%\NewEnviron{killcontents}{}\let\proof\killcontents\let\endproof\endkillcontents
+
+
+
+\begin{document}
+
+\section{Measure Theory}
+
+\section{Basic Proabbility}
+
+\subsection{Basic notions}
+
+\begin{prop}\label{Prop 2.1}
+If $F$ is the distribution function of random variable $X$, then $F$ is:\begin{itemize}
+    \item non-decreasing,
+    \item right-continuous: $\lim_{\Delta t\to0}F(\Delta t+t)=F(t)$,
+    \item $\lim_{t\to-\infty}F(t)=0$, and $\lim_{t\to\infty}F(t)=1$.
+\end{itemize}
+Moreover, $F$ determines the law $\mu_X$ of $X$ uniquely. Conversely if $F:\mathbb{R}\to[0,1]$ satisfies the listed properties, then there is a probability space $(\Omega, \mathcal{F},\mathbb{P})$ and a random variable $X$ such that $F$ is the distribution function of $X$.
+\end{prop}
+
+\begin{prop}\label{Prop 2.2}
+Let $X$ and $Y$ be random variables on measure space $(\Omega,\mathcal{F},\mathbb{P})$. Let $p,q\in[1,\infty]$ be such that $pq=p+q$.
+\begin{itemize}
+    \item \textup{\textbf{Jensen's Inequality}} If $X\in L^1(\mathbb{P})$ and $\phi:I\to\mathbb{R}$ is convex on some $I\subset\mathbb{R}$: for all $x,y\in I$ and $t\in[0,1]$,
+    \[\phi(tx+(1-t)y)\leq t\phi(x)+(1-t)\phi(y).\]
+    Then
+    \[\phi(\E[X])\leq\E[\phi(X)].\]
+    \item \textup{\textbf{Hölder's Inequality}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then
+    \[\norm{XY}_1\leq\norm{X}_p\norm{Y}_q.\]
+    \item \textup{\textbf{Minkowski's Inequality}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then
+    \[\norm{X+Y}_{p}\leq\norm{X}_p\norm{Y}_p.\]
+\end{itemize}
+\end{prop}
+
+\begin{prop}\label{Prop 2.2}
+Let $X$ be a random variable on measure space $(\Omega,\mathcal{F},\mathbb{P})$.
+\begin{itemize}
+    \item \textup{\textbf{Markov's Inequality}} If $X$ is non-negative and $t\geq0$, then
+    \[t\mathbb{P}(X\geq t)\leq\mathbb{E}(X).\]
+    \item \textup{\textbf{Chebyshev's Inequality}} For any $t\geq0$,
+    \[t^2\mathbb{P}(\abs{X-\mathbb{E}(X)}\geq t)\leq\Var(X).\]
+    \item \textup{\textbf{Chernoff bound}} Given $m_X(\lambda)=\mathbb{E}(e^{\lambda X})$ the moment-generating function of $X$ and $\lambda>0$,
+    \[e^{\lambda t}\mathbb{P}(X\geq t)\leq m_X(\lambda).\]
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+covariance
+\end{prop}
+
+\subsection{Independence and tail events}
+
+\subsection{Convergence of random variables}
+
+\begin{prop}
+\[\begin{tikzcd}
+&L^p\arrow[dr,Rightarrow]\\
+&&\mathbb{P}\arrow[r,Rightarrow]& d\arrow[r,Leftrightarrow]&\E[f(X_n)]\to\E[f(X)]\ \forall\textrm{ bounded continuous }f:\mathbb{R}\to\mathbb{R}\\
+&a.s.\arrow[ur,Rightarrow]
+\end{tikzcd}\]
+\[\begin{tikzcd}
+L^p \arrow[rd, Rightarrow] \arrow[dd, "subsequence" description, bend left]       &                                                                                                                      &                                                            &    \\
+                                                                                  & \mathbb{P} \arrow[r, Rightarrow, bend right] \arrow[lu, "\textrm{uniform bounded}"', bend right] \arrow[ld, "subsequence", bend left] & d \arrow[r, Leftrightarrow] \arrow[l, "X_n\xrightarrow{d} C"', bend right] & \begin{matrix}
+                    \E[f(X_n)]=\E[f(X)]\\              \forall\textrm{ bounded continuous }f:\mathbb{R}\to\mathbb{R} \end{matrix}\\
+a.s. \arrow[ru, Rightarrow] \arrow[uu, "\textrm{uniform integrable (to }L^1\textrm{ only)}", bend left=49] &                                                                                                                      &                                                            & 
+\end{tikzcd}\]
+\end{prop}
+
+
+\subsection{Laws of large numbers}
+
+\subsection{Tightness and characteristic functions}
+
+
+
+\end{document}
