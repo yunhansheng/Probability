@@ -1,0 +1,73 @@
+\documentclass[hidelinks,11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[OT1]{fontenc}
+\usepackage{physics}
+\usepackage{tikz-cd}
+\usepackage{xpatch}
+\usepackage{nicefrac}
+\usepackage{mathtools}
+\usepackage{environ}
+
+\setlength\parindent{0pt}
+
+\newtheoremstyle{dotless}{}{}{\itshape}{}{\bfseries}{}{ }{}
+
+\theoremstyle{definition}
+\newtheorem*{defin}{DEF}
+
+\theoremstyle{dotless}
+\newtheorem{prop}{PROP}[section]
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\1}{\mathbf{1}}
+
+\let\oldproof\proof
+\renewcommand{\proof}{\color{blue}\oldproof}
+
+%\NewEnviron{killcontents}{}\let\proof\killcontents\let\endproof\endkillcontents
+
+
+
+\begin{document}
+\begin{center}
+{\Large\textbf STAT 381-383-385 \hspace{0.1cm} Definition Page}\medbreak
+\large{Alex Sheng}
+\end{center}
+
+\section{Measure Theory}
+
+\section{Basic Probability}
+
+\subsection{Basic notions}
+
+\subsection{Independence and tail events}
+
+\begin{defin}
+Independence: let $(\Omega,\mathcal{F},\mathbb{P})$ be the probability space.\begin{itemize}
+    \item Two events $A,B\in\mathbb{F}$ are \textbf{independent} if $\mathbb{P}(A\cap B)=\mathbb{P}(A)\mathbb{P}(B)$.
+    \item Two collections $\mathcal{H},\mathcal{G}\subset\mathcal{F}$ are \textbf{independent} if $\mathbb{P}(G\cap H)=\mathbb{P}(G)\mathbb{P}(H)$ for all $G\in\mathcal{G}$ and $H\in\mathcal{H}$.
+    \item Two random variables $X$ and $Y$ are \textbf{independent} if $\sigma(X)$ and $\sigma(Y)$ are independent as $\sigma$-algebras, where $\sigma(f)$ is the collection of all pre-images of Borel sets under $f$.
+    \item An arbitrary collection of events/$\sigma$-algebras/random variables is \textbf{independent} if any finite subcollection is independent.
+\end{itemize}
+\end{defin}
+
+
+
+\end{document}

@@ -1,0 +1,78 @@
+\documentclass[hidelinks,11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[OT1]{fontenc}
+\usepackage{physics}
+\usepackage{tikz-cd}
+\usepackage{xpatch}
+\usepackage{nicefrac}
+\usepackage{mathtools}
+\usepackage{environ}
+
+\setlength\parindent{0pt}
+
+\newtheoremstyle{dotless}{}{}{\upshape}{}{\bfseries}{}{ }{}
+
+\theoremstyle{definition}
+\newtheorem*{defin}{DEF}
+
+\theoremstyle{dotless}
+\newtheorem{prop}{PROP}[section]
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\1}{\mathbf{1}}
+
+
+
+\begin{document}
+\begin{center}
+{\Large\textbf STAT 381-383-385 \hspace{0.1cm} Proof Page}\medbreak
+\large{Alex Sheng}
+\end{center}
+
+\section{Measure Theory}
+
+\section{Basic Probability}
+
+\subsection{Basic notions}
+
+\subsection{Independence and tail events}
+
+\begin{prop}
+Let $A_1\in\Pi_1$ and define measures $\mu_1(A)=\mathbb{P}(A\cap A_1)$ and $\mu_2(A)=\mathbb{P}(A)\mathbb{P}(A_1)$. Since $\Pi_1$ and $\Pi_2$ are independent, $\mu_1=\mu_2$ holds on $\Pi_2$. By Dynkin's $\pi$-$\lambda$ Theorem $\mu_1=\mu_2$ holds on $\mathcal{A}_2$. Now for $A_2\in\mathcal{A}_2$ measures $\mu_1'(A)=\mathbb{P}(A\cap A_2)$ and $\mu_2'(A)=\mathbb{P}(A)\mathbb{P}(A_2)$ agree on $\Pi_1$, hence again by Dynkin's $\pi$-$\lambda$ Theorem $\mu_1'$ and $\mu_2'$ agrees on $\mathcal{A}_1$, and the result follows.\medbreak
+$\Pi_i=\{\{X_i\leq t\}:t\in\overline{\mathbb{R}}\}$ is a $\pi$-system since $\{X_i\leq s\}\cap\{X_i\leq t\}=\{X_i\leq\min{s,t}\}\in\Pi_i$. The result follows from the previous claim.\medbreak
+The claim follows from the fact that $\sigma(f(X))\subset\sigma(X)$ for all random variables $X$ and measurable $f:\mathbb{R}\to\mathbb{R}$.
+\end{prop}
+
+\begin{prop}
+For rectangle $A_1\times A_2$, by Independence assumption,
+\[\mathbb{P}((X_1,X_2)\in A_1\times A_2)=\mathbb{P}(X_1\in A_1\textrm{ and }X_2\in A_2)=\mu_1(A_1)\mu_2(A_2)=\mu_1\times\mu_2(A_2\times A_2).\]
+The result follows from Dynkin's $\pi$-$\lambda$ Theorem since rectangles form generating $\pi$-systems.\medbreak
+Apply Fubini-Tonelli Theorem on $f(x,y)=xy$:
+\[\E(XY)=\int f(x,y)\,d(\mu_X(x)\mu_Y(y))=\int X\,d\mu_X\int Y\,d\mu_Y=\E(X)\E(Y).\]
+\end{prop}
+
+\begin{prop}
+Count $N(\omega)=\sum_{n=1}^\infty\1_{\{\omega\in A_n\}}$, then by Fubini-Tonelli Theorem 
+\[\E[N(\omega)]=\sum_{n=1}^\infty\mathbb{P}(\omega\in A_n)<\infty.\] Hence by properties of integration $N(\omega)<\infty$ almost surely, and the result follows.
+\end{prop}
+
+
+
+\end{document}

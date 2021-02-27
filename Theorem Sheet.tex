@@ -36,6 +36,7 @@
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\E}{\mathbb{E}}
 \DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\1}{\mathbf{1}}
 
 \let\oldproof\proof
 \renewcommand{\proof}{\color{blue}\oldproof}
@@ -45,9 +46,65 @@
 
 
 \begin{document}
+\begin{center}
+{\Large\textbf STAT 381-383-385 \hspace{0.1cm} Theorem Page}\medbreak
+\large{Alex Sheng}
+\end{center}
 
+\vspace{0.2 cm}
+\tableofcontents
+
+\newpage
 \section{Measure Theory}
 
+\subsection{Measures}
+
+\begin{prop}
+from Jordan to Lebesgue
+\end{prop}
+
+\begin{prop}
+continuity and countable
+\end{prop}
+
+\begin{prop}\textup{\textbf{(Dynkin's $\pi$-$\lambda$ Theorem)}} Lr
+\end{prop}
+
+\begin{prop}\textup{\textbf{(Carathéodory's Extension Theorem)}} Lr
+\end{prop}
+
+\begin{prop}
+properties of measurable functions
+\end{prop}
+
+\subsection{Integration}
+
+\begin{prop}
+simple function approximation
+\end{prop}
+
+\begin{prop}
+properties of integration
+\end{prop}
+
+\begin{prop}
+convergence theorems
+\end{prop}
+
+\subsection{Measure and integration on product spaces}
+
+\begin{prop}
+measurable functions on product space
+\end{prop}
+
+\begin{prop}
+product measure
+\end{prop}
+
+\begin{prop}\textup{\textbf{(Fubini-Tonelli Theorem)}} Lr
+\end{prop}
+
+\newpage
 \section{Basic Proabbility}
 
 \subsection{Basic notions}
@@ -61,58 +118,189 @@ If $F$ is the distribution function of random variable $X$, then $F$ is:\begin{i
 Moreover, $F$ determines the law $\mu_X$ of $X$ uniquely. Conversely if $F:\mathbb{R}\to[0,1]$ satisfies the listed properties, then there is a probability space $(\Omega, \mathcal{F},\mathbb{P})$ and a random variable $X$ such that $F$ is the distribution function of $X$.
 \end{prop}
 
-\begin{prop}\label{Prop 2.2}
-Let $X$ and $Y$ be random variables on measure space $(\Omega,\mathcal{F},\mathbb{P})$. Let $p,q\in[1,\infty]$ be such that $pq=p+q$.
+\begin{prop}\textup{\textbf{(Jensen's Inequality) }}Let $X$ be a random variable on measure space $(\Omega,\mathcal{F},\mathbb{P})$. If $X\in L^1(\mathbb{P})$ and $\phi:I\to\mathbb{R}$ is convex on some $I\subset\mathbb{R}$: for all $x,y\in I$ and $t\in[0,1]$,
+\[\phi(tx+(1-t)y)\leq t\phi(x)+(1-t)\phi(y).\]
+Then
+\[\phi(\E[X])\leq\E[\phi(X)].\]
+\end{prop}
+
+\begin{prop}
+Let $X$ and $Y$ be random variables on measure space $(\Omega,\mathcal{F},\mathbb{P})$ and $p,q\in[1,\infty]$ be such that $pq=p+q$.
 \begin{itemize}
-    \item \textup{\textbf{Jensen's Inequality}} If $X\in L^1(\mathbb{P})$ and $\phi:I\to\mathbb{R}$ is convex on some $I\subset\mathbb{R}$: for all $x,y\in I$ and $t\in[0,1]$,
-    \[\phi(tx+(1-t)y)\leq t\phi(x)+(1-t)\phi(y).\]
-    Then
-    \[\phi(\E[X])\leq\E[\phi(X)].\]
-    \item \textup{\textbf{Hölder's Inequality}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then
+    \item \textup{\textbf{(Hölder's Inequality)}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then
     \[\norm{XY}_1\leq\norm{X}_p\norm{Y}_q.\]
-    \item \textup{\textbf{Minkowski's Inequality}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then
+    \item \textup{\textbf{(Minkowski's Inequality)}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then
     \[\norm{X+Y}_{p}\leq\norm{X}_p\norm{Y}_p.\]
 \end{itemize}
 \end{prop}
 
-\begin{prop}\label{Prop 2.2}
+\begin{prop}
 Let $X$ be a random variable on measure space $(\Omega,\mathcal{F},\mathbb{P})$.
 \begin{itemize}
-    \item \textup{\textbf{Markov's Inequality}} If $X$ is non-negative and $t\geq0$, then
+    \item \textup{\textbf{(Markov's Inequality)}} If $X$ is non-negative and $t\geq0$, then
     \[t\mathbb{P}(X\geq t)\leq\mathbb{E}(X).\]
-    \item \textup{\textbf{Chebyshev's Inequality}} For any $t\geq0$,
+    \item \textup{\textbf{(Chebyshev's Inequality)}} For any $t\geq0$,
     \[t^2\mathbb{P}(\abs{X-\mathbb{E}(X)}\geq t)\leq\Var(X).\]
-    \item \textup{\textbf{Chernoff bound}} Given $m_X(\lambda)=\mathbb{E}(e^{\lambda X})$ the moment-generating function of $X$ and $\lambda>0$,
+    \item \textup{\textbf{(Chernoff bound)}} Given $m_X(\lambda)=\mathbb{E}(e^{\lambda X})$ the moment-generating function of $X$ and $\lambda>0$,
     \[e^{\lambda t}\mathbb{P}(X\geq t)\leq m_X(\lambda).\]
 \end{itemize}
 \end{prop}
 
-\begin{prop}
-covariance
+\subsection{Independence and tail events}
+
+\begin{prop}The followings are sufficient conditions for independence.\begin{itemize}
+    \item If $\pi$-systems $\Pi_1$ and $\Pi_2$ are  independent, then $\mathcal{A}_1=\sigma(\Pi_1)$ and $\mathcal{A}_2=\sigma(\Pi_2)$ are independent.
+    \item If $\mathbb{P}(X_1\leq t_1\textrm{ and }X_2\leq t_2)=\mathbb{P}(X_1\leq t_1)\mathbb{P}(X_2\leq t_2)$ for all $x_1,x_2\in\overline{\mathbb{R}}$, then $X_1$ and $X_2$ are independent random variables.
+\end{itemize}
 \end{prop}
 
-\subsection{Independence and tail events}
+\begin{prop}
+The followings are consequences of independence.\begin{itemize}
+    \item If $X_1$ and $X_2$ be independent random variables with laws $\mu_1$ and $\mu_2$, then $(X_1,X_2)$ has law $\mu_1\times\mu_2$.
+    \item For independent random variables $X_1$ and $X_2$, if $X_1\geq0$ or $\E(\abs{X_i})\leq\infty$ for $i=1,2$, then
+    \[\E(X_1X_2)=\E(X_1)\E(X_2)\]
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+sub-Gaussian and Hoeffding
+\end{prop}
+
+\begin{prop}Let $(\Omega,\mathcal{F},\mathbb{P})$ be the measure space and $\{A_n\}_{n\geq1}$ a sequence of events.\begin{itemize}
+    \item\textup{\textbf{(Borel-Cantelli Lemma I)}} If $\sum_{n\geq1}\mathbb{P}(A_n)<\infty$, then
+\[\mathbb{P}(\limsup_{n\to\infty}A_n)=\mathbb{P}(\omega:\omega\in A\textrm{ infinitely often})=0\]
+    \item\textup{\textbf{(Borel-Cantelli Lemma II)}} If $\{A_n\}$ is pairwise independent and $\sum_{n\geq1}\mathbb{P}(A_n)=\infty$, then
+    \[\mathbb{P}(\limsup_{n\to\infty}A_n)=1\]
+\end{itemize}
+\end{prop}
+
+\begin{remark}\textup{\textbf{Infinite Monkey Theorem:}} Let
+\end{remark}
+
+\begin{prop}\textup{\textbf{(Kolmogorov's 0-1 Law)}} lr
+\end{prop}
+
+\begin{prop}\textup{\textbf{(Hewitt Savage 0-1 Law)}} lr
+\end{prop}
 
 \subsection{Convergence of random variables}
 
 \begin{prop}
-\[\begin{tikzcd}
-&L^p\arrow[dr,Rightarrow]\\
-&&\mathbb{P}\arrow[r,Rightarrow]& d\arrow[r,Leftrightarrow]&\E[f(X_n)]\to\E[f(X)]\ \forall\textrm{ bounded continuous }f:\mathbb{R}\to\mathbb{R}\\
-&a.s.\arrow[ur,Rightarrow]
-\end{tikzcd}\]
-\[\begin{tikzcd}
-L^p \arrow[rd, Rightarrow] \arrow[dd, "subsequence" description, bend left]       &                                                                                                                      &                                                            &    \\
-                                                                                  & \mathbb{P} \arrow[r, Rightarrow, bend right] \arrow[lu, "\textrm{uniform bounded}"', bend right] \arrow[ld, "subsequence", bend left] & d \arrow[r, Leftrightarrow] \arrow[l, "X_n\xrightarrow{d} C"', bend right] & \begin{matrix}
+The following statements regarding the convergence of random variables holds:\begin{itemize}
+    \item If $X_n\xrightarrow{a.s.}X$ or $X_n\xrightarrow{L^p}X$ for some $p$, then $X_n\xrightarrow{\mathbb{P}}X$. If $X_n\xrightarrow{\mathbb{P}}X$ then $X_n\xrightarrow{d}X$.
+    \item If $X_n\xrightarrow{L^p}X$ for some $p$, $X_n\xrightarrow{\mathbb{P}}X$, or the sum $\sum_{n\geq1}\mathbb{P}(\abs{X_n-X}>\epsilon)<\infty$ for any $\epsilon>0$, then there is a subsequence $X_{n_k}\xrightarrow{a.s.}X$.
+    \item If $X_n\xrightarrow{d}C$ for some constant $C$ then $X_n\xrightarrow{\mathbb{P}}X$.
+    \item If $\{X_n\}$ is uniformly integrable, then $X_n\xrightarrow{a.s.}X$ implies $X_n\xrightarrow{L^1}X$; if $\{X_n\}$ is uniformly bounded, then $X_n\xrightarrow{\mathbb{P}}X$ implies $X_n\xrightarrow{L^p}X$ for all $p$.
+    \item If $1\leq q\leq p$, then $X_n\xrightarrow{L^p}X$ implies $X_n\xrightarrow{L^q}X$.
+    \item $X_n\xrightarrow{d}X$ if and only if $\E[f(X_n)]=\E[f(X)]$ for all bounded continuous $f:\mathbb{R}\to\mathbb{R}$.
+\end{itemize}
+Or to put in a diagram:
+\begin{center}\begin{tikzcd}
+\begin{matrix}
+    L^p\Rightarrow L^q\\1\leq q\leq p 
+\end{matrix} \arrow[rd, Rightarrow] \arrow[dd, "subsequence" description, bend left]       &                                                                                                                      &                                                            &    \\
+                                                                                  & \mathbb{P} \arrow[r, Rightarrow, bend right] \arrow[lu, "\textrm{uniform bounded}"', bend right] \arrow[ld, "\textrm{subsequence or sum}", bend left] & d \arrow[r, Leftrightarrow] \arrow[l, "X_n\xrightarrow{d} C"', bend right] & \begin{matrix}
                     \E[f(X_n)]=\E[f(X)]\\              \forall\textrm{ bounded continuous }f:\mathbb{R}\to\mathbb{R} \end{matrix}\\
-a.s. \arrow[ru, Rightarrow] \arrow[uu, "\textrm{uniform integrable (to }L^1\textrm{ only)}", bend left=49] &                                                                                                                      &                                                            & 
-\end{tikzcd}\]
+a.s. \arrow[ru, Rightarrow] \arrow[uu, "\textrm{uniform integrable (to }L^1\textrm{)}", bend left=49] &                                                                                                                      &                                                            & 
+\end{tikzcd}\end{center}
 \end{prop}
 
+\begin{prop}\textup{\textbf{(Slutsky's Theorem) }}If $X_n\xrightarrow{d}X$ and $Y_n\xrightarrow{\mathbb{P}}C$ for some constant $C$, then $X_n+Y_n\xrightarrow{d}X+c$ and $X_nY_n\xrightarrow{d}Xc$.
+\end{prop}
 
 \subsection{Laws of large numbers}
 
+\begin{prop}\textup{\textbf{($L^2$ Weak Law) }}Let $\{X_n\}$ be a sequence of uncorrelated and identically distributed random variables with $\Var(X_i)<\infty$. Then
+\[\frac{1}{n}\sum_{i=1}^nX_n\xrightarrow{L^2}\E(X_1)\]
+\end{prop}
+
+\begin{remark}\textup{\textbf{Coupon Collector's Problem:}} Let
+\end{remark}
+
+\begin{prop}\textup{\textbf{(Weak Law of Triangular Array) }}Let $a_n$ be a sequence of positive integers such that $a_n\to\infty$. Let $\{X_{n,k}\}$, $1\leq k\leq n$ be an array of independent random variables and truncation $\overline{X}_{n,k}=X_{n,k}\1_{\{\abs{X_{n,k}\leq a_n}\}}$. If as $n\to\infty$\begin{itemize}
+    \item $\sum_{k=1}^n\mathbb{P}(\abs{X_{n,k}}>a_n)\to0$, and
+    \item $b_n^{-2}\sum_{k=1}^n\E(\overline{X}_{n,k}^2)\to0$,
+\end{itemize}
+then
+\[b_n^{-1}\sum_{k=1}^n(X_{n,k}-\E(\overline{X}_{n,k}))\xrightarrow{\mathbb{P}}0\]
+\end{prop}
+
+\begin{prop}\textup{\textbf{(Weak Law of Large Numbers) }}Let $\{X_i\}$ be a sequence of independent and identically distributed random variables such that $n\mathbb{P}(\abs{X_1}>n)\to0$ as $n\to\infty$. Then
+\[\frac{1}{n}\sum_{i=1}^n X_i\xrightarrow{\mathbb{P}}\E(X_1)\]
+\end{prop}
+
+\begin{prop}\textup{\textbf{(Strong Law of Large Numbers) }}Let $\{X_i\}$ be a sequence of pairwise independent and identically distributed random variables such that $\mathbb{E}(\abs{X_1})<\infty$. Then
+\[\frac{1}{n}\sum_{i=1}^nX_i\xrightarrow{a.s.}\mathbb{E}(X_1).\]
+\end{prop}
+
 \subsection{Tightness and characteristic functions}
+
+\begin{prop}
+Let $\{X_n\}$ be a sequence of random variables.\begin{itemize}
+    \item If $X_n\xrightarrow{d}X$, then $\{X_n\}$ is a tight family
+    \item \textup{\textbf{(Helly's Selection Theorem)}} Conversely if $\{X_n\}$ is a tight family, then $X_n\xrightarrow{d}X$.
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+The following properties of characteristic functions hold.
+\begin{itemize}
+    \item $\abs{\phi(t)}\leq\E(\abs{e^{itX}})=1$.
+    \item $\phi(t)$ is uniformly continuous: $\abs{\phi(t+h)-\phi(t)}\leq\E(\abs{e^{ihX}-1})$.
+    \item if $X$ and $Y$ are independent, then $\phi_{X+Y}=\phi_X\phi_Y$.
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+Let $\phi$ be a function and $t_1<t_2<\cdots<t_n$. Let $A_{ij}=\phi(t_i-t_j)$ be a $n\times n$ matrix.\begin{itemize}
+    \item If $\phi$ is a characteristic function of some random variable, then the following properties hold:\begin{itemize}
+        \item A is Hermitian: $A^*=\overline{A^T}=A$.
+        \item A is positive semi-definite: for any $\forall v\in\mathbb{C}^n:v^TAv\geq0$.
+        \item $\phi$ is continuous at 0 with $\phi(0)=1$.
+    \end{itemize}
+    \item \textup{\textbf{(Bochner's Theorem)}} Conversely if $\phi$ satisfies the listed properties, then it is the characteristic function of some random variable.
+\end{itemize}
+\end{prop}
+
+\begin{remark}
+example: cf of N(mu,sigma)
+\end{remark}
+
+\begin{prop}\textup{\textbf{(Inversion Formula)}} For any random variable $X$ and $\theta>0$ define
+\[f_\theta(X)=\frac{1}{2\pi}\int_{-\infty}^\infty e^{itX-\theta t^2}\phi_X(t)\,dt.\]
+Then for any bounded continuous function $g:\R\to\R$,
+\[\E[g(X)]=\lim_{\theta\to0}\int_{-\infty}^\infty g(X)f_\theta(X)\,dX.\]
+\end{prop}
+
+\begin{remark}
+law iff cdf; pdf as cf.
+\end{remark}
+
+\begin{prop}\textup{\textbf{(Lévy's Continuity Theorem)}} A sequence of random variables $\{X_n\}$ converges to $X$ in distribution if and only if their characteristic functions $\{\phi_{X_n}\}$ converges to $\phi_X$ pointwise.
+\end{prop}
+
+\begin{prop}\textup{\textbf{(Central Limit Theorem)}} Let $\{X_i\}_{i\geq1}$ be a sequence of independent and identically ditributed random variables with $\E(X_1)=\mu$ and $\Var(E_1)=\sigma^2<\infty$. Then
+\[S_n=\frac{\sum_{i=1}^nX_i-\mu}{\sigma\sqrt{n}}\xrightarrow{d}\mathcal{N}(0,1).\]
+\end{prop}
+
+\begin{remark}
+The above Central Limit Theorem is the classical result. A stronger one that reduces the identical distribution condition is \textbf{Lindeberg-Feller Central Limit Theorem}:\smallbreak
+\textit{Let $\{k_n\}_{n\geq1}$ be a sequence of positive integers with $k_n\to\infty$. Let $\{X_{n,i}\}_{1\leq i\leq k_n}$ be a collection of independent random variables and denote $\mu_{n,i}=\E(X_{n,i})$, $\sigma_{n,i}^2=\Var(X_{n,i})$, and $S_n^2=\sum_{i=1}^{k_n}\sigma_{n,i}^2$. If $\{X_{n,i}\}$ satisfies Lindeberg condition:}
+\[\forall\epsilon>0:\frac{1}{S_n^2}\sum_{i=1}^{k_n}\E\left[(X_{n,i}-\mu_{n,i})^2\textbf{1}_{\{\abs{X_{n,i}-\mu_{n,i}}\geq\epsilon S_n\}}\right]\to0.\]
+\textit{Then}
+\[\frac{1}{S_n}\sum_{i=1}^{k_n}(X_{n,i}-\mu_{n,i})\xrightarrow{d}\mathcal{N}(0,1).\]
+As a corollary to the Lindeberg-Feller is \textbf{Lyapunov Central Limit Theorem}:\smallbreak
+\textit{Let $\{X_i\}_{i\geq1}$ be a sequence of independent random variables with $\E(X_i)=\mu_i$, $\sigma_i^2=\Var(X_i)<\infty$ and $S_n^2=\sum_{i=1}^n\sigma_i^2$. If $\{X_i\}$ satisfies Lyapunov condition:}
+\[\exists\delta>0:\frac{1}{S_n^{2+\delta}}\sum_{i=1}^n\E\left[\abs{X_i-\mu_i}^{2+\delta}\right]\to0.\]
+\textit{Then}
+\[\frac{1}{S_n}\sum_{i=1}^n(X_i-\mu_i)\xrightarrow{d}\mathcal{N}(0,1).\]
+\end{remark}
+
+\subsection{rr}
+
+\section{Brownian Motion}
+
+\section{Ergodic Theory}
 
 
 
