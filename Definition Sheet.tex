@@ -38,11 +38,6 @@
 \DeclareMathOperator{\R}{\mathbb{R}}
 \DeclareMathOperator{\1}{\mathbf{1}}
 
-\let\oldproof\proof
-\renewcommand{\proof}{\color{blue}\oldproof}
-
-%\NewEnviron{killcontents}{}\let\proof\killcontents\let\endproof\endkillcontents
-
 
 
 \begin{document}
@@ -66,6 +61,11 @@ Independence: let $(\Omega,\mathcal{F},\mathbb{P})$ be the probability space.\be
     \item Two random variables $X$ and $Y$ are \textbf{independent} if $\sigma(X)$ and $\sigma(Y)$ are independent as $\sigma$-algebras, where $\sigma(f)$ is the collection of all pre-images of Borel sets under $f$.
     \item An arbitrary collection of events/$\sigma$-algebras/random variables is \textbf{independent} if any finite subcollection is independent.
 \end{itemize}
+\end{defin}
+
+\begin{defin}
+Let $\{X_i\}_{i\geq1}$ be a sequence of random variables defined on measure space $(\Omega,\mathcal{F},\mathbb{P})$. The \textbf{tail $\sigma$-algebra} of $\{X_i\}$ is
+\[\mathcal{T}(X_1,X_2,\cdots)=\bigcap_{i\geq1}\sigma(X_i,X_{i+1},\cdots)=\bigcap_{i\geq1}\sigma(\{\omega\in\Omega:X_i(\omega)\leq t\textrm{ for all }t\in\mathbb{R}\})\]
 \end{defin}
 
 

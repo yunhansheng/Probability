@@ -18,13 +18,13 @@
 
 \setlength\parindent{0pt}
 
-\newtheoremstyle{dotless}{}{}{\upshape}{}{\bfseries}{}{ }{}
+\newtheoremstyle{dotless}{10pt}{10pt}{\upshape}{}{\bfseries}{}{ }{}
 
 \theoremstyle{definition}
 \newtheorem*{defin}{DEF}
 
 \theoremstyle{dotless}
-\newtheorem{prop}{PROP}[section]
+\newtheorem{prop}{Proof}[section]
 \newtheorem*{corollary}{Corollary}
 
 \theoremstyle{remark}
@@ -55,7 +55,7 @@
 \subsection{Independence and tail events}
 
 \begin{prop}
-Let $A_1\in\Pi_1$ and define measures $\mu_1(A)=\mathbb{P}(A\cap A_1)$ and $\mu_2(A)=\mathbb{P}(A)\mathbb{P}(A_1)$. Since $\Pi_1$ and $\Pi_2$ are independent, $\mu_1=\mu_2$ holds on $\Pi_2$. By Dynkin's $\pi$-$\lambda$ Theorem $\mu_1=\mu_2$ holds on $\mathcal{A}_2$. Now for $A_2\in\mathcal{A}_2$ measures $\mu_1'(A)=\mathbb{P}(A\cap A_2)$ and $\mu_2'(A)=\mathbb{P}(A)\mathbb{P}(A_2)$ agree on $\Pi_1$, hence again by Dynkin's $\pi$-$\lambda$ Theorem $\mu_1'$ and $\mu_2'$ agrees on $\mathcal{A}_1$, and the result follows.\medbreak
+Let $A_1\in\Pi_1$ and define measures $\mu_1(A)=\mathbb{P}(A\cap A_1)$ and $\mu_2(A)=\mathbb{P}(A)\mathbb{P}(A_1)$. Since $\Pi_1$ and $\Pi_2$ are independent, $\mu_1=\mu_2$ holds on $\Pi_2$. By Dynkin's $\pi$-$\lambda$ Theorem $\mu_1=\mu_2$ holds on $\mathcal{A}_2$. Now for $A_2\in\mathcal{A}_2$ measures $\mu_1'(A)=\mathbb{P}(A\cap A_2)=\mathbb{P}(A)\mathbb{P}(A_2)=\mu_2'(A)$ on $\Pi_1$, hence again by Dynkin's $\pi$-$\lambda$ Theorem $\mu_1'=\mu_2'$ on $\mathcal{A}_1$, and the result follows.\medbreak
 $\Pi_i=\{\{X_i\leq t\}:t\in\overline{\mathbb{R}}\}$ is a $\pi$-system since $\{X_i\leq s\}\cap\{X_i\leq t\}=\{X_i\leq\min{s,t}\}\in\Pi_i$. The result follows from the previous claim.\medbreak
 The claim follows from the fact that $\sigma(f(X))\subset\sigma(X)$ for all random variables $X$ and measurable $f:\mathbb{R}\to\mathbb{R}$.
 \end{prop}
@@ -69,8 +69,25 @@ Apply Fubini-Tonelli Theorem on $f(x,y)=xy$:
 \end{prop}
 
 \begin{prop}
-Count $N(\omega)=\sum_{n=1}^\infty\1_{\{\omega\in A_n\}}$, then by Fubini-Tonelli Theorem 
-\[\E[N(\omega)]=\sum_{n=1}^\infty\mathbb{P}(\omega\in A_n)<\infty.\] Hence by properties of integration $N(\omega)<\infty$ almost surely, and the result follows.
+The proof depends on so-called Hoeffding lemma: If $X\in[a,b]$ almost surely, then for any $\lambda\in\mathbb{R}$,
+\[\E(e^{\lambda X})\leq\exp{\lambda\E(X)+\frac{\lambda^2(b-a)^2}{8}}.\]
+Indeed,\medbreak
+With this, we proceed by using Markov's inequality and the independence assumption:
+\begin{align*}
+    \mathbb{P}\left(\sum_{i=1}^n(X_i-\E(X_i))\geq t\right)&=\mathbb{P}\left(\exp{\lambda\sum_{i=1}^n(X_i-\E(X_i))}\geq e^{\lambda t}\right)\\
+    &\leq e^{-\lambda t}\E\left[\exp{\lambda\sum_{i=1}^n(X_i-\E(X_i))}\right]\leq e^{\lambda t}\exp{\frac{-8}{\lambda^2\sum_{i=1}^n(b_i-a_i)^2}}.
+\end{align*}
+The result follows by minimizing $\lambda>0$
+\end{prop}
+
+\begin{prop}
+Count $N(\omega)=\sum_{n=1}^\infty\1_{\{\omega\in A_n\}}$, then by Fubini-Tonelli Theorem,
+\[\E[N(\omega)]=\sum_{n=1}^\infty\mathbb{P}(\omega\in A_n)<\infty.\] Hence by properties of integration $N(\omega)<\infty$ almost surely, and the result follows.\medbreak
+ti
+\end{prop}
+
+\begin{prop}
+Let $\mathcal{F}_n=\sigma(X_1,X_2,\cdots,C_n)$ and $\mathcal{F}_\infty=\sigma(X_1,X_2,\cdots)$, then $A\in\mathcal{T}\subset\mathcal{F}_\infty$. For $B\in\mathcal{F}_n$ consider measures $\mu_1(B)=\mathbb{P}(A)\mathbb{P}(B)$ and $\mu_2(B)=\mathbb{P}(A\cap B)$, then by definition $\mu_1=\mu_2$ on $\cup_{n\geq1}\mathcal{F}_n$. Being a $\pi$-system, $\cup_{n\geq1}\mathcal{F}_n$ generates $\mathcal{F}_\infty$, hence by Dynkin's $\pi$-$\lambda$ Theorem $\mu_1=\mu_2$ on $\mathcal{F}_\infty$. In particular, $\mathbb{P}(A\cap A)=\mathcal{P}^2(A)$ implies that $\mathbb{P}(A)=0$ or $1$.
 \end{prop}
 
 

@@ -150,7 +150,8 @@ Let $X$ be a random variable on measure space $(\Omega,\mathcal{F},\mathbb{P})$.
 
 \begin{prop}The followings are sufficient conditions for independence.\begin{itemize}
     \item If $\pi$-systems $\Pi_1$ and $\Pi_2$ are  independent, then $\mathcal{A}_1=\sigma(\Pi_1)$ and $\mathcal{A}_2=\sigma(\Pi_2)$ are independent.
-    \item If $\mathbb{P}(X_1\leq t_1\textrm{ and }X_2\leq t_2)=\mathbb{P}(X_1\leq t_1)\mathbb{P}(X_2\leq t_2)$ for all $x_1,x_2\in\overline{\mathbb{R}}$, then $X_1$ and $X_2$ are independent random variables.
+    \item If $\mathbb{P}(X_1\leq t_1\textrm{ and }X_2\leq t_2)=\mathbb{P}(X_1\leq t_1)\mathbb{P}(X_2\leq t_2)$ for all $x_1,x_2\in\overline{\mathbb{R}}$, then $X_1,X_2$ are independent random variables.
+    \item Let $f_1$ and $f_2$ be measurable functions $\mathbb{R}\to\mathbb{R}$ and $X_1,X_2$ independent random variables. Then $f_2(X_1)$ and $f_2(X_2)$ are independent.
 \end{itemize}
 \end{prop}
 
@@ -158,30 +159,33 @@ Let $X$ be a random variable on measure space $(\Omega,\mathcal{F},\mathbb{P})$.
 The followings are consequences of independence.\begin{itemize}
     \item If $X_1$ and $X_2$ be independent random variables with laws $\mu_1$ and $\mu_2$, then $(X_1,X_2)$ has law $\mu_1\times\mu_2$.
     \item For independent random variables $X_1$ and $X_2$, if $X_1\geq0$ or $\E(\abs{X_i})\leq\infty$ for $i=1,2$, then
-    \[\E(X_1X_2)=\E(X_1)\E(X_2)\]
+    \[\E(X_1X_2)=\E(X_1)\E(X_2).\]
 \end{itemize}
 \end{prop}
 
-\begin{prop}
-sub-Gaussian and Hoeffding
+\begin{prop}\textup{\textbf{(Hoeffding bound)}} Let $X_1,X_2,\cdots,X_n$ be a sequence of independent random variables such that $X_i\in[a_i,b_i]$ almost surely for all $i\in[1,n]$. Then for any $t\geq0$,
+\[\mathbb{P}\left(\sum_{i=1}^n(X_i-\E(X_i))\geq t\right)\leq\exp{\frac{-Ct^2}{\sum_{i=1}^n(b_i-a_i)^2}}\]
+for some constant $C$.
 \end{prop}
 
 \begin{prop}Let $(\Omega,\mathcal{F},\mathbb{P})$ be the measure space and $\{A_n\}_{n\geq1}$ a sequence of events.\begin{itemize}
     \item\textup{\textbf{(Borel-Cantelli Lemma I)}} If $\sum_{n\geq1}\mathbb{P}(A_n)<\infty$, then
-\[\mathbb{P}(\limsup_{n\to\infty}A_n)=\mathbb{P}(\omega:\omega\in A\textrm{ infinitely often})=0\]
+\[\mathbb{P}(\limsup_{n\to\infty}A_n)=\mathbb{P}(\omega:\omega\in A\textrm{ infinitely often})=0.\]
     \item\textup{\textbf{(Borel-Cantelli Lemma II)}} If $\{A_n\}$ is pairwise independent and $\sum_{n\geq1}\mathbb{P}(A_n)=\infty$, then
-    \[\mathbb{P}(\limsup_{n\to\infty}A_n)=1\]
+    \[\mathbb{P}(\limsup_{n\to\infty}A_n)=1.\]
 \end{itemize}
 \end{prop}
 
 \begin{remark}\textup{\textbf{Infinite Monkey Theorem:}} Let
 \end{remark}
 
-\begin{prop}\textup{\textbf{(Kolmogorov's 0-1 Law)}} lr
+\begin{prop}\textup{\textbf{(Kolmogorov's 0-1 Law)}} Let $\{X_i\}_{i\geq1}$ be a sequence of independent random variables and $\mathcal{T}$ the tail $\sigma$-algebra of $\{X_i\}$. Then $\mathcal{T}$ is trivial: $\mathbb{P}(A)=0$ or $1$ for all $A\in\mathcal{T}$.
 \end{prop}
 
-\begin{prop}\textup{\textbf{(Hewitt Savage 0-1 Law)}} lr
-\end{prop}
+\begin{remark}
+Consider the collection of events $\mathcal{E}$ that the occurrence is invariant under finite permutation. $\mathcal{E}$ is a $\sigma$-algebra called exchangeable $\sigma$-algebra. A stronger version of the above theorem is \textbf{Hewitt-Savage 0-1 Law}:\smallbreak
+\textit{Let $\{X_i\}_{i\geq1}$ be a sequence of independent and identically distributed random variables and $\mathcal{E}$ the exchangeable $\sigma$-algebra. Then $\mathcal{E}$ is trivial: $\mathbb{P}(A)=0$ or $1$ for all $A\in\mathcal{T}$.}
+\end{remark}
 
 \subsection{Convergence of random variables}
 
