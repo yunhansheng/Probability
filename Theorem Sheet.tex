@@ -300,7 +300,19 @@ As a corollary to the Lindeberg-Feller is \textbf{Lyapunov Central Limit Theorem
 \[\frac{1}{S_n}\sum_{i=1}^n(X_i-\mu_i)\xrightarrow{d}\mathcal{N}(0,1).\]
 \end{remark}
 
-\subsection{rr}
+\subsection{Convergence in Polish space}
+
+\begin{prop}\textup{\textbf{(Portemanteau lemma)}} Let $(\mathcal{S},\rho)$ be a polish space and $\{\mu_n\}$ a sequence of probability measures on $\mathcal{S}$, then the following statements are equivalent.\begin{itemize}
+    \item $\mu_n\xrightarrow{weak}\mu$.
+    \item For every bounded Lipschitz continuous $f:\mathcal{S}\to\mathbb{R}$,
+    \[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu.\]
+    \item For every bounded measurable $f:\mathcal{S}\to\mathbb{R}$ that is continuous almost everywhere with respect to $\mu$,
+    \[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu.\]
+    \item $\limsup_{n\to\infty}\mu_n(F)\leq\mu(F)$ for every closed set $F\subset\mathcal{S}$.
+    \item $\liminf_{n\to\infty}\mu_n(E)\geq\mu(E)$ for every open set $E\subset\mathcal{S}$.
+    \item $\mu_n(A)\to\mu(A)$ for all Borel $A\subset\mathcal{S}$ with $\mu(\partial A)=0$.
+\end{itemize}
+\end{prop}
 
 \section{Brownian Motion}
 
