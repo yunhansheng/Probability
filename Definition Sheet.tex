@@ -68,11 +68,29 @@ Let $\{X_i\}_{i\geq1}$ be a sequence of random variables defined on measure spac
 \[\mathcal{T}(X_1,X_2,\cdots)=\bigcap_{i\geq1}\sigma(X_i,X_{i+1},\cdots)=\bigcap_{i\geq1}\sigma(\{\omega\in\Omega:X_i(\omega)\leq t\textrm{ for all }t\in\mathbb{R}\})\]
 \end{defin}
 
-\subsection{rr}
+\subsection{Convergence of random variables}
 
 \begin{defin}
-Polis
+A \textbf{Polish space} is a completely metrizable separable metric space.
 \end{defin}
+
+\begin{defin}Convergence: Let $\{X_n\}_{n\geq1}$ be a sequence of random variables in a measure space $(\Omega,\mathcal{F},\mathbb{P})$ taking values in a Polish space $(\mathcal{S},\rho)$.\begin{itemize}
+    \item $\{X_n\}$ \textbf{converges almost surely} to $X$ ($X_n\xrightarrow{a.s.}X$) if $X_n\to X$ alsmot surely.
+    \item $\{X_n\}$ \textbf{converges in probability} to $X$ ($X_n\xrightarrow{\mathbb{P}}X$) if $\mathbb{P}(\rho(X_n,X)\geq\epsilon)\to0$ for any $\epsilon>0$.
+    \item $\{X_n\}$ \textbf{converges in distribution} to $X$ ($X_n\xrightarrow{d}X$) if $F_{X_n}\to F_X$ on points where $F_x$ is continuous, where $F_{X_n}$ and $F_X$ are distribution functions of $X_n$ and $X$ respectively.
+    \item $\{X_n\}$ \textbf{converges in $L^p$} to $X$ ($X_n\xrightarrow{L^p}X$) if $\norm{X_n-X}_p\to0$.
+    \item $\{X_n\}$ \textbf{converges weakly} to $X$ ($X_n\xrightarrow{weak}X$) if $\E[f(X_n)]\to\E(f(X))$ for all bounded and continuous $f:\mathcal{S}\to\mathbb{R}$.
+\end{itemize}
+Let $\{\mu_n\}_{n\geq1}$ be a sequence of probability measures, then $\mu_n$ \textbf{converges weakly} to $\mu$ ($\mu_n\xrightarrow{weak}\mu$) if for any bounded and continuous function $f:\mathcal{S}\to\mathbb{R}$:
+\[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu\]
+\end{defin}
+
+\subsection{Tightness and characteristic functions}
+
+\begin{defin}
+A sequence of random variables $\{X_n\}$ is a \textbf{tight family} if for any $\epsilon>0$ there exists some $K$ such that $\sup_n\mathbb{P}(\abs{X_n}\geq K)\leq\epsilon$.
+\end{defin}
+
 
 
 \end{document}

@@ -52,6 +52,10 @@
 
 \subsection{Basic notions}
 
+\begin{prop}
+See Rudin, it's crystal clear
+\end{prop}
+
 \subsection{Independence and tail events}
 
 \begin{prop}
@@ -83,11 +87,138 @@ The result follows by minimizing $\lambda>0$
 \begin{prop}
 Count $N(\omega)=\sum_{n=1}^\infty\1_{\{\omega\in A_n\}}$, then by Fubini-Tonelli Theorem,
 \[\E[N(\omega)]=\sum_{n=1}^\infty\mathbb{P}(\omega\in A_n)<\infty.\] Hence by properties of integration $N(\omega)<\infty$ almost surely, and the result follows.\medbreak
-ti
+Conversely assume
 \end{prop}
 
 \begin{prop}
 Let $\mathcal{F}_n=\sigma(X_1,X_2,\cdots,C_n)$ and $\mathcal{F}_\infty=\sigma(X_1,X_2,\cdots)$, then $A\in\mathcal{T}\subset\mathcal{F}_\infty$. For $B\in\mathcal{F}_n$ consider measures $\mu_1(B)=\mathbb{P}(A)\mathbb{P}(B)$ and $\mu_2(B)=\mathbb{P}(A\cap B)$, then by definition $\mu_1=\mu_2$ on $\cup_{n\geq1}\mathcal{F}_n$. Being a $\pi$-system, $\cup_{n\geq1}\mathcal{F}_n$ generates $\mathcal{F}_\infty$, hence by Dynkin's $\pi$-$\lambda$ Theorem $\mu_1=\mu_2$ on $\mathcal{F}_\infty$. In particular, $\mathbb{P}(A\cap A)=\mathcal{P}^2(A)$ implies that $\mathbb{P}(A)=0$ or $1$.
+\end{prop}
+
+\subsection{Convergence of random variables}
+
+\begin{prop}
+If $\mu_n\xrightarrow{weak}\mu$ then by definition
+\[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu\]
+for all bounded Lipschitz continuous function $f:\mathcal{S}\to\mathbb{R}$.\medbreak
+Suppose these holds, then take any closed set $F\subset\mathcal{S}$ and define $f(x)=\rho(x,F)=\inf_{y\in F}\rho(x,y)$. Then $f$ is indeed Lipschitz: take any $x,x'\in\mathcal{S}$ and $y\in F$ such that $\rho(y,x')\leq\rho(y',x')$ for all $y'\in F$, then $f(x)\leq\rho(x,y)\leq\rho(x,x')+f(x')$ and similarly $f(x')\leq\rho(x,y)\leq\rho(x,x')+f(x)$. Define $g_k(x)=\max(0,1-kf(x))$, which is Lipschitz continuous and bounded by $[0,1]$. Observe that since $F$ is closed, $F(x)=0$ if and only if $x\in F$. Therefore $\1_F\leq g_k$ and $g_k\to\1_F$. Then
+\[\limsup_{n\to\infty}\mu_n(F)\leq\limsup_{n\to\infty}\int_\mathcal{S}g_k\,d\mu_n=\int_\mathcal{S}g_k\,d\mu\]
+for all $k$, by Dominated Convergence Theorem and the fact that $\mu_n\xrightarrow{weak}\mu$. Take $k\to\infty$ and by Dominated Convergence Theorem again, $\limsup_{n\to\infty}\mu_n(F)\leq\mu(F)$. Take $F^c$ and consider $g'_k=(kf(x)-1)/kf(x)\leq\1_{F^c}$, and the property for open sets hold likewise.\medbreak
+Combine these two properties and take measurable $A\subset\mathcal{S}$ with $\mu(\partial A)=0$, then $\mu(A)=\mu(\overline{A})=\mu(A^\circ)$. Hence
+\[\mu(A)=\mu(A^\circ)\leq\liminf_{n\to\infty}\mu_n(A^\circ)\leq\limsup_{n\to\infty}\mu_n(\overline{A})\leq\mu(\overline{A})\leq\mu(A)\]
+which proves the statement.\medbreak
+Lastly, assume the above property holds, then
+\end{prop}
+
+\subsection{Laws of large numbers}
+
+\begin{prop}
+Since $X_n$ has finite variance for all $n$, $\Var(\sum_{i=1}^nX_n)\leq nc$ for some constant c. Then by uncorrelated assumption
+\[\E\left[\left(\frac{1}{n}\sum_{i=1}^nX_i-\E(X_1)\right)\right]=\Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right)=\frac{1}{n^2}\Var\left(\sum_{i=1}^nX_i\right)\leq\frac{c}{n}\to0\]
+as $n\to\infty$, and we are done.
+\end{prop}
+
+\begin{prop}
+Denote $S_n=\sum_{k=1}^nX_{n,k}$, $\overline{S}_n=\sum_{k=1}^n\overline{X}_{n,k}$, and $\mu_n=\sum_{k=1}^n\E(\overline{X}_{n,k})$. For any $\epsilon>0$,
+\[\mathbb{P}\left({\frac{S_n-\mu_n}{a_n}}>\epsilon\right)\leq\mathbb{P}(S_n\neq\overline{S}_n)+\mathbb{P}\left({\frac{\overline{S}_n-\mu_n}{a_n}}>\epsilon\right).\]
+The first term is bounded by the first assumption:
+\[\mathbb{P}\left(S_n\neq\overline{S}_n\right)=\mathbb{P}\left(\bigcup_{k=1}^n\{X_{n,k}\neq\overline{X}_{n,k}\}\right)\leq\sum_{k=1}^n\mathbb{P}\left(\abs{X_{n,k}}>a_n\right)\to0.\]
+The second term is bounded by Chebyshev's inequality, independence, and the second assumption:
+\begin{align*}
+\mathbb{P}\left({\frac{\overline{S}_n-\mu_n}{a_n}}>\epsilon\right)&\leq\frac{1}{\epsilon^2}\E\left(\abs{\frac{\overline{S}_n-\mu_n}{a_n}}^2\right)\\
+&=\frac{1}{\epsilon^2a_n^2}\Var(\overline{S}_n)=\frac{1}{\epsilon^2a_n^2}\sum_{k=1}^n\Var(\overline{X}_{n,k})\leq\frac{1}{\epsilon^2a_n^2}\sum_{k=1}^n\mu_n\to0.
+\end{align*}
+and the result follows.
+\end{prop}
+
+\begin{prop}
+weak law
+\end{prop}
+
+\begin{prop}
+The proof is due to Etemadi (1981). As a lemma, $y\sum_{k>y}k^{-2}\leq2$ for $y\geq0$.\smallbreak
+Assume for simplicity that $X_i\geq0$. Let $k_n=\left\lfloor{\alpha^n}\right\rfloor$ for some arbitrary $\alpha>1$, $Y_i=X_i\textbf{1}_{\{X_i<i\}}$, and $Z_n=\frac{1}{n}\sum_{i=1}^n(Y_i-\E(Y_i))$.\smallbreak
+By Chebyshev's inequality,  Fubini-Tonelli Theorem, and the fact that $\alpha^n\leq2\left\lfloor{\alpha^n}\right\rfloor$,
+\begin{align*}
+\sum_{n=1}^\infty\mathbb{P}(\abs{Z_{k_n}}>\epsilon)&\leq\epsilon^{-2}\sum_{n=1}^\infty k_n^{-2}\sum_{i=k_1}^{k_n}\Var(Y_i)\\
+&=\epsilon^{-2}\sum_{i=1}^\infty\Var(Y_i)\sum_{n:k_n\geq i}k_n^{-2}\leq4(1-\alpha^{-2})^{-1}\epsilon^{-2}\sum_{i=1}^\infty i^{-2}\Var(Y_i).
+\end{align*}
+Since by Fubini-Tonelli Theorem, the lemma, and the assumption $\E(\abs{X_i})<\infty$
+\[\sum_{i=1}^\infty i^{-2}\Var(Y_i)\leq\sum_{i=1}^\infty i^{-2}\E(Y_i^2)\leq2\int_0^\infty\,dy\left\{\sum_{i=1}^\infty i^{-2}\textbf{1}_{\{y<k\}}\right\}y\mathbb{P}(\abs{X_1}>y)\leq4\E(\abs{X_i})<\infty,\]
+we conclude that $\mathbb{P}(\abs{Z_{n_k}}>\epsilon)\to0$, or $k_n^{-1}\sum_{i=k_1}^{k_n}Y_i\to k_n^{-1}\sum_{i=k_1}^{k_n}\E(Y_i)$. To deal with middle values note that for $k_n<m<k_{n+1}$
+\[k_{n+1}^{-1}\sum_{i=1}^{k_n}Y_i\leq m^{-1}\sum_{i=1}^mY_i\leq k_n^{-1}\sum_{i=k_1}^{k_{n+1}}Y_i.\]
+Hence $n^{-1}\sum_{i=1}^nY_i\to n^{-1}\sum_{i=1}^n\E(Y_i)$.\smallbreak
+Since $\sum_{i=1}^\infty\mathbb{P}(X_i\neq Y_i)=\sum_{i=1}^\infty\mathbb{P}(X_1\geq i)\leq\E(X_1)<\infty$, by Borel Cantelli Lemma $\mathbb{P}(X_i\neq Y_i,\textrm{ infinitely often})=0$, which implies that $n^{-1}\sum_{i=1}^nX_i\xrightarrow{a.s.}n^{-1}\sum_{i=1}^nY_i$.\smallbreak
+Lastly by Dominated Convergence Theorem $\E(Y_i)-\mu=\E(X_1\textbf{1}_{\{X_i\geq i\}})\to0$, which implies that $n^{-1}\sum_{i=1}^n\E(Y_i)\to\mu$. Combining these result and the statement follows:
+\[n^{-1}\sum_{i=1}^nX_i\xrightarrow{a.s.}n^{-1}\sum_{i=1}^nY_i\to n^{-1}\sum_{i=1}^n\E(Y_i)\to\mu\]
+\end{prop}
+
+\subsection{Tightness and characteristic functions}
+
+\begin{prop}
+Suppose first that $\{X_n\}$ is a tight family. Let $F_n$ be the distribution function of $X_n$. Since $F_n$ is bounded, there is a subsequence $F_{n_k}$ that converges pointwise $F_\ast(q)=\lim_{k\to\infty}F_{n_k}(q)$. Define $F(x)=\inf\{F_\ast(q):q>x\}$. We will show $F(x)=\lim_{k\to\infty}F_{n_k}(x)$ is a distribution function.\medbreak
+In order for $F(x)$ to be a distribution function, we only need to check the criterion in prop xxx. The monotonicity is inherited. $F(x)\to0$ as $x\to-\infty$ and $F(x)\to1$ as $x\to\infty$ follows from tightness. Consider $q_1>q_2>\cdots$ with $q\to x$, then $F(q_{i+1})\leq F_\ast(q_i)$ for all $i$, and hence the right-continuity:
+\[\lim_{i\to\infty}F(q_{i+1})\leq\lim_{i\to\infty}F_\ast(q_i)=F(x).\]
+Also, by the choice of $q_i$,
+\[\limsup_{k\to\infty}F_{n_k}(x)\leq\lim_{k\to\infty}F_{n_k}(q_i)=F_\ast(q_i)\]
+holds for all $q_i$, hence $\limsup_{k\to\infty}F_{n_k}(x)\leq F(x)$ as $i\to\infty$. Reverse the inequality for limit infimum and obtain $F(x)\leq\liminf_{k\to\infty}F_{n_k}(x)$. Together $F(x)=\lim_{k\to\infty}F_{n_k}(x)$ as desired.\medbreak
+Also by definition $\epsilon/\abs{c_n}\to0$ for any $\epsilon>0$. By tightness, for any $\delta>0$ take $K$ such that $\sup_n\mathbb{P}(\abs{X_n}\geq K)<\delta$, and take $N$ such that $\epsilon/\abs{c_n}>K$ for all $n>N$. Then
+\begin{align*}
+    &\mathbb{P}(\abs{X_n}\geq\epsilon/\abs{c_n})\leq\mathbb{P}(\abs{X_n}\geq K)\\
+    \Rightarrow&\sup_{n\geq N}\mathbb{P}(\abs{X_n}\geq\epsilon/\abs{c_n})\leq\sup_{n\geq N}\mathbb{P}(\abs{X_n}\geq K)\leq\sup_n\mathbb{P}(\abs{X_n}\geq K)<\delta\\
+    \Rightarrow&\sup_{n\geq N}\mathbb{P}(\abs{c_nX_n}\geq\epsilon)<\delta.
+\end{align*}
+And the desired result follows.\medbreak
+Now suppose conversely that $X_n\xrightarrow{d}X$ and let $F_n$, $F$ be the distribution functions of $X_n$, $X$ respectively. We have
+\begin{align*}
+\mathbb{P}(\abs{X_n}>K)&=1-F_n(K)+F_n(-K)\\
+&\leq(1-F(k))+F(-k)+\abs{F(k)-F_n(k)}+\abs{F_n(-k)-F_n(-k)}.
+\end{align*}
+Choose the appropriate $N$ and $K_0$, and the first two terms are bounded by $\epsilon/4$ by the fact that $F(k)\to1$ and $F(-k)\to0$ as $k\to\infty$; the second two are also bounded $\epsilon/4$ since $X_n\xrightarrow{d}X$. The first $N$ terms are bounded by some $K_1$, hence choose $K=\max{K_0,K_1}$ and $n>N$ and the tightness of $\{X_n\}$ follows.
+\end{prop}
+
+\begin{prop}
+We shall first prove a lemma regarding probability density function: if $X$ and $Y$ are independent and $Y$ has probability density function $g$, then $Z=X+Y$ has probability density function $h(z)=\E[g(z-X)]$.\smallbreak
+Indeed, $\mu_X\mu_Y$ is the law of $(X,Y)$ by independence, and apply Fubini-Tonelli Theorem twice:
+\begin{align*}
+F_Z(t)=\mathbb{P}(X+Y\leq t)&=\int\1_{\{X+Y\leq t\}}\,d(\mu_X\mu_Y)\\
+&=\int\,d\mu_X\int\1_{\{Y\leq t+X\}}\,d\mu_Y\\
+&=\int\,d\mu_X\int_{-\infty}^{t-x}g(y)\,dy\\
+&=\int\,d\mu_X\int_{-\infty}^tg(z-x)\,dz=\int_{-\infty}^t\E(g(z-x))\,dz.
+\end{align*}
+Following the calculation of Normal distribution in the previous remark,
+\[\int_{-\infty}^\infty e^{i(y-x)t-\theta t^2}\,dt=\sqrt{\frac{\pi}{\theta}}\int_{-\infty}^\infty\exp{\frac{i(y-x)}{\sqrt{2\theta}}s}\frac{1}{\sqrt{2\pi}}e^{-s^2/2}\,ds=\sqrt{\frac{\pi}{\theta}}\exp{\frac{-(y-x)^2}{4\theta}}.\]
+Since $\phi_X(t)=\int_\mathbb{R}e^{ity}\,d\mu(y)$ where $\mu$ is the law of $X$, we apply Fubini-Tonelli Theorem,
+\begin{align*}
+f_\theta(X)=\frac{1}{2\pi}\int_{-\infty}^\infty e^{itX-\theta t^2}\phi_X(t)\,dt&=\frac{1}{2\pi}\int_{-\infty}^\infty\,d\mu(y)\int_{-\infty}^\infty e^{i(y-x)t-\theta t^2}\,dt\\&=\int_{-\infty}^\infty\frac{1}{\sqrt{4\pi\theta}}\exp{\frac{-(y-x)^2}{4\theta}}\,d\mu(y).
+\end{align*}
+By lemma and the previous remark $f_\theta(X)$ is the probability density function of $X+Y_\theta$ for some $Y_\theta\sim \mathcal{N}(0,2\theta)$. By Chebyshev's Inequality $Y_\theta\xrightarrow{\mathbb{P}}0$ as $\theta\to0$, hence $X+Y_\theta\xrightarrow{d}X$ by Slutsky's Theorem, and the result follows from definition.
+\end{prop}
+
+\begin{prop}
+If $X_n\xrightarrow{d}X$ then by our previous decomposition $\phi_{X_n}(t)\to\phi_X(t)$ necessarily.\smallbreak
+On the other hand let $\phi_{X_n}(t)\to\phi_X(t)$, and assume for contradiction that there is a subsequence $X_{n_k}\not\xrightarrow{d}X$. For any $\epsilon>0$ choose small enough $a$ such that $2\abs{\phi_X(s)-1}\leq\epsilon$. Then by Dominated Convergence Theorem,
+\[\lim_{n\to\infty}\int_{-a}^a\abs{1-\phi_{X_n}(s)}\,ds=\int_{-a}^a\abs{1-\phi_X(s)}\,ds\leq a\epsilon.\]
+Let $at=2$, then by prop xxx $\limsup_{n\to\infty}\mathbb{P}(\abs{X_n}\geq t)\leq\epsilon$, which implies that $\{X_n\}$ is a tight family, as is $\{X_{n_k}\}$. By Helly's Selection Theorem we extract a subsequence $X_{n_k}\xrightarrow{d}X$, which contradicts the assumption. Hence $X_n\xrightarrow{d}X$.
+\end{prop}
+
+\begin{prop}
+We shall only prove the case when $\mu=0$ and $\sigma=1$. The general case follows. By Lévy's Continuity Theorem we only need to prove that $\phi_{S_n}(t)\to e^{-t^2/2}$. We need two lemmas:\begin{itemize}
+    \item By Lagrange remainder of Taylor expansion and
+    \[\abs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\abs{e^{ix}-1-ix}+\frac{x^2}{2}\leq\frac{x^2}{2}+\frac{x^2}{2}=x^2,\]
+    we conclude that $\abs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\min\{x^2,\abs{x}^3/6\}$.
+    \item For $\abs{a_i}\leq1$ and $\abs{b_i}\leq1$,
+    \begin{align*}
+    \abs{\prod_{i=1}^na_i-\prod_{i=1}^nb_i}&\leq\sum_{i=1}^n\abs{a_1\cdots a_{i-1}b_i\cdots b_n-a_1\cdots a_ib_{i+1}\cdots b_n}\\
+    &=\sum_{i=1}^n\abs{a_1\cdots a_{i-1}(b_i-a_i)b_{i+1}\cdots b_n}\leq\sum_{i=1}^n\abs{b_i-a_i}.
+    \end{align*}
+\end{itemize}
+Now by independence and properties of characteristic function $\phi_{s_n}(t)=\prod_{i=1}^n\phi_{X_i}(t/\sqrt{n})=\phi_{X_1}^n(t/\sqrt{n})$. Choose large enough $n$ such that $t^2\leq2n$ and note that since $(1-\frac{t^2}{2n})^n\to e^{-t^2/2}$,
+\begin{align*}
+    \abs{\phi_{X_1}^n(t/\sqrt{n})-(1-\frac{t^2}{2n})^n}&\leq\sum_{i=1}^n\abs{\phi_{X_1}(t/\sqrt{n})-(1-\frac{t^2}{2n})}\\
+    &=n\abs{\E\left(e^{itX_i/\sqrt{n}}-1-\frac{itX_1}{\sqrt{n}}+\frac{x^2t^2}{2n}\right)}\\
+    &\leq n\E\left(\min\left\{t^2x^2,\frac{\abs{t}^3\abs{X_1}^3}{6\sqrt{n}}\right\}\right).
+\end{align*}
+The result then follows.
 \end{prop}
 
 

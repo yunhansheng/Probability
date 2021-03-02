@@ -129,7 +129,7 @@ Let $X$ and $Y$ be random variables on measure space $(\Omega,\mathcal{F},\mathb
 \begin{itemize}
     \item \textup{\textbf{(Hölder's Inequality)}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then
     \[\norm{XY}_1\leq\norm{X}_p\norm{Y}_q.\]
-    \item \textup{\textbf{(Minkowski's Inequality)}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then
+    \item \textup{\textbf{(Minkowski's Inequality)}} If $X\in L^p(\mathbb{P})$ and $Y\in L^p(\mathbb{P})$, then
     \[\norm{X+Y}_{p}\leq\norm{X}_p\norm{Y}_p.\]
 \end{itemize}
 \end{prop}
@@ -196,15 +196,14 @@ The following statements regarding the convergence of random variables holds:\be
     \item If $X_n\xrightarrow{d}C$ for some constant $C$ then $X_n\xrightarrow{\mathbb{P}}X$.
     \item If $\{X_n\}$ is uniformly integrable, then $X_n\xrightarrow{a.s.}X$ implies $X_n\xrightarrow{L^1}X$; if $\{X_n\}$ is uniformly bounded, then $X_n\xrightarrow{\mathbb{P}}X$ implies $X_n\xrightarrow{L^p}X$ for all $p$.
     \item If $1\leq q\leq p$, then $X_n\xrightarrow{L^p}X$ implies $X_n\xrightarrow{L^q}X$.
-    \item $X_n\xrightarrow{d}X$ if and only if $\E[f(X_n)]=\E[f(X)]$ for all bounded continuous $f:\mathbb{R}\to\mathbb{R}$.
+    \item $X_n\xrightarrow{d}X$ if and only if $X_n\xrightarrow{weak}X$.
 \end{itemize}
 Or to put in a diagram:
 \begin{center}\begin{tikzcd}
 \begin{matrix}
     L^p\Rightarrow L^q\\1\leq q\leq p 
 \end{matrix} \arrow[rd, Rightarrow] \arrow[dd, "subsequence" description, bend left]       &                                                                                                                      &                                                            &    \\
-                                                                                  & \mathbb{P} \arrow[r, Rightarrow, bend right] \arrow[lu, "\textrm{uniform bounded}"', bend right] \arrow[ld, "\textrm{subsequence or sum}", bend left] & d \arrow[r, Leftrightarrow] \arrow[l, "X_n\xrightarrow{d} C"', bend right] & \begin{matrix}
-                    \E[f(X_n)]=\E[f(X)]\\              \forall\textrm{ bounded continuous }f:\mathbb{R}\to\mathbb{R} \end{matrix}\\
+                                                                                  & \mathbb{P} \arrow[r, Rightarrow, bend right] \arrow[lu, "\textrm{uniform bounded}"', bend right] \arrow[ld, "\textrm{subsequence or sum}", bend left] & d \arrow[r, Leftrightarrow] \arrow[l, "X_n\xrightarrow{d} C"', bend right] & weak\\
 a.s. \arrow[ru, Rightarrow] \arrow[uu, "\textrm{uniform integrable (to }L^1\textrm{)}", bend left=49] &                                                                                                                      &                                                            & 
 \end{tikzcd}\end{center}
 \end{prop}
@@ -212,16 +211,32 @@ a.s. \arrow[ru, Rightarrow] \arrow[uu, "\textrm{uniform integrable (to }L^1\text
 \begin{prop}\textup{\textbf{(Slutsky's Theorem) }}If $X_n\xrightarrow{d}X$ and $Y_n\xrightarrow{\mathbb{P}}C$ for some constant $C$, then $X_n+Y_n\xrightarrow{d}X+c$ and $X_nY_n\xrightarrow{d}Xc$.
 \end{prop}
 
+\begin{prop}\textup{\textbf{(Portemanteau lemma)}} Let $(\mathcal{S},\rho)$ be a polish space and $\{\mu_n\}$ a sequence of probability measures on $\mathcal{S}$, then the following statements are equivalent.\begin{itemize}
+    \item $\mu_n\xrightarrow{weak}\mu$.
+    \item For every bounded $f:\mathcal{S}\to\mathbb{R}$ that is Lipschitz continuous: for any $x,y\in\mathcal{S}$ there exists $L<\infty$ such that $\abs{f(x)-f(y)}\leq L\rho(x,y)$,
+    \[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu.\]
+    \item $\limsup_{n\to\infty}\mu_n(F)\leq\mu(F)$ for every closed set $F\subset\mathcal{S}$.
+    \item $\liminf_{n\to\infty}\mu_n(E)\geq\mu(E)$ for every open set $E\subset\mathcal{S}$.
+    \item $\mu_n(A)\to\mu(A)$ for all measurable $A\subset\mathcal{S}$ with $\mu(\partial A)=0$.
+    \item For every bounded measurable $f:\mathcal{S}\to\mathbb{R}$ that is continuous almost everywhere with respect to $\mu$,
+    \[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu.\]
+\end{itemize}
+\end{prop}
+
+\begin{remark}
+It follows that...
+\end{remark}
+
 \subsection{Laws of large numbers}
 
-\begin{prop}\textup{\textbf{($L^2$ Weak Law) }}Let $\{X_n\}$ be a sequence of uncorrelated and identically distributed random variables with $\Var(X_i)<\infty$. Then
+\begin{prop}\textup{\textbf{($L^2$ Weak Law) }}Let $\{X_i\}_{i\geq1}$ be a sequence of uncorrelated and identically distributed random variables with finite variance for all $i$. Then
 \[\frac{1}{n}\sum_{i=1}^nX_n\xrightarrow{L^2}\E(X_1)\]
 \end{prop}
 
 \begin{remark}\textup{\textbf{Coupon Collector's Problem:}} Let
 \end{remark}
 
-\begin{prop}\textup{\textbf{(Weak Law of Triangular Array) }}Let $a_n$ be a sequence of positive integers such that $a_n\to\infty$. Let $\{X_{n,k}\}$, $1\leq k\leq n$ be an array of independent random variables and truncation $\overline{X}_{n,k}=X_{n,k}\1_{\{\abs{X_{n,k}\leq a_n}\}}$. If as $n\to\infty$\begin{itemize}
+\begin{prop}\textup{\textbf{(Weak Law of Triangular Array) }}Let $a_n$ be a sequence of positive integers such that $a_n\to\infty$. Let $\{X_{n,k}\}_{1\leq k\leq n}$ be a sequence of independent random variables and truncation $\overline{X}_{n,k}=X_{n,k}\1_{\{\abs{X_{n,k}\leq a_n}\}}$. If as $n\to\infty$\begin{itemize}
     \item $\sum_{k=1}^n\mathbb{P}(\abs{X_{n,k}}>a_n)\to0$, and
     \item $b_n^{-2}\sum_{k=1}^n\E(\overline{X}_{n,k}^2)\to0$,
 \end{itemize}
@@ -229,20 +244,24 @@ then
 \[b_n^{-1}\sum_{k=1}^n(X_{n,k}-\E(\overline{X}_{n,k}))\xrightarrow{\mathbb{P}}0\]
 \end{prop}
 
-\begin{prop}\textup{\textbf{(Weak Law of Large Numbers) }}Let $\{X_i\}$ be a sequence of independent and identically distributed random variables such that $n\mathbb{P}(\abs{X_1}>n)\to0$ as $n\to\infty$. Then
+\begin{prop}\textup{\textbf{(Weak Law of Large Numbers) }}Let $\{X_i\}_{i\geq1}$ be a sequence of independent and identically distributed random variables such that $n\mathbb{P}(\abs{X_1}>n)\to0$ as $n\to\infty$. Then
 \[\frac{1}{n}\sum_{i=1}^n X_i\xrightarrow{\mathbb{P}}\E(X_1)\]
 \end{prop}
 
-\begin{prop}\textup{\textbf{(Strong Law of Large Numbers) }}Let $\{X_i\}$ be a sequence of pairwise independent and identically distributed random variables such that $\mathbb{E}(\abs{X_1})<\infty$. Then
+\begin{prop}\textup{\textbf{(Strong Law of Large Numbers) }}Let $\{X_i\}_{i\geq1}$ be a sequence of pairwise independent and identically distributed random variables such that $\mathbb{E}(\abs{X_1})<\infty$. Then
 \[\frac{1}{n}\sum_{i=1}^nX_i\xrightarrow{a.s.}\mathbb{E}(X_1).\]
 \end{prop}
 
 \subsection{Tightness and characteristic functions}
 
 \begin{prop}
-Let $\{X_n\}$ be a sequence of random variables.\begin{itemize}
-    \item If $X_n\xrightarrow{d}X$, then $\{X_n\}$ is a tight family
-    \item \textup{\textbf{(Helly's Selection Theorem)}} Conversely if $\{X_n\}$ is a tight family, then $X_n\xrightarrow{d}X$.
+Let $\{X_n\}$ be a sequence of random variables.
+\begin{itemize}
+\item If $\{X_n\}$ be a tight family and $\{c_n\}_{n\geq1}$ a sequence of constants converging to 0. Then,\begin{itemize}
+    \item \textup{\textbf{(Helly's Selection Theorem)}} there is a subsequence $X_{n_k}\xrightarrow{d}X$, and
+    \item $c_nX_n\xrightarrow{\mathbb{P}}0$.
+\end{itemize}
+\item Conversely if $X_n\xrightarrow{d}X$, then $\{X_n\}$ is a tight family.
 \end{itemize}
 \end{prop}
 
@@ -299,20 +318,6 @@ As a corollary to the Lindeberg-Feller is \textbf{Lyapunov Central Limit Theorem
 \textit{Then}
 \[\frac{1}{S_n}\sum_{i=1}^n(X_i-\mu_i)\xrightarrow{d}\mathcal{N}(0,1).\]
 \end{remark}
-
-\subsection{Convergence in Polish space}
-
-\begin{prop}\textup{\textbf{(Portemanteau lemma)}} Let $(\mathcal{S},\rho)$ be a polish space and $\{\mu_n\}$ a sequence of probability measures on $\mathcal{S}$, then the following statements are equivalent.\begin{itemize}
-    \item $\mu_n\xrightarrow{weak}\mu$.
-    \item For every bounded Lipschitz continuous $f:\mathcal{S}\to\mathbb{R}$,
-    \[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu.\]
-    \item For every bounded measurable $f:\mathcal{S}\to\mathbb{R}$ that is continuous almost everywhere with respect to $\mu$,
-    \[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu.\]
-    \item $\limsup_{n\to\infty}\mu_n(F)\leq\mu(F)$ for every closed set $F\subset\mathcal{S}$.
-    \item $\liminf_{n\to\infty}\mu_n(E)\geq\mu(E)$ for every open set $E\subset\mathcal{S}$.
-    \item $\mu_n(A)\to\mu(A)$ for all Borel $A\subset\mathcal{S}$ with $\mu(\partial A)=0$.
-\end{itemize}
-\end{prop}
 
 \section{Brownian Motion}
 
