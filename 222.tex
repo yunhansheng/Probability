@@ -31,7 +31,7 @@
 \newtheorem*{remark}{Remark}
 
 \usepackage{hyperref}
-\hypersetup{colorlinks=false}
+\hypersetup{colorlinks=true,linkcolor=magenta}
 
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\E}{\mathbb{E}}
@@ -42,7 +42,7 @@
 
 \begin{document}
 \begin{center}
-{\Large\textbf STAT 381-383-385 \hspace{0.1cm} Proof Page}\medbreak
+{\Large\textbf STAT 381-383-385 (2021) \hspace{0.1cm} Proof Page}\medbreak
 \large{Alex Sheng}
 \end{center}
 
@@ -87,9 +87,9 @@ To check that $\mu$ is a measure on $\mathcal{F}$, note that $\mu(B)\geq\mu(B_n)
 Let $\lambda(\Pi)$ be the smallest $\lambda$ system containing $\Pi$. Define $G_A=\{B:A\cap B\in\lambda(\Pi)\}$ for $A\in\lambda(\Pi)$, then $G_A$ is a $\lambda$-system for any $A\in\lambda(\Pi)$:\begin{itemize}
     \item $X\cap A=A\in\lambda(\Pi)$,
     \item $B\cap A\in\lambda(\Pi)\Rightarrow B^c\cap A=((B\cap A)\cup A^c)^c\in\lambda(\Pi)$, and
-    \item $A_i\cap A\in\lambda(\Pi)\Rightarrow(\amalg_{i\geq1}A_i)\cap A=\amalg_{i\geq1}(A_i\cap A)\in\lambda(\Pi)$.
+    \item $A_i\cap A\in\lamdba(\Pi)\Rightarrow(\amalg_{i\geq1}A_i)\cap A=\amalg_{i\geq1}(A_i\cap A)\in\lambda(\Pi)$.
 \end{itemize}
-If $A,B\in\Pi$, then $A\cap B\in\lambda(\Pi)$ since $\Pi$ stable under intersection. Hence $\Pi\subset G_A$. Since $\lambda(\Pi)$ is the smallest $\lambda$-system containing $\Pi$, we have $\lambda(\Pi)\subset G_A$. Hence $A\cap C\in\lambda(\Pi)$ for $C\in\lambda(\Pi)$. By the same reasoning we conclude that $\lambda(\Pi)\subset G_C$. Therefore, for any $D\in\lambda(\Pi)$ we have $C\cap D\in\lambda(\Pi)$. In other words, $\lambda(\Pi)$ is stable under intersection.\medbreak
+If $A,B\in\Pi$, then $A\cap B\in\lambda(\Pi)$ since $\Pi$ stable under intersection. Hence $\Pi\subset G_A$. Since $\lambda(\Pi)$ is the smallest $\lambda$-system containing $\Pi$, we have $\lambda(\Pi)\subset G_A$. Hence $A\cap C\in\lambda(\Pi)$ for $\C\in\lambda(\Pi)$. By the same reasoning we conclude that $\lambda(\Pi)\subset G_C$. Therefore, for any $D\in\lambda(\Pi)$ we have $C\cap D\in\lamdba(\Pi)$. In other words, $\lambda(\Pi)$ is stable under intersection.\medbreak
 Since $A\setminus B=A\cap B^c$, $\lambda(\Pi)$ is also stable under set-difference, with which we can extend the countable $\amalg$-stability to countable $\cup$-stability. Hence $\lambda(\Pi)$ is a $\sigma$-algebra.
 \end{prop}
 
@@ -112,7 +112,7 @@ See Rudin, it's crystal clear
 \subsection{Independence and tail events}
 
 \begin{prop}
-Let $A_1\in\Pi_1$ and define measures $\mu_1(A)=\mathbb{P}(A\cap A_1)$ and $\mu_2(A)=\mathbb{P}(A)\mathbb{P}(A_1)$. Since $\Pi_1$ and $\Pi_2$ are independent, $\mu_1=\mu_2$ holds on $\Pi_2$. By Dynkin's $\pi$-$\lambda$ Theorem $\mu_1=\mu_2$ holds on $\mathcal{A}_2$. Now for $A_2\in\mathcal{A}_2$ measures $\mu_1'(A)=\mathbb{P}(A\cap A_2)=\mathbb{P}(A)\mathbb{P}(A_2)=\mu_2'(A)$ on $\Pi_1$, hence again by Dynkin's $\pi$-$\lambda$ Theorem $\mu_1'=\mu_2'$ on $\mathcal{A}_1$, and the result follows.\medbreak
+Let $A_1\in\Pi_1$ and define measures $\mu_1(A)=\mathbb{P}(A\cap A_1)$ and $\mu_2(A)=\mathbb{P}(A)\mathbb{P}(A_1)$. Since $\Pi_1$ and $\Pi_2$ are independent, $\mu_1=\mu_2$ holds on $\Pi_2$. By Dynkin's $\pi$-$\lambda$ Theorem $\mu_1=\mu_2$ holds on $\Pi_2$. Now for $A_2\in\Pi_2$ measures $\mu_1'(A)=\mathbb{P}(A\cap A_2)=\mathbb{P}(A)\mathbb{P}(A_2)=\mu_2'(A)$ on $\Pi_1$, hence again by Dynkin's $\pi$-$\lambda$ Theorem $\mu_1'=\mu_2'$ on $\Pi_1$, and the result follows.\medbreak
 $\Pi_i=\{\{X_i\leq t\}:t\in\overline{\mathbb{R}}\}$ is a $\pi$-system since $\{X_i\leq s\}\cap\{X_i\leq t\}=\{X_i\leq\min{s,t}\}\in\Pi_i$. The result follows from the previous claim.\medbreak
 The claim follows from the fact that $\sigma(f(X))\subset\sigma(X)$ for all random variables $X$ and measurable $f:\mathbb{R}\to\mathbb{R}$.
 \end{prop}
@@ -150,7 +150,7 @@ Let $\mathcal{F}_n=\sigma(X_1,X_2,\cdots,C_n)$ and $\mathcal{F}_\infty=\sigma(X_
 \subsection{Convergence of random variables}
 
 \begin{prop}
-Let $X_n\xrightarrow{\mathbb{P}}X$. Take any bounded and uniformly continuous $f:\mathcal{S}\to\mathbb{R}$ and $\epsilon>0$, then there exists $\delta>0$ such that $\rho(x,y)<\delta$ implies $\abs{f(x)-f(y)}<\epsilon$. Since $X_n\xrightarrow{\mathbb{P}}X$, we conclude that $f(X_n)\xrightarrow{\mathbb{P}}f(X)$. Since $f$ is bounded, $f(X_n)\xrightarrow{L^1}f(x)$. By Portemanteau lemmas $X_n\xrightarrow{d}X$.\medbreak
+Let $X_n\xrightarrow{\mathbb{P}}X$. Take any bounded and uniformly continuous $f:\mathcal{S}\to\mathbb{R}$ and $\epsilon>0$, then there exists $\delta>0$ such that $\rho(x,y)<\delta$ implies $\Pibs{f(x)-f(y)}<\epsilon$. Since $X_n\xrightarrow{\mathbb{P}}X$, we conclude that $f(X_n)\xrightarrow{\mathbb{P}}f(X)$. Since $f$ is bounded, $f(X_n)\xrightarrow{L^1}f(x)$. By Portemanteau lemmas $X_n\xrightarrow{d}X$.\medbreak
 For some constant $c$ let $X_n\xrightarrow{d}c$. Take any $\epsilon>0$ and closed set $F=\{x\in\mathcal{S}:\rho(x,c)\geq\epsilon\}$. By Portemanteau lemma
 \[\limsup_{n\to\infty}\mu_n(F)=\limsup_{n\to\infty}\mathbb{P}(X_n\in F)\leq\mathbb{P}(X\in F)=\mu(F)=0.\]
 Hence $X_n\xrightarrow{\mathbb{P}}c$.\medbreak
@@ -158,7 +158,7 @@ r
 \end{prop}
 
 \begin{prop}
-Take any bounded and uniformly continuous function $f:\mathcal{S}\times\mathcal{S}\to\mathbb{R}$ and $\epsilon>0$, then there exists $\delta>0$ such that $\rho(x,y)<\delta$ implies $\abs{f(x)-f(y)}<\epsilon$. Since $(X_n,Y_n)\xrightarrow{\mathbb{P}}(X_n,c)$, we conclude that $f(X_n,Y_n)\xrightarrow{\mathbb{P}}f(X_n,c)$. Since $f$ is bounded, $f(X_n,Y_n)\xrightarrow{L^1}f(X_n,c)$. Also since $X_n\xrightarrow{d}X$, $f(X_n,c)\xrightarrow{L^1}f(X,c)$. Hence $f(X_n,Y_n)\xrightarrow{L^1}f(X,c)$, and by Portemanteau lemmas $(X_n,Y_n)\xrightarrow{d}(X,c)$. The result then follows.
+Take any bounded and uniformly continuous function $f:\mathcal{S}\times\mathcal{S}\to\mathbb{R}$ and $\epsilon>0$, then there exists $\delta>0$ such that $\rho(x,y)<\delta$ implies $\Pibs{f(x)-f(y)}<\epsilon$. Since $(X_n,Y_n)\xrightarrow{\mathbb{P}}(X_n,c)$, we conclude that $f(X_n,Y_n)\xrightarrow{\mathbb{P}}f(X_n,c)$. Since $f$ is bounded, $f(X_n,Y_n)\xrightarrow{L^1}f(X_n,c)$. Also since $X_n\xrightarrow{d}X$, $f(X_n,c)\xrightarrow{L^1}f(X,c)$. Hence $f(X_n,Y_n)\xrightarrow{L^1}f(X,c)$, and by Portemanteau lemmas $(X_n,Y_n)\xrightarrow{d}(X,c)$. The result then follows.
 \end{prop}
 
 \begin{prop}
@@ -188,10 +188,10 @@ as $n\to\infty$, and we are done.
 Denote $S_n=\sum_{k=1}^nX_{n,k}$, $\overline{S}_n=\sum_{k=1}^n\overline{X}_{n,k}$, and $\mu_n=\sum_{k=1}^n\E(\overline{X}_{n,k})$. For any $\epsilon>0$,
 \[\mathbb{P}\left({\frac{S_n-\mu_n}{a_n}}>\epsilon\right)\leq\mathbb{P}(S_n\neq\overline{S}_n)+\mathbb{P}\left({\frac{\overline{S}_n-\mu_n}{a_n}}>\epsilon\right).\]
 The first term is bounded by the first assumption:
-\[\mathbb{P}\left(S_n\neq\overline{S}_n\right)=\mathbb{P}\left(\bigcup_{k=1}^n\{X_{n,k}\neq\overline{X}_{n,k}\}\right)\leq\sum_{k=1}^n\mathbb{P}\left(\abs{X_{n,k}}>a_n\right)\to0.\]
+\[\mathbb{P}\left(S_n\neq\overline{S}_n\right)=\mathbb{P}\left(\bigcup_{k=1}^n\{X_{n,k}\neq\overline{X}_{n,k}\}\right)\leq\sum_{k=1}^n\mathbb{P}\left(\Pibs{X_{n,k}}>a_n\right)\to0.\]
 The second term is bounded by Chebyshev's inequality, independence, and the second assumption:
 \begin{align*}
-\mathbb{P}\left({\frac{\overline{S}_n-\mu_n}{a_n}}>\epsilon\right)&\leq\frac{1}{\epsilon^2}\E\left(\abs{\frac{\overline{S}_n-\mu_n}{a_n}}^2\right)\\
+\mathbb{P}\left({\frac{\overline{S}_n-\mu_n}{a_n}}>\epsilon\right)&\leq\frac{1}{\epsilon^2}\E\left(\Pibs{\frac{\overline{S}_n-\mu_n}{a_n}}^2\right)\\
 &=\frac{1}{\epsilon^2a_n^2}\Var(\overline{S}_n)=\frac{1}{\epsilon^2a_n^2}\sum_{k=1}^n\Var(\overline{X}_{n,k})\leq\frac{1}{\epsilon^2a_n^2}\sum_{k=1}^n\mu_n\to0.
 \end{align*}
 and the result follows.
@@ -203,15 +203,15 @@ weak law
 
 \begin{prop}
 The proof is due to Etemadi (1981). As a lemma, $y\sum_{k>y}k^{-2}\leq2$ for $y\geq0$.\medbreak
-Assume for simplicity that $X_i\geq0$. Let $k_n=\left\lfloor{\alpha^n}\right\rfloor$ for some arbitrary $\alpha>1$, $Y_i=X_i\textbf{1}_{\{X_i<i\}}$, and $Z_n=\frac{1}{n}\sum_{i=1}^n(Y_i-\E(Y_i))$.\medbreak
-By Chebyshev's inequality,  Fubini-Tonelli Theorem, and the fact that $\alpha^n\leq2\left\lfloor{\alpha^n}\right\rfloor$,
+Assume for simplicity that $X_i\geq0$. Let $k_n=\left\lfloor{\Pilpha^n}\right\rfloor$ for some arbitrary $\Pilpha>1$, $Y_i=X_i\textbf{1}_{\{X_i<i\}}$, and $Z_n=\frac{1}{n}\sum_{i=1}^n(Y_i-\E(Y_i))$.\medbreak
+By Chebyshev's inequality,  Fubini-Tonelli Theorem, and the fact that $\Pilpha^n\leq2\left\lfloor{\Pilpha^n}\right\rfloor$,
 \begin{align*}
-\sum_{n=1}^\infty\mathbb{P}(\abs{Z_{k_n}}>\epsilon)&\leq\epsilon^{-2}\sum_{n=1}^\infty k_n^{-2}\sum_{i=k_1}^{k_n}\Var(Y_i)\\
-&=\epsilon^{-2}\sum_{i=1}^\infty\Var(Y_i)\sum_{n:k_n\geq i}k_n^{-2}\leq4(1-\alpha^{-2})^{-1}\epsilon^{-2}\sum_{i=1}^\infty i^{-2}\Var(Y_i).
+\sum_{n=1}^\infty\mathbb{P}(\Pibs{Z_{k_n}}>\epsilon)&\leq\epsilon^{-2}\sum_{n=1}^\infty k_n^{-2}\sum_{i=k_1}^{k_n}\Var(Y_i)\\
+&=\epsilon^{-2}\sum_{i=1}^\infty\Var(Y_i)\sum_{n:k_n\geq i}k_n^{-2}\leq4(1-\Pilpha^{-2})^{-1}\epsilon^{-2}\sum_{i=1}^\infty i^{-2}\Var(Y_i).
 \end{align*}
-Since by Fubini-Tonelli Theorem, the lemma, and the assumption $\E(\abs{X_i})<\infty$
-\[\sum_{i=1}^\infty i^{-2}\Var(Y_i)\leq\sum_{i=1}^\infty i^{-2}\E(Y_i^2)\leq2\int_0^\infty\,dy\left\{\sum_{i=1}^\infty i^{-2}\textbf{1}_{\{y<k\}}\right\}y\mathbb{P}(\abs{X_1}>y)\leq4\E(\abs{X_i})<\infty,\]
-we conclude that $\mathbb{P}(\abs{Z_{n_k}}>\epsilon)\to0$, or $k_n^{-1}\sum_{i=k_1}^{k_n}Y_i\to k_n^{-1}\sum_{i=k_1}^{k_n}\E(Y_i)$. To deal with middle values note that for $k_n<m<k_{n+1}$
+Since by Fubini-Tonelli Theorem, the lemma, and the assumption $\E(\Pibs{X_i})<\infty$
+\[\sum_{i=1}^\infty i^{-2}\Var(Y_i)\leq\sum_{i=1}^\infty i^{-2}\E(Y_i^2)\leq2\int_0^\infty\,dy\left\{\sum_{i=1}^\infty i^{-2}\textbf{1}_{\{y<k\}}\right\}y\mathbb{P}(\Pibs{X_1}>y)\leq4\E(\Pibs{X_i})<\infty,\]
+we conclude that $\mathbb{P}(\Pibs{Z_{n_k}}>\epsilon)\to0$, or $k_n^{-1}\sum_{i=k_1}^{k_n}Y_i\to k_n^{-1}\sum_{i=k_1}^{k_n}\E(Y_i)$. To deal with middle values note that for $k_n<m<k_{n+1}$
 \[k_{n+1}^{-1}\sum_{i=1}^{k_n}Y_i\leq m^{-1}\sum_{i=1}^mY_i\leq k_n^{-1}\sum_{i=k_1}^{k_{n+1}}Y_i.\]
 Hence $n^{-1}\sum_{i=1}^nY_i\to n^{-1}\sum_{i=1}^n\E(Y_i)$.\medbreak
 Since $\sum_{i=1}^\infty\mathbb{P}(X_i\neq Y_i)=\sum_{i=1}^\infty\mathbb{P}(X_1\geq i)\leq\E(X_1)<\infty$, by Borel Cantelli Lemma $\mathbb{P}(X_i\neq Y_i,\textrm{ infinitely often})=0$, which implies that $n^{-1}\sum_{i=1}^nX_i\xrightarrow{a.s.}n^{-1}\sum_{i=1}^nY_i$.\medbreak
@@ -222,23 +222,23 @@ Lastly by Dominated Convergence Theorem $\E(Y_i)-\mu=\E(X_1\textbf{1}_{\{X_i\geq
 \subsection{Tightness and characteristic functions}
 
 \begin{prop}
-Suppose first that $\{X_n\}$ is a tight family. Let $F_n$ be the distribution function of $X_n$. Since $F_n$ is bounded, there is a subsequence $F_{n_k}$ that converges pointwise $F_\ast(q)=\lim_{k\to\infty}F_{n_k}(q)$. Define $F(x)=\inf\{F_\ast(q):q>x\}$. We will show $F(x)=\lim_{k\to\infty}F_{n_k}(x)$ is a distribution function.\medbreak
-In order for $F(x)$ to be a distribution function, we only need to check the criterion in prop xxx. The monotonicity is inherited. $F(x)\to0$ as $x\to-\infty$ and $F(x)\to1$ as $x\to\infty$ follows from tightness. Consider $q_1>q_2>\cdots$ with $q\to x$, then $F(q_{i+1})\leq F_\ast(q_i)$ for all $i$, and hence the right-continuity:
-\[\lim_{i\to\infty}F(q_{i+1})\leq\lim_{i\to\infty}F_\ast(q_i)=F(x).\]
+Suppose first that $\{X_n\}$ is a tight family. Let $F_n$ be the distribution function of $X_n$. Since $F_n$ is bounded, there is a subsequence $F_{n_k}$ that converges pointwise $F_\Pist(q)=\lim_{k\to\infty}F_{n_k}(q)$. Define $F(x)=\inf\{F_\Pist(q):q>x\}$. We will show $F(x)=\lim_{k\to\infty}F_{n_k}(x)$ is a distribution function.\medbreak
+In order for $F(x)$ to be a distribution function, we only need to check the criterion in prop xxx. The monotonicity is inherited. $F(x)\to0$ as $x\to-\infty$ and $F(x)\to1$ as $x\to\infty$ follows from tightness. Consider $q_1>q_2>\cdots$ with $q\to x$, then $F(q_{i+1})\leq F_\Pist(q_i)$ for all $i$, and hence the right-continuity:
+\[\lim_{i\to\infty}F(q_{i+1})\leq\lim_{i\to\infty}F_\Pist(q_i)=F(x).\]
 Also, by the choice of $q_i$,
-\[\limsup_{k\to\infty}F_{n_k}(x)\leq\lim_{k\to\infty}F_{n_k}(q_i)=F_\ast(q_i)\]
+\[\limsup_{k\to\infty}F_{n_k}(x)\leq\lim_{k\to\infty}F_{n_k}(q_i)=F_\Pist(q_i)\]
 holds for all $q_i$, hence $\limsup_{k\to\infty}F_{n_k}(x)\leq F(x)$ as $i\to\infty$. Reverse the inequality for limit infimum and obtain $F(x)\leq\liminf_{k\to\infty}F_{n_k}(x)$. Together $F(x)=\lim_{k\to\infty}F_{n_k}(x)$ as desired.\medbreak
-Also by definition $\epsilon/\abs{c_n}\to0$ for any $\epsilon>0$. By tightness, for any $\delta>0$ take $K$ such that $\sup_n\mathbb{P}(\abs{X_n}\geq K)<\delta$, and take $N$ such that $\epsilon/\abs{c_n}>K$ for all $n>N$. Then
+Also by definition $\epsilon/\Pibs{c_n}\to0$ for any $\epsilon>0$. By tightness, for any $\delta>0$ take $K$ such that $\sup_n\mathbb{P}(\Pibs{X_n}\geq K)<\delta$, and take $N$ such that $\epsilon/\Pibs{c_n}>K$ for all $n>N$. Then
 \begin{align*}
-    &\mathbb{P}(\abs{X_n}\geq\epsilon/\abs{c_n})\leq\mathbb{P}(\abs{X_n}\geq K)\\
-    \Rightarrow&\sup_{n\geq N}\mathbb{P}(\abs{X_n}\geq\epsilon/\abs{c_n})\leq\sup_{n\geq N}\mathbb{P}(\abs{X_n}\geq K)\leq\sup_n\mathbb{P}(\abs{X_n}\geq K)<\delta\\
-    \Rightarrow&\sup_{n\geq N}\mathbb{P}(\abs{c_nX_n}\geq\epsilon)<\delta.
+    &\mathbb{P}(\Pibs{X_n}\geq\epsilon/\Pibs{c_n})\leq\mathbb{P}(\Pibs{X_n}\geq K)\\
+    \Rightarrow&\sup_{n\geq N}\mathbb{P}(\Pibs{X_n}\geq\epsilon/\Pibs{c_n})\leq\sup_{n\geq N}\mathbb{P}(\Pibs{X_n}\geq K)\leq\sup_n\mathbb{P}(\Pibs{X_n}\geq K)<\delta\\
+    \Rightarrow&\sup_{n\geq N}\mathbb{P}(\Pibs{c_nX_n}\geq\epsilon)<\delta.
 \end{align*}
 And the desired result follows.\medbreak
 Now suppose conversely that $X_n\xrightarrow{d}X$ and let $F_n$, $F$ be the distribution functions of $X_n$, $X$ respectively. We have
 \begin{align*}
-\mathbb{P}(\abs{X_n}>K)&=1-F_n(K)+F_n(-K)\\
-&\leq(1-F(k))+F(-k)+\abs{F(k)-F_n(k)}+\abs{F_n(-k)-F_n(-k)}.
+\mathbb{P}(\Pibs{X_n}>K)&=1-F_n(K)+F_n(-K)\\
+&\leq(1-F(k))+F(-k)+\Pibs{F(k)-F_n(k)}+\Pibs{F_n(-k)-F_n(-k)}.
 \end{align*}
 Choose the appropriate $N$ and $K_0$, and the first two terms are bounded by $\epsilon/4$ by the fact that $F(k)\to1$ and $F(-k)\to0$ as $k\to\infty$; the second two are also bounded $\epsilon/4$ since $X_n\xrightarrow{d}X$. The first $N$ terms are bounded by some $K_1$, hence choose $K=\max{K_0,K_1}$ and $n>N$ and the tightness of $\{X_n\}$ follows.
 \end{prop}
@@ -248,18 +248,18 @@ Assume $\mu_n\xrightarrow{weak}\mu$, then if $\{\mu_n\}$ is tight, for any $\eps
 \[\mu(V_i)\leq\liminf_{j\to\infty}\mu_{n_j}(V_i)\leq\liminf_{j\to\infty}\mu_{n_j}(V_j)\leq1-\epsilon.\]
 This is impossible, since $\mu(V_i)\to1$. Thus $\{\mu_n\}$ tight.\medbreak
 To prove the converse, first we will construct a subsequence $\{\mu_{n_k}\}$ and from there some $\mu$, which we will show is an outer measure. By \textcolor{purple}{Prop xxx} the collection $\mathcal{F}$ of all $\mu$-measurable sets will be a $\sigma$-algebra on which $\mu$ is a measure. Then we will conclude the proof by showing that $\mathcal{B}(\mathcal{S})\subset\mathcal{F}$ and probability measure $\mu$ is indeed the weak limit.\medbreak
-By tightness construct a sequence of non-decreasing compact sets $\{K_i\}$ such that $\mu_n(K_i)\geq1-1/i$ for all $n$. Since $\mathcal{S}$ is Polish, there exists a dense and countable $D\subset\mathcal{S}$. Let $\mathfrak{B}$ be the collection of all closed balls with centers at elements of $D$ and non-zero rational radius. Let $\mathfrak{C}$ be the collection of all finite unions of sets of the form $B\cap K_i$ where $B\in\mathfrak{B}$. Such $C$ is countable, hence there is a subsequence $\{\mu_{n_k}\}$ such that $\alpha(C)=\lim_{k\to\infty}\mu_{k_n}(C)$ exists for all $C\in\mathfrak{C}$. For any open set $V\subset\mathcal{S}$ define $\beta(V)=\sup\{\alpha(C):C\subset V\textrm{ and }C\in\mathfrak{C}\}$. Finally for any $A\subset\mathcal{S}$ define
+By tightness construct a sequence of non-decreasing compact sets $\{K_i\}$ such that $\mu_n(K_i)\geq1-1/i$ for all $n$. Since $\mathcal{S}$ is Polish, there exists a dense and countable $D\subset\mathcal{S}$. Let $\mathfrak{B}$ be the collection of all closed balls with centers at elements of $D$ and non-zero rational radius. Let $\mathfrak{C}$ be the collection of all finite unions of sets of the form $B\cap K_i$ where $B\in\mathfrak{B}$. Such $C$ is countable, hence there is a subsequence $\{\mu_{n_k}\}$ such that $\Pilpha(C)=\lim_{k\to\infty}\mu_{k_n}(C)$ exists for all $C\in\mathfrak{C}$. For any open set $V\subset\mathcal{S}$ define $\beta(V)=\sup\{\Pilpha(C):C\subset V\textrm{ and }C\in\mathfrak{C}\}$. Finally for any $A\subset\mathcal{S}$ define
 \[\mu(A)=\inf\{\beta(V):A\subset V\textrm{ and }V\textrm{ is open}\}.\]
 For any open $V_1,V_2\subset\mathcal{S}$ we have $\mu_{k_n}(V_1\cup V_2)\leq\mu_{k_n}(V_1)+\mu_{k_n}(V_2)$. By the construct of $\mathfrak{C}$ we are able to approach $V_1$ and $V_2$ with some $C,C_1,C_2\in\mathfrak{C}$ closely: 
 \[\mu_{n_k}(C)=\mu_{n_k}(V_1\cup V_2)\leq\mu_{n_k}(V_1)+\mu_{n_k}(V_2)=\mu_{n_k}(C_1)+\mu_{n_k}(C_2),\]
 for any $\epsilon>0$. Hence for open sets $\beta=\mu$ is finite subadditive, and then for any $A\subset\mathcal{S}$ the property also holds. The countable subadditivity follows by letting $\mu(V_i)\leq\mu(A_i)+2^{-i}\epsilon$. Therefore $\mu$ is indeed an outer measure.\medbreak
-For open $V$ and closed $F$ subsets of $\mathcal{S}$, take $C_1\subset V\cap F^c$ and $C_2\subset V\cap C_1^c$ as subsets of $\mathfrak{C}$. Then since $C_1\cap C_2=\varnothing$ and $C_1\cup C_2\subset V$, we have $\beta(V)\geq\alpha(C_1\amalg C_2)=\alpha(C_1)+\alpha(C_2)$.
+For open $V$ and closed $F$ subsets of $\mathcal{S}$, take $C_1\subset V\cap F^c$ and $C_2\subset V\cap C_1^c$ as subsets of $\mathfrak{C}$. Then since $C_1\cap C_2=\varnothing$ and $C_1\cup C_2\subset V$, we have $\beta(V)\geq\Pilpha(C_1\amalg C_2)=\Pilpha(C_1)+\Pilpha(C_2)$.
 Taking supremum over $C_1$ and $C_2$ we have, as $V\cap C_1^c\supset V\cap F$,
-\[\beta(V)\geq\alpha(V\cap F^c)+\alpha(V\cap F)=\beta(V\cap F^c)+\beta(V\cap F)\geq\mu(V\cap F^c)+\mu(V\cap F).\]\medbreak
+\[\beta(V)\geq\Pilpha(V\cap F^c)+\Pilpha(V\cap F)=\beta(V\cap F^c)+\beta(V\cap F)\geq\mu(V\cap F^c)+\mu(V\cap F).\]\medbreak
 Now for any $G\subset V$ we have $\beta(V)\geq\mu(V\cap F)+\mu(V\cap F^c)\geq\mu(G\cap F)+\mu(G\cap F^c)$.
 Then $F\subset\mathcal{F}$ taking infimum over $V$. Hence the $\sigma$-algebra $\mathcal{F}$ of all $\mu$-measurable sets contains $\mathcal{B}(\mathcal{S})$.\medbreak
 Finally, for any open $V\subset\mathcal{S}$ and $C\subset V$ for $C\in\mathfrak{C}$,
-\[\alpha(C)=\lim_{k\to\infty}\mu_{n_k}(C)\leq\liminf_{k\to\infty}\mu_{n_k}(V).\]
+\[\Pilpha(C)=\lim_{k\to\infty}\mu_{n_k}(C)\leq\liminf_{k\to\infty}\mu_{n_k}(V).\]
 Taking supremum over $C$, and by Portmanteau lemma $\mu_{n_k}\xrightarrow{weak}\mu$.
 \end{prop}
 
@@ -283,27 +283,27 @@ By lemma and the previous remark $f_\theta(X)$ is the probability density functi
 
 \begin{prop}
 If $X_n\xrightarrow{d}X$ then by our previous decomposition $\phi_{X_n}(t)\to\phi_X(t)$ necessarily.\medbreak
-On the other hand let $\phi_{X_n}(t)\to\phi_X(t)$, and assume for contradiction that there is a subsequence $X_{n_k}\not\xrightarrow{d}X$. For any $\epsilon>0$ choose small enough $a$ such that $2\abs{\phi_X(s)-1}\leq\epsilon$. Then by Dominated Convergence Theorem,
-\[\lim_{n\to\infty}\int_{-a}^a\abs{1-\phi_{X_n}(s)}\,ds=\int_{-a}^a\abs{1-\phi_X(s)}\,ds\leq a\epsilon.\]
-Let $at=2$, then by prop xxx $\limsup_{n\to\infty}\mathbb{P}(\abs{X_n}\geq t)\leq\epsilon$, which implies that $\{X_n\}$ is a tight family, as is $\{X_{n_k}\}$. By Helly's Selection Theorem we extract a subsequence $X_{n_k}\xrightarrow{d}X$, which contradicts the assumption. Hence $X_n\xrightarrow{d}X$.
+On the other hand let $\phi_{X_n}(t)\to\phi_X(t)$, and assume for contradiction that there is a subsequence $X_{n_k}\not\xrightarrow{d}X$. For any $\epsilon>0$ choose small enough $a$ such that $2\Pibs{\phi_X(s)-1}\leq\epsilon$. Then by Dominated Convergence Theorem,
+\[\lim_{n\to\infty}\int_{-a}^a\Pibs{1-\phi_{X_n}(s)}\,ds=\int_{-a}^a\Pibs{1-\phi_X(s)}\,ds\leq a\epsilon.\]
+Let $at=2$, then by prop xxx $\limsup_{n\to\infty}\mathbb{P}(\Pibs{X_n}\geq t)\leq\epsilon$, which implies that $\{X_n\}$ is a tight family, as is $\{X_{n_k}\}$. By Helly's Selection Theorem we extract a subsequence $X_{n_k}\xrightarrow{d}X$, which contradicts the assumption. Hence $X_n\xrightarrow{d}X$.
 \end{prop}
 
 \begin{prop}
 We shall only prove the case when $\mu=0$ and $\sigma=1$. The general case follows. By Lévy's Continuity Theorem we only need to prove that $\phi_{S_n}(t)\to e^{-t^2/2}$. We need two lemmas:\begin{itemize}
     \item By Lagrange remainder of Taylor expansion and
-    \[\abs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\abs{e^{ix}-1-ix}+\frac{x^2}{2}\leq\frac{x^2}{2}+\frac{x^2}{2}=x^2,\]
-    we conclude that $\abs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\min\{x^2,\abs{x}^3/6\}$.
-    \item For $\abs{a_i}\leq1$ and $\abs{b_i}\leq1$,
+    \[\Pibs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\Pibs{e^{ix}-1-ix}+\frac{x^2}{2}\leq\frac{x^2}{2}+\frac{x^2}{2}=x^2,\]
+    we conclude that $\Pibs{e^{ix}-1-ix+\frac{x^2}{2}}\leq\min\{x^2,\Pibs{x}^3/6\}$.
+    \item For $\Pibs{a_i}\leq1$ and $\Pibs{b_i}\leq1$,
     \begin{align*}
-    \abs{\prod_{i=1}^na_i-\prod_{i=1}^nb_i}&\leq\sum_{i=1}^n\abs{a_1\cdots a_{i-1}b_i\cdots b_n-a_1\cdots a_ib_{i+1}\cdots b_n}\\
-    &=\sum_{i=1}^n\abs{a_1\cdots a_{i-1}(b_i-a_i)b_{i+1}\cdots b_n}\leq\sum_{i=1}^n\abs{b_i-a_i}.
+    \Pibs{\prod_{i=1}^na_i-\prod_{i=1}^nb_i}&\leq\sum_{i=1}^n\Pibs{a_1\cdots a_{i-1}b_i\cdots b_n-a_1\cdots a_ib_{i+1}\cdots b_n}\\
+    &=\sum_{i=1}^n\Pibs{a_1\cdots a_{i-1}(b_i-a_i)b_{i+1}\cdots b_n}\leq\sum_{i=1}^n\Pibs{b_i-a_i}.
     \end{align*}
 \end{itemize}
 Now by independence and properties of characteristic function $\phi_{s_n}(t)=\prod_{i=1}^n\phi_{X_i}(t/\sqrt{n})=\phi_{X_1}^n(t/\sqrt{n})$. Choose large enough $n$ such that $t^2\leq2n$ and note that since $(1-\frac{t^2}{2n})^n\to e^{-t^2/2}$,
 \begin{align*}
-    \abs{\phi_{X_1}^n(t/\sqrt{n})-(1-\frac{t^2}{2n})^n}&\leq\sum_{i=1}^n\abs{\phi_{X_1}(t/\sqrt{n})-(1-\frac{t^2}{2n})}\\
-    &=n\abs{\E\left(e^{itX_i/\sqrt{n}}-1-\frac{itX_1}{\sqrt{n}}+\frac{x^2t^2}{2n}\right)}\\
-    &\leq n\E\left(\min\left\{t^2x^2,\frac{\abs{t}^3\abs{X_1}^3}{6\sqrt{n}}\right\}\right).
+    \Pibs{\phi_{X_1}^n(t/\sqrt{n})-(1-\frac{t^2}{2n})^n}&\leq\sum_{i=1}^n\Pibs{\phi_{X_1}(t/\sqrt{n})-(1-\frac{t^2}{2n})}\\
+    &=n\Pibs{\E\left(e^{itX_i/\sqrt{n}}-1-\frac{itX_1}{\sqrt{n}}+\frac{x^2t^2}{2n}\right)}\\
+    &\leq n\E\left(\min\left\{t^2x^2,\frac{\Pibs{t}^3\Pibs{X_1}^3}{6\sqrt{n}}\right\}\right).
 \end{align*}
 The result then follows.
 \end{prop}

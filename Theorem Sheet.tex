@@ -31,7 +31,7 @@
 \newtheorem*{remark}{Remark}
 
 \usepackage{hyperref}
-\hypersetup{colorlinks=false}
+\hypersetup{colorlinks=true,linkcolor=magenta}
 
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\E}{\mathbb{E}}
@@ -47,7 +47,7 @@
 
 \begin{document}
 \begin{center}
-{\Large\textbf STAT 381-383-385 \hspace{0.1cm} Theorem Page}\medbreak
+{\Large\textbf STAT 381-383-385 (2021)\hspace{0.1cm} Theorem Page}\medbreak
 \large{Alex Sheng}
 \end{center}
 
@@ -59,25 +59,40 @@
 
 \subsection{Measures}
 
-\begin{prop}
-Let $\phi$ be an outer measure on $\Omega$. Let $\mathcal{F}$ be the collection of all $\phi$-measurable subsets of $\Omega$. Then $\mathcal{F}$ is a $\sigma$-algebra and $\phi$ is a measure on $\mathcal{F}$.
-\end{prop}
-
-\begin{remark}
-(Hands on construction of Lebesgue measure from Jordan measure)
-\end{remark}
-
-\begin{prop}
+\begin{prop}\label{Prop 1.1}
 The following two properties for a finitely additive measure $\mu$ are equivalent:\begin{itemize}
-    \item $\mu$ is downward continuous: for a decreasing sequence of sets $\{E_i\}_{i\geq1}$ such that $\mu(E_k)<\infty$ for some $k$, $\mu(E_i)\to\mu(\cap_{i\geq1}E_i).$
-    \item $\mu$ is countably additive.
+    \item $\mu$ is downward continuous: if $\{E_i\}_{i\geq1}$ is a decreasing sequence of sets such that $\mu(E_k)<\infty$ for some $k$, then $\mu(E_i)\to\mu(\cap_{i\geq1}E_i).$
+    \item $\mu$ is $\sigma$-additive.
 \end{itemize}
 \end{prop}
 
-\begin{prop}\textup{\textbf{(Dynkin's $\pi$-$\lambda$ Theorem)}} If $\Pi$ is a $\pi$-system and $\Lambda$ is a $\lambda$-system, then $\Pi\subset\Lambda$ implies $\sigma(\Pi)\subset\Lambda$.
+\begin{prop}\label{Prop 1.2}
+Let $\mu$ be an outer measure on $\Omega$. Let $\mathcal{F}$ be the collection of all $\mu$-measurable subsets of $\Omega$. Then $\mathcal{F}$ is a $\sigma$-algebra and $\mu$ is a measure on $\mathcal{F}$.
 \end{prop}
 
-\begin{prop}\textup{\textbf{(Carathéodory's Extension Theorem)}} Every downward continuous pre-measure on a Boolean algebra $\mathfrak{B}$ can be extended to a measure on $\sigma(\mathfrak{B})$. The extension is unique if the pre-measure is $\sigma$-finite.
+\begin{remark}
+Hands on construction of Jordan measure and Lebesgue measure.\smallbreak
+A subset of $\mathbb{R}^d$ is elementary if it is a finite union of finite boxes. Jordan measure $\mu$ of elementary set $E$ is simply the volume of $E$. Jordan measure of arbitrary $A\subset\mathbb{R}^d$ is defined by
+\[\mu(A)=\inf\{\mu(E):A\subset E\textrm{ and }E\textrm{ is elementary}\}.\]
+A set $A\subset\mathbb{R}^d$ is called Jordan measurable if for any $\epsilon>0$ there exists elementary sets $E$ and $F$ such that $E\subset A\subset F$ and $\mu(F\setminus E)<\epsilon$. Then the collection of all Jordan measurable sets is a Boolean algebra and $\mu$ is a finitely additive measure defined on it.\medbreak
+For any $A\subset\mathbb{R}^d$ define
+\[\mu^\ast(A)=\inf\left\{\sum_{n\geq1}\mu(B_n):E\subset\bigcup_{i\geq1}B_i\textrm{ and }B_n\textrm{ are boxes in }\mathbb{R}^d\right\}.\]
+Then $\mu^\ast$ is an outer measure. A subset $A\subset\mathbb{R}^d$ is called Lebesgue measurable if for any $\epsilon>0$ there exists a countable union of boxes $C=\cup_{i\geq1}B_i$ such that $E\subset C$ and $\mu^\ast(C\setminus E)<\epsilon$. Without invoking \hyperref[Prop 1.1]{Prop 1.2}, we will show that\begin{itemize}
+    \item $\mu^*$ extends $\mu$: $\mu^\ast(E)=\mu(E)$ for all Jordan measurable sets $E$,
+    \item the collection of all Lebesgue measurable sets $\mathcal{L}$ is a $\sigma$-algebra, and
+    \item $\mu^\ast|_\mathcal{L}$ is a measure.
+\end{itemize}
+Such extension $\mu$ is the Lebesgue measure on $\mathbb{R}^d$. $\mu^\ast$ is the Lebesgue outer measure.\smallbreak
+\textcolor{blue}{Shrinking to closed boxes and apply Heine-Borel property of $\mathbb{R}^d$, we get that $\mu$ is downward continuous.\smallbreak
+By definition $\mu^*\leq\mu$ for Jordan measurable sets, hence we only need to prove the reverse. We only need to prove such for elementary sets, as the definition of Jordan measurability will extend them to any Jordan measurable sets.\smallbreak
+To prove that $\mathcal{L}$ is a $\sigma$-algebra prove first for countable union. Then for complement prove that Lebesgue-outer null sets are Lebesgue measurable.\smallbreak
+For the last part prove first that any countable intersection of elementary sets are Lebesgue measurable. Then prove that bounded Lebesgue measurable sets can be approximated above by countable intersections of open sets (which are Lebesgue measurable). Lastly prove the finite additivity for countable intersections of elementary sets, which can be extended to the countable additivity on Lebesgue measurable sets.}
+\end{remark}
+
+\begin{prop}\textup{\textbf{(Dynkin's $\pi$-$\lambda$ Theorem)}} Let $\Pi$ be a $\pi$-system and $\Lambda$ a $\lambda$-system. If $\Pi\subset\Lambda$ then $\sigma(\Pi)\subset\Lambda$.
+\end{prop}
+
+\begin{prop}\textup{\textbf{(Carathéodory's Extension Theorem)}} Every pre-measure on a Boolean algebra $\mathfrak{B}$ can be extended to a measure on $\sigma(\mathfrak{B})$. The extension is unique if the pre-measure is $\sigma$-finite.
 \end{prop}
 
 \begin{prop}
