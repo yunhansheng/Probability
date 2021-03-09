@@ -60,17 +60,24 @@
 \subsection{Measures}
 
 \begin{prop}
-from Jordan to Lebesgue
+Let $\phi$ be an outer measure on $\Omega$. Let $\mathcal{F}$ be the collection of all $\phi$-measurable subsets of $\Omega$. Then $\mathcal{F}$ is a $\sigma$-algebra and $\phi$ is a measure on $\mathcal{F}$.
 \end{prop}
+
+\begin{remark}
+(Hands on construction of Lebesgue measure from Jordan measure)
+\end{remark}
 
 \begin{prop}
-continuity and countable
+The following two properties for a finitely additive measure $\mu$ are equivalent:\begin{itemize}
+    \item $\mu$ is downward continuous: for a decreasing sequence of sets $\{E_i\}_{i\geq1}$ such that $\mu(E_k)<\infty$ for some $k$, $\mu(E_i)\to\mu(\cap_{i\geq1}E_i).$
+    \item $\mu$ is countably additive.
+\end{itemize}
 \end{prop}
 
-\begin{prop}\textup{\textbf{(Dynkin's $\pi$-$\lambda$ Theorem)}} Lr
+\begin{prop}\textup{\textbf{(Dynkin's $\pi$-$\lambda$ Theorem)}} If $\Pi$ is a $\pi$-system and $\Lambda$ is a $\lambda$-system, then $\Pi\subset\Lambda$ implies $\sigma(\Pi)\subset\Lambda$.
 \end{prop}
 
-\begin{prop}\textup{\textbf{(Carathéodory's Extension Theorem)}} Lr
+\begin{prop}\textup{\textbf{(Carathéodory's Extension Theorem)}} Every downward continuous pre-measure on a Boolean algebra $\mathfrak{B}$ can be extended to a measure on $\sigma(\mathfrak{B})$. The extension is unique if the pre-measure is $\sigma$-finite.
 \end{prop}
 
 \begin{prop}
@@ -80,7 +87,7 @@ properties of measurable functions
 \subsection{Integration}
 
 \begin{prop}
-simple function approximation
+Non-negative measurable functions can be pointwise approximated by a non-decreasing sequence of simple functions.
 \end{prop}
 
 \begin{prop}
@@ -127,20 +134,16 @@ Then
 \begin{prop}
 Let $X$ and $Y$ be random variables on measure space $(\Omega,\mathcal{F},\mathbb{P})$ and $p,q\in[1,\infty]$ be such that $pq=p+q$.
 \begin{itemize}
-    \item \textup{\textbf{(Hölder's Inequality)}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then
-    \[\norm{XY}_1\leq\norm{X}_p\norm{Y}_q.\]
-    \item \textup{\textbf{(Minkowski's Inequality)}} If $X\in L^p(\mathbb{P})$ and $Y\in L^p(\mathbb{P})$, then
-    \[\norm{X+Y}_{p}\leq\norm{X}_p\norm{Y}_p.\]
+    \item \textup{\textbf{(Hölder's Inequality)}} If $X\in L^p(\mathbb{P})$ and $Y\in L^q(\mathbb{P})$, then $\norm{XY}_1\leq\norm{X}_p\norm{Y}_q.$
+    \item \textup{\textbf{(Minkowski's Inequality)}} If $X\in L^p(\mathbb{P})$ and $Y\in L^p(\mathbb{P})$, then $\norm{X+Y}_{p}\leq\norm{X}_p\norm{Y}_p.$
 \end{itemize}
 \end{prop}
 
 \begin{prop}
 Let $X$ be a random variable on measure space $(\Omega,\mathcal{F},\mathbb{P})$.
 \begin{itemize}
-    \item \textup{\textbf{(Markov's Inequality)}} If $X$ is non-negative and $t\geq0$, then
-    \[t\mathbb{P}(X\geq t)\leq\mathbb{E}(X).\]
-    \item \textup{\textbf{(Chebyshev's Inequality)}} For any $t\geq0$,
-    \[t^2\mathbb{P}(\abs{X-\mathbb{E}(X)}\geq t)\leq\Var(X).\]
+    \item \textup{\textbf{(Markov's Inequality)}} If $X$ is non-negative and $t\geq0$, then $t\mathbb{P}(X\geq t)\leq\mathbb{E}(X).$
+    \item \textup{\textbf{(Chebyshev's Inequality)}} For any $t\geq0$, $t^2\mathbb{P}(\abs{X-\mathbb{E}(X)}\geq t)\leq\Var(X).$
     \item \textup{\textbf{(Chernoff bound)}} Given $m_X(\lambda)=\mathbb{E}(e^{\lambda X})$ the moment-generating function of $X$ and $\lambda>0$,
     \[e^{\lambda t}\mathbb{P}(X\geq t)\leq m_X(\lambda).\]
 \end{itemize}
@@ -208,15 +211,14 @@ a.s. \arrow[ru, Rightarrow] \arrow[uu, "\textrm{uniform integrable (to }L^1\text
 \end{tikzcd}\end{center}
 \end{prop}
 
-\begin{prop}\textup{\textbf{(Slutsky's Theorem) }}If $X_n\xrightarrow{d}X$ and $Y_n\xrightarrow{\mathbb{P}}C$ for some constant $C$, then $X_n+Y_n\xrightarrow{d}X+c$ and $X_nY_n\xrightarrow{d}Xc$.
+\begin{prop}\textup{\textbf{(Slutsky's Theorem) }}If $X_n\xrightarrow{d}X$ and $Y_n\xrightarrow{\mathbb{P}}c$ for some constant $c$, then $X_n+Y_n\xrightarrow{d}X+c$ and $X_nY_n\xrightarrow{d}Xc$.
 \end{prop}
 
-\begin{prop}\textup{\textbf{(Portemanteau lemma)}} Let $(\mathcal{S},\rho)$ be a polish space and $\{\mu_n\}$ a sequence of probability measures on $\mathcal{S}$, then the following statements are equivalent.\begin{itemize}
+\begin{prop}\textup{\textbf{(Portemanteau lemmas)}} Let $(\mathcal{S},\rho)$ be a polish space and $\{\mu_n\}$ a sequence of probability measures on $\mathcal{S}$, then the following statements are equivalent.\begin{itemize}
     \item $\mu_n\xrightarrow{weak}\mu$.
     \item For every bounded $f:\mathcal{S}\to\mathbb{R}$ that is Lipschitz continuous: for any $x,y\in\mathcal{S}$ there exists $L<\infty$ such that $\abs{f(x)-f(y)}\leq L\rho(x,y)$,
     \[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu.\]
-    \item $\limsup_{n\to\infty}\mu_n(F)\leq\mu(F)$ for every closed set $F\subset\mathcal{S}$.
-    \item $\liminf_{n\to\infty}\mu_n(E)\geq\mu(E)$ for every open set $E\subset\mathcal{S}$.
+    \item $\limsup_{n\to\infty}\mu_n(F)\leq\mu(F)$ and $\liminf_{n\to\infty}\mu_n(E)\geq\mu(A)$ for every closed $F$ and open $E$.
     \item $\mu_n(A)\to\mu(A)$ for all measurable $A\subset\mathcal{S}$ with $\mu(\partial A)=0$.
     \item For every bounded measurable $f:\mathcal{S}\to\mathbb{R}$ that is continuous almost everywhere with respect to $\mu$,
     \[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu.\]
@@ -224,7 +226,7 @@ a.s. \arrow[ru, Rightarrow] \arrow[uu, "\textrm{uniform integrable (to }L^1\text
 \end{prop}
 
 \begin{remark}
-It follows that...
+It follows that if $\int_\mathcal{S}f\,d\mu=\int_\mathcal{S}f\,d\nu$ for probability measures $\mu$ and $\mu$  and all bounded continuous $f:\mathcal{S}\to\mathbb{R}$, then $\mu=\nu$. Indeed, by Portemanteau lemmas $\mu$ and $\nu$ thus agree on all open sets, thus by Dynkin's $\pi$-$\lambda$ Theorem the uniqueness follows.
 \end{remark}
 
 \subsection{Laws of large numbers}
@@ -255,13 +257,20 @@ then
 \subsection{Tightness and characteristic functions}
 
 \begin{prop}
-Let $\{X_n\}$ be a sequence of random variables.
+Let $\{X_n\}_{n\geq1}$ be a sequence of random variables.
 \begin{itemize}
 \item If $\{X_n\}$ be a tight family and $\{c_n\}_{n\geq1}$ a sequence of constants converging to 0. Then,\begin{itemize}
     \item \textup{\textbf{(Helly's Selection Theorem)}} there is a subsequence $X_{n_k}\xrightarrow{d}X$, and
     \item $c_nX_n\xrightarrow{\mathbb{P}}0$.
 \end{itemize}
 \item Conversely if $X_n\xrightarrow{d}X$, then $\{X_n\}$ is a tight family.
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+Let $\{\mu_n\}_{n\geq1}$ be a sequence of probability measures on a Polish space $(\mathcal{S},\rho)$.\begin{itemize}
+    \item If $\mu_n\xrightarrow{weak}\mu$, then $\{\mu_n\}$ is tight.
+    \item \textup{\textbf{(Prokhorov's Theorem)}} If $\{\mu_n\}$ is tight, then there is a subsequence $\mu_{k_n}\xrightarrow{weak}\mu$.
 \end{itemize}
 \end{prop}
 
@@ -292,15 +301,28 @@ example: cf of N(mu,sigma)
 \begin{prop}\textup{\textbf{(Inversion Formula)}} For any random variable $X$ and $\theta>0$ define
 \[f_\theta(X)=\frac{1}{2\pi}\int_{-\infty}^\infty e^{itX-\theta t^2}\phi_X(t)\,dt.\]
 Then for any bounded continuous function $g:\R\to\R$,
-\[\E[g(X)]=\lim_{\theta\to0}\int_{-\infty}^\infty g(X)f_\theta(X)\,dX.\]
+\[\E[g(X)]=\lim_{\theta\to0}\int_{-\infty}^\infty g(x)f_\theta(x)\,dx.\]
 \end{prop}
 
 \begin{remark}
-law iff cdf; pdf as cf.
+Two random variables have the same law if and only if they have the same characteristic function. Indeed, if $X$ and $Y$ have the same law, then they have the same $k$-th moment $\E[X^k]=\E[Y^k]$ for all $k$. The characteristic function $\E[e^{iXt}]$ can be decomposed to sum of $k$th moments:
+\begin{align*}
+\E[e^{iXt}]&=\E(1+iXt-\frac{X^2t^2}{2!}+\cdots+\frac{i^nX^nt^n}{n!}+\cdots)\\&=1+it\E[X]-\frac{t^2\E[X^2]}{2!}+\cdots+\frac{t^n\E[X^n]}{n!}+\cdots.
+\end{align*}
+On the other hand, if $X$ and $Y$ have the same characteristic function, then by Inversion Formula they have the same law.
+\end{remark}
+
+\begin{remark}
+Suppose $\int_{-\infty}^\infty\abs{\phi_X(t)}\,dt<\infty$, then by Inversion Formula the probability density function of $X$ is given by
+\[f(x)=\frac{1}{2\pi}\int_{-\infty}^\infty e^{-itx}\phi_X(t)\,dt.\]
 \end{remark}
 
 \begin{prop}\textup{\textbf{(Lévy's Continuity Theorem)}} A sequence of random variables $\{X_n\}$ converges to $X$ in distribution if and only if their characteristic functions $\{\phi_{X_n}\}$ converges to $\phi_X$ pointwise.
 \end{prop}
+
+\begin{remark}
+\textup{\textbf{Cramér-Wold Theorem:}} Let $\{X_n\}_{n\geq1}$ be a sequence of random vectors in $\mathbb{R}^n$, then $X_n\xrightarrow{d}X$ if and only if $tX_n\xrightarrow{d}tX$ for any $t\in\mathbb{R}^n$. Indeed, one direction is a consequence of the fact that all finite-dimensional linear maps are continuous; the other direction follows from Lévy's Continuity Theorem.
+\end{remark}
 
 \begin{prop}\textup{\textbf{(Central Limit Theorem)}} Let $\{X_i\}_{i\geq1}$ be a sequence of independent and identically ditributed random variables with $\E(X_1)=\mu$ and $\Var(E_1)=\sigma^2<\infty$. Then
 \[S_n=\frac{\sum_{i=1}^nX_i-\mu}{\sigma\sqrt{n}}\xrightarrow{d}\mathcal{N}(0,1).\]

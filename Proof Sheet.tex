@@ -97,6 +97,18 @@ Let $\mathcal{F}_n=\sigma(X_1,X_2,\cdots,C_n)$ and $\mathcal{F}_\infty=\sigma(X_
 \subsection{Convergence of random variables}
 
 \begin{prop}
+Let $X_n\xrightarrow{\mathbb{P}}X$. Take any bounded and uniformly continuous $f:\mathcal{S}\to\mathbb{R}$ and $\epsilon>0$, then there exists $\delta>0$ such that $\rho(x,y)<\delta$ implies $\abs{f(x)-f(y)}<\epsilon$. Since $X_n\xrightarrow{\mathbb{P}}X$, we conclude that $f(X_n)\xrightarrow{\mathbb{P}}f(X)$. Since $f$ is bounded, $f(X_n)\xrightarrow{L^1}f(x)$. By Portemanteau lemmas $X_n\xrightarrow{d}X$.\medbreak
+For some constant $c$ let $X_n\xrightarrow{d}c$. Take any $\epsilon>0$ and closed set $F=\{x\in\mathcal{S}:\rho(x,c)\geq\epsilon\}$. By Portemanteau lemma
+\[\limsup_{n\to\infty}\mu_n(F)=\limsup_{n\to\infty}\mathbb{P}(X_n\in F)\leq\mathbb{P}(X\in F)=\mu(F)=0.\]
+Hence $X_n\xrightarrow{\mathbb{P}}c$.\medbreak
+r
+\end{prop}
+
+\begin{prop}
+Take any bounded and uniformly continuous function $f:\mathcal{S}\times\mathcal{S}\to\mathbb{R}$ and $\epsilon>0$, then there exists $\delta>0$ such that $\rho(x,y)<\delta$ implies $\abs{f(x)-f(y)}<\epsilon$. Since $(X_n,Y_n)\xrightarrow{\mathbb{P}}(X_n,c)$, we conclude that $f(X_n,Y_n)\xrightarrow{\mathbb{P}}f(X_n,c)$. Since $f$ is bounded, $f(X_n,Y_n)\xrightarrow{L^1}f(X_n,c)$. Also since $X_n\xrightarrow{d}X$, $f(X_n,c)\xrightarrow{L^1}f(X,c)$. Hence $f(X_n,Y_n)\xrightarrow{L^1}f(X,c)$, and by Portemanteau lemmas $(X_n,Y_n)\xrightarrow{d}(X,c)$. The result then follows.
+\end{prop}
+
+\begin{prop}
 If $\mu_n\xrightarrow{weak}\mu$ then by definition
 \[\int_\mathcal{S}f\,d\mu_n\to\int_\mathcal{S}f\,d\mu\]
 for all bounded Lipschitz continuous function $f:\mathcal{S}\to\mathbb{R}$.\medbreak
@@ -106,7 +118,9 @@ for all $k$, by Dominated Convergence Theorem and the fact that $\mu_n\xrightarr
 Combine these two properties and take measurable $A\subset\mathcal{S}$ with $\mu(\partial A)=0$, then $\mu(A)=\mu(\overline{A})=\mu(A^\circ)$. Hence
 \[\mu(A)=\mu(A^\circ)\leq\liminf_{n\to\infty}\mu_n(A^\circ)\leq\limsup_{n\to\infty}\mu_n(\overline{A})\leq\mu(\overline{A})\leq\mu(A)\]
 which proves the statement.\medbreak
-Lastly, assume the above property holds, then
+Lastly, assume the above property holds. We are content to prove the property for $f\in[0,1]$ due to linearity. Denote the set of discontinuity points of $f$ as $D_f$ and $A_t=\{x:f(x)\geq t\}$ for any $t\in[0,1]$. Thus $\partial A_t\subset D_f\cup\{x:f(x)=t\}$. By continuity of measure we conclude that $\mu(\{x:f(x)=t\})=0$, and $\mu(D_f)=0$ by the fact that $f$ is continuous almost everywhere. Hence $\mu(\partial A)=0$. Then by Dominated Convergence Theorem and what we just proved:
+\[\int_\mathcal{S}f\,d\mu_n=\int_0^1\mu_n(A_t)\,dt\to\int_0^1\mu(A_t)\,dt=\int_\mathcal{S}f\,d\mu.\]
+From which obviously $\mu_n\xrightarrow{weak}\mu$, which completes the cycle of proof.
 \end{prop}
 
 \subsection{Laws of large numbers}
@@ -135,8 +149,8 @@ weak law
 \end{prop}
 
 \begin{prop}
-The proof is due to Etemadi (1981). As a lemma, $y\sum_{k>y}k^{-2}\leq2$ for $y\geq0$.\smallbreak
-Assume for simplicity that $X_i\geq0$. Let $k_n=\left\lfloor{\alpha^n}\right\rfloor$ for some arbitrary $\alpha>1$, $Y_i=X_i\textbf{1}_{\{X_i<i\}}$, and $Z_n=\frac{1}{n}\sum_{i=1}^n(Y_i-\E(Y_i))$.\smallbreak
+The proof is due to Etemadi (1981). As a lemma, $y\sum_{k>y}k^{-2}\leq2$ for $y\geq0$.\medbreak
+Assume for simplicity that $X_i\geq0$. Let $k_n=\left\lfloor{\alpha^n}\right\rfloor$ for some arbitrary $\alpha>1$, $Y_i=X_i\textbf{1}_{\{X_i<i\}}$, and $Z_n=\frac{1}{n}\sum_{i=1}^n(Y_i-\E(Y_i))$.\medbreak
 By Chebyshev's inequality,  Fubini-Tonelli Theorem, and the fact that $\alpha^n\leq2\left\lfloor{\alpha^n}\right\rfloor$,
 \begin{align*}
 \sum_{n=1}^\infty\mathbb{P}(\abs{Z_{k_n}}>\epsilon)&\leq\epsilon^{-2}\sum_{n=1}^\infty k_n^{-2}\sum_{i=k_1}^{k_n}\Var(Y_i)\\
@@ -146,8 +160,8 @@ Since by Fubini-Tonelli Theorem, the lemma, and the assumption $\E(\abs{X_i})<\i
 \[\sum_{i=1}^\infty i^{-2}\Var(Y_i)\leq\sum_{i=1}^\infty i^{-2}\E(Y_i^2)\leq2\int_0^\infty\,dy\left\{\sum_{i=1}^\infty i^{-2}\textbf{1}_{\{y<k\}}\right\}y\mathbb{P}(\abs{X_1}>y)\leq4\E(\abs{X_i})<\infty,\]
 we conclude that $\mathbb{P}(\abs{Z_{n_k}}>\epsilon)\to0$, or $k_n^{-1}\sum_{i=k_1}^{k_n}Y_i\to k_n^{-1}\sum_{i=k_1}^{k_n}\E(Y_i)$. To deal with middle values note that for $k_n<m<k_{n+1}$
 \[k_{n+1}^{-1}\sum_{i=1}^{k_n}Y_i\leq m^{-1}\sum_{i=1}^mY_i\leq k_n^{-1}\sum_{i=k_1}^{k_{n+1}}Y_i.\]
-Hence $n^{-1}\sum_{i=1}^nY_i\to n^{-1}\sum_{i=1}^n\E(Y_i)$.\smallbreak
-Since $\sum_{i=1}^\infty\mathbb{P}(X_i\neq Y_i)=\sum_{i=1}^\infty\mathbb{P}(X_1\geq i)\leq\E(X_1)<\infty$, by Borel Cantelli Lemma $\mathbb{P}(X_i\neq Y_i,\textrm{ infinitely often})=0$, which implies that $n^{-1}\sum_{i=1}^nX_i\xrightarrow{a.s.}n^{-1}\sum_{i=1}^nY_i$.\smallbreak
+Hence $n^{-1}\sum_{i=1}^nY_i\to n^{-1}\sum_{i=1}^n\E(Y_i)$.\medbreak
+Since $\sum_{i=1}^\infty\mathbb{P}(X_i\neq Y_i)=\sum_{i=1}^\infty\mathbb{P}(X_1\geq i)\leq\E(X_1)<\infty$, by Borel Cantelli Lemma $\mathbb{P}(X_i\neq Y_i,\textrm{ infinitely often})=0$, which implies that $n^{-1}\sum_{i=1}^nX_i\xrightarrow{a.s.}n^{-1}\sum_{i=1}^nY_i$.\medbreak
 Lastly by Dominated Convergence Theorem $\E(Y_i)-\mu=\E(X_1\textbf{1}_{\{X_i\geq i\}})\to0$, which implies that $n^{-1}\sum_{i=1}^n\E(Y_i)\to\mu$. Combining these result and the statement follows:
 \[n^{-1}\sum_{i=1}^nX_i\xrightarrow{a.s.}n^{-1}\sum_{i=1}^nY_i\to n^{-1}\sum_{i=1}^n\E(Y_i)\to\mu\]
 \end{prop}
@@ -177,7 +191,27 @@ Choose the appropriate $N$ and $K_0$, and the first two terms are bounded by $\e
 \end{prop}
 
 \begin{prop}
-We shall first prove a lemma regarding probability density function: if $X$ and $Y$ are independent and $Y$ has probability density function $g$, then $Z=X+Y$ has probability density function $h(z)=\E[g(z-X)]$.\smallbreak
+Assume $\mu_n\xrightarrow{weak}\mu$, then if $\{\mu_n\}$ is tight, for any $\epsilon>0$, we are able to find non-decreasing open sets $\{V_i\}$ such that $\cap_{i\geq1}V_i=\mathcal{S}$ and $\mu_n(V_i)=1-\epsilon$ for all $n$. Assume the contrary for contradiction, there exists for each $i$ some $n_i$ such that $\mu_{n_i}(V_i)\leq1-\epsilon$. Then since $\mu_k(V_i)\to1$ as $i\to\infty$, there cannot exists a $k$ such that $n_i=k$ for infinitely many $i$. Thus $n_i\to\infty$ as $i\to\infty$, and by Portmanteau lemma,
+\[\mu(V_i)\leq\liminf_{j\to\infty}\mu_{n_j}(V_i)\leq\liminf_{j\to\infty}\mu_{n_j}(V_j)\leq1-\epsilon.\]
+This is impossible, since $\mu(V_i)\to1$. Thus $\{\mu_n\}$ tight.\medbreak
+To prove the converse, first we will construct a subsequence $\{\mu_{n_k}\}$ and from there some $\mu$, which we will show is an outer measure. By \textcolor{purple}{Prop xxx} the collection $\mathcal{F}$ of all $\mu$-measurable sets will be a $\sigma$-algebra on which $\mu$ is a measure. Then we will conclude the proof by showing that $\mathcal{B}(\mathcal{S})\subset\mathcal{F}$ and probability measure $\mu$ is indeed the weak limit.\medbreak
+By tightness construct a sequence of non-decreasing compact sets $\{K_i\}$ such that $\mu_n(K_i)\geq1-1/i$ for all $n$. Since $\mathcal{S}$ is Polish, there exists a dense and countable $D\subset\mathcal{S}$. Let $\mathfrak{B}$ be the collection of all closed balls with centers at elements of $D$ and non-zero rational radius. Let $\mathfrak{C}$ be the collection of all finite unions of sets of the form $B\cap K_i$ where $B\in\mathfrak{B}$. Such $C$ is countable, hence there is a subsequence $\{\mu_{n_k}\}$ such that $\alpha(C)=\lim_{k\to\infty}\mu_{k_n}(C)$ exists for all $C\in\mathfrak{C}$. For any open set $V\subset\mathcal{S}$ define $\beta(V)=\sup\{\alpha(C):C\subset V\textrm{ and }C\in\mathfrak{C}\}$. Finally for any $A\subset\mathcal{S}$ define
+\[\mu(A)=\inf\{\beta(V):A\subset V\textrm{ and }V\textrm{ is open}\}.\]
+For any open $V_1,V_2\subset\mathcal{S}$ we have $\mu_{k_n}(V_1\cup V_2)\leq\mu_{k_n}(V_1)+\mu_{k_n}(V_2)$. By the construct of $\mathfrak{C}$ we are able to approach $V_1$ and $V_2$ with some $C,C_1,C_2\in\mathfrak{C}$ closely: 
+\[\mu_{n_k}(C)=\mu_{n_k}(V_1\cup V_2)\leq\mu_{n_k}(V_1)+\mu_{n_k}(V_2)=\mu_{n_k}(C_1)+\mu_{n_k}(C_2),\]
+for any $\epsilon>0$. Hence for open sets $\beta=\mu$ is finite subadditive, and then for any $A\subset\mathcal{S}$ the property also holds. The countable subadditivity follows by letting $\mu(V_i)\leq\mu(A_i)+2^{-i}\epsilon$. Therefore $\mu$ is indeed an outer measure.\medbreak
+For open $V$ and closed $F$ subsets of $\mathcal{S}$, take $C_1\subset V\cap F^c$ and $C_2\subset V\cap C_1^c$ as subsets of $\mathfrak{C}$. Then since $C_1\cap C_2=\varnothing$ and $C_1\cup C_2\subset V$, we have $\beta(V)\geq\alpha(C_1\amalg C_2)=\alpha(C_1)+\alpha(C_2)$.
+Taking supremum over $C_1$ and $C_2$ we have, as $V\cap C_1^c\supset V\cap F$,
+\[\beta(V)\geq\alpha(V\cap F^c)+\alpha(V\cap F)=\beta(V\cap F^c)+\beta(V\cap F)\geq\mu(V\cap F^c)+\mu(V\cap F).\]\medbreak
+Now for any $G\subset V$ we have $\beta(V)\geq\mu(V\cap F)+\mu(V\cap F^c)\geq\mu(G\cap F)+\mu(G\cap F^c)$.
+Then $F\subset\mathcal{F}$ taking infimum over $V$. Hence the $\sigma$-algebra $\mathcal{F}$ of all $\mu$-measurable sets contains $\mathcal{B}(\mathcal{S})$.\medbreak
+Finally, for any open $V\subset\mathcal{S}$ and $C\subset V$ for $C\in\mathfrak{C}$,
+\[\alpha(C)=\lim_{k\to\infty}\mu_{n_k}(C)\leq\liminf_{k\to\infty}\mu_{n_k}(V).\]
+Taking supremum over $C$, and by Portmanteau lemma $\mu_{n_k}\xrightarrow{weak}\mu$.
+\end{prop}
+
+\begin{prop}
+We shall first prove a lemma regarding probability density function: if $X$ and $Y$ are independent and $Y$ has probability density function $g$, then $Z=X+Y$ has probability density function $h(z)=\E[g(z-X)]$.\medbreak
 Indeed, $\mu_X\mu_Y$ is the law of $(X,Y)$ by independence, and apply Fubini-Tonelli Theorem twice:
 \begin{align*}
 F_Z(t)=\mathbb{P}(X+Y\leq t)&=\int\1_{\{X+Y\leq t\}}\,d(\mu_X\mu_Y)\\
@@ -195,7 +229,7 @@ By lemma and the previous remark $f_\theta(X)$ is the probability density functi
 \end{prop}
 
 \begin{prop}
-If $X_n\xrightarrow{d}X$ then by our previous decomposition $\phi_{X_n}(t)\to\phi_X(t)$ necessarily.\smallbreak
+If $X_n\xrightarrow{d}X$ then by our previous decomposition $\phi_{X_n}(t)\to\phi_X(t)$ necessarily.\medbreak
 On the other hand let $\phi_{X_n}(t)\to\phi_X(t)$, and assume for contradiction that there is a subsequence $X_{n_k}\not\xrightarrow{d}X$. For any $\epsilon>0$ choose small enough $a$ such that $2\abs{\phi_X(s)-1}\leq\epsilon$. Then by Dominated Convergence Theorem,
 \[\lim_{n\to\infty}\int_{-a}^a\abs{1-\phi_{X_n}(s)}\,ds=\int_{-a}^a\abs{1-\phi_X(s)}\,ds\leq a\epsilon.\]
 Let $at=2$, then by prop xxx $\limsup_{n\to\infty}\mathbb{P}(\abs{X_n}\geq t)\leq\epsilon$, which implies that $\{X_n\}$ is a tight family, as is $\{X_{n_k}\}$. By Helly's Selection Theorem we extract a subsequence $X_{n_k}\xrightarrow{d}X$, which contradicts the assumption. Hence $X_n\xrightarrow{d}X$.
