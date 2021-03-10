@@ -83,9 +83,18 @@ Then $\mu^\ast$ is an outer measure. A subset $A\subset\mathbb{R}^d$ is called L
     \item $\mu^\ast|_\mathcal{L}$ is a measure.
 \end{itemize}
 Such extension $\mu$ is the Lebesgue measure on $\mathbb{R}^d$. $\mu^\ast$ is the Lebesgue outer measure.\smallbreak
-\textcolor{blue}{Shrinking to closed boxes and apply Heine-Borel property of $\mathbb{R}^d$, we get that $\mu$ is downward continuous.\smallbreak
-By definition $\mu^*\leq\mu$ for Jordan measurable sets, hence we only need to prove the reverse. We only need to prove such for elementary sets, as the definition of Jordan measurability will extend them to any Jordan measurable sets.\smallbreak
-To prove that $\mathcal{L}$ is a $\sigma$-algebra prove first for countable union. Then for complement prove that Lebesgue-outer null sets are Lebesgue measurable.\smallbreak
+We first show that $\mu$ is downward continuous. Indeed, let $\{E_k\}_{k\geq1}$ be a decreasing sequence of elementary sets and $\cap_{k\geq1}E_k=\varnothing$. Shrink a bit each side of $E_k$ and find a closed elementary $F_k\subset E_k$ such that $\mu(E_k\setminus E_k)\leq2^{-k-1}\epsilon$ for some $\epsilon>0$. Then
+\[\mu(E_k)-\mu(\bigcap_{i=1}^kF_i)\leq\mu(E_k\setminus\bigcap_{i=1}^kF_i)=\mu(\bigcap_{i=1}^k(E_k\setminus F_i))\leq\sum_{i=1}^k\mu(E_i\setminus F_i)\leq\frac{\epsilon}{2}.\]
+Since $\cap_{i\geq1}F_i=\varnothing$, we have $\lim_{k\to\infty}\mu(E_k)=0$ as desired.\medbreak
+Now we will prove that $\mu^\ast(A)=\mu(A)$ for any Jordan measurable set $A$. Since $\mu^*$ takes infimum over countable cover of boxes and $\mu$ takes infimum over finite union of boxes, $\mu^\ast(A)\leq\mu(A)$. For the reverse inequality, first let $A$ be elementary, then there exists boxes $\{B_i\}_{i\geq1}$ such that $A\subset\cup_{i\geq1}B_i$ and $\sum_{i\geq1}\mu(B_i)\leq\mu^\ast(A)+\epsilon$ for any $\epsilon>0$. Let $E_n=A\setminus\cup_{i=1}^nB_i$ which is elementary and $\cap_{i\geq1}E_i=\varnothing$. By downward continuity of $\mu$,
+\[\mu(A)\leq\mu(E_n)+\mu(\bigcup_{i=1}^nB_i)\leq\mu(E_n)+\sum_{i=1}^n\mu(B_i)\leq\mu(E_n)+\mu^\ast(A)+\epsilon.\]
+Taking $n\to\infty$ the result follows. Now for arbitrary Jordan measurable $A$ we have elementary $E$ such that $E\subset A$ and $\mu(A)\leq\mu(E)+\epsilon=\mu^\ast(E)+\epsilon\leq\mu^\ast(A)+\epsilon$. Hence $\mu^\ast(A)=\mu(A)$.\medbreak
+Trivially $\varnothing\in\mathcal{L}$. We only need to check for complement-stability and countable $\cup$-stability.\begin{itemize}
+    \item Let $A=\cup_{i\geq1}A_i$ with $A_i\in\mathcal{L}$ for all $i$. For any $\epsilon>0$ let $C_i$ be a countable union of boxes with $A_i\subset C_i$ and $\mu^\ast(C_i\setminus A_i)\leq2^{-i}\epsilon$ for all $i$.
+    \item r
+\end{itemize}
+
+\textcolor{blue}{\medbreak To prove that $\mathcal{L}$ is a $\sigma$-algebra prove first for countable union. Then for complement prove that Lebesgue-outer null sets are Lebesgue measurable.\smallbreak
 For the last part prove first that any countable intersection of elementary sets are Lebesgue measurable. Then prove that bounded Lebesgue measurable sets can be approximated above by countable intersections of open sets (which are Lebesgue measurable). Lastly prove the finite additivity for countable intersections of elementary sets, which can be extended to the countable additivity on Lebesgue measurable sets.}
 \end{remark}
 
