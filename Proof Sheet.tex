@@ -94,10 +94,35 @@ Since $A\setminus B=A\cap B^c$, $\lambda(\Pi)$ is also stable under set-differen
 \end{prop}
 
 \begin{prop}
-r
+Let $\Omega$ be the set and $\mu_0$ the pre-measure on $(\Omega,\mathcal{B})$. Define
+\[\mu^\ast(A)=\inf\{\mu_0(B):A\subset B\textrm{ and }B\in\mathcal{B}\}.\]
+Then $\mu^\ast$ is an outer measure. By \hyperref[Prop 1.2]{Prop 1.2} the collection $\mathcal{F}$ of all $\mu^\ast$-measurable sets is a $\sigma$-algebra and $\mu^\ast$ is a measure on $\mathcal{F}$. Furthermore $\mathcal{B}\subset\mathcal{F}$, sincexxx. Hence the extension is valid.\medbreak
+The uniqueness follows from 
+\end{prop}
+
+\begin{prop}
+properties of measurable functions
 \end{prop}
 
 \subsection{Integration}
+
+\begin{prop}
+Let $f$ be any non-negative measurable function.Define $A_i=f^{-1}([2^{-n}(i-1),2^{-n}i))$
+for $1\leq i\leq n2^n$ and $A_\infty=f^{-1}([n,\infty])$. Define
+\[g_n=\sum_{i=1}^{n2^n}\frac{i-1}{2^n}\1_{A_i}+n\1_{A_\infty}\textrm{, then }g_n(x)=\begin{cases}
+2^{-n}(i-1)&2^{-n}(i-1)\leq f(x)<2^{-n}i\\
+n&f(x)\geq n
+\end{cases}.\]
+Clearly, $g_n$ is simple and approximates $f$ as $n\to\infty$.
+\end{prop}
+
+\begin{prop}
+properties of integral
+\end{prop}
+
+\begin{prop}
+
+\end{prop}
 
 \subsection{Measure and integration on product spaces}
 
@@ -202,7 +227,7 @@ weak law
 \end{prop}
 
 \begin{prop}
-The proof is due to Etemadi (1981). As a lemma, $y\sum_{k>y}k^{-2}\leq2$ for $y\geq0$.\medbreak
+As a lemma, $y\sum_{k>y}k^{-2}\leq2$ for $y\geq0$.\medbreak
 Assume for simplicity that $X_i\geq0$. Let $k_n=\left\lfloor{\alpha^n}\right\rfloor$ for some arbitrary $\alpha>1$, $Y_i=X_i\textbf{1}_{\{X_i<i\}}$, and $Z_n=\frac{1}{n}\sum_{i=1}^n(Y_i-\E(Y_i))$.\medbreak
 By Chebyshev's inequality,  Fubini-Tonelli Theorem, and the fact that $\alpha^n\leq2\left\lfloor{\alpha^n}\right\rfloor$,
 \begin{align*}
