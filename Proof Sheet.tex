@@ -34,9 +34,11 @@
 \hypersetup{colorlinks=false}
 
 \DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\E}{\mathbb{E}}
 \DeclareMathOperator{\R}{\mathbb{R}}
 \DeclareMathOperator{\1}{\mathbf{1}}
+\DeclareMathOperator{\0}{\mathbf{0}}
 
 
 
@@ -121,10 +123,31 @@ properties of integral
 \end{prop}
 
 \begin{prop}
-
+Suppose $f_n\geq0$ and $f_n\leq f_{n+1}$ for all $n\geq1$. By \hyperref[Prop 1.5]{Prop 1.5} $f=\lim_{n\to\infty}f_n$ is measurable. Let $s$ be an simple function such that $0\leq s\leq f$, and $0<c<1$ a constant. Construct a non-decreasing sequence of measurable sets $\{E_n\}_{n\geq1}$ by $E_n=\{x:f_n(x)\geq cs(x)\}$. Then
+\[\int_\Omega f_n\,d\mu\geq\int_{E_n}f_n\,d\mu\geq c\int_{E_n}s\,d\mu.\]
+Taking $n\to\infty$, since $\Omega=\cup_{n\geq1}E_n$, we have
+\[\lim_{n\to\infty}\int_\Omega f_n\,d\mu\geq c\int_\Omega s\,d\mu.\]
+Scaling $s$ and $c$ gives one direction of the equality. The other is given by $\int_\Omega f_n\,d\mu\leq\int_\Omega f\,d\mu$.\medbreak
+Now suppose $f_n\geq0$ for all $n\geq1$. Define an non-decreasing sequence of functions $\{g_k\}_{k\geq1}$ by $g_k(x)=\inf_{i\geq k}f_i(x)$, then $g_k$ and $\lim_{k\to\infty}g_k=\liminf_{n\to\infty}f_n$ are measurable by \hyperref[Prop 1.5]{Prop 1.5}. Since $g_k\leq f_k$,
+\[\int_\Omega g_k\,d\mu\leq\int_\Omega f_k\,d\mu.\]
+As $k\to\infty$, the result follows from Monotone Convergence Theorem.\medbreak
+Finally suppose $\abs{f_n(x)}\leq g(x)$ for all $n\geq1$ and some integrable function $g$. It is clear that $f=\lim_{n\to\infty}f_n$ is measurable and $\abs{f_n-f}\leq2g$. Apply Fatou's lemma on $2g-\abs{f_n-f}\geq0$:
+\begin{align*}
+\int_\Omega2g\,d\mu&\leq\liminf_{n\to\infty}\int_\Omega(2g-\abs{f_n-f})\,d\mu\\
+&=\int_\Omega2g\,d\mu+\liminf_{n\to\infty}\left(-\int_\Omega\abs{f_n-f}\,d\mu\right)=\int_\Omega2g\,d\mu-\limsup_{n\to\infty}\left(\int_\Omega\abs{f_n-f}\,d\mu\right).
+\end{align*}
+The result then follow from \hyperref[Prop 1.7]{Prop 1.7}.
 \end{prop}
 
 \subsection{Measure and integration on product spaces}
+
+\begin{prop}
+Note that $\Lambda=\{E\subset X\times Y:E_x\in\mathcal{Y},x\in X\}\subset\mathcal{X}\otimes\mathcal{Y}$ contains the $\pi$-system $\mathcal{X}\times\mathcal{Y}$. Check easily that $\Lambda$ is also a $\lambda$-system. Since $\mathcal{X}\otimes\mathcal{Y}=\sigma(\mathcal{X}\times\mathcal{Y})$, by \hyperref[Dynkin's]{Dynkin's} $\mathcal{X}\otimes\mathcal{Y}=\Lambda$. Hence the desired result.\medbreak
+Let $f=\1_E$ for any $E\in\mathcal{X}\otimes\mathcal{Y}$, then the result follows from the previous claim. Then the results holds for $f$ achieving finitely many values (simple function), then by \hyperref[Prop 1.6]{Prop 1.6} it holds for any measurable $f$.\medbreak
+Since $\nu$ is $\sigma$-finite, we may write $Y=\cup_{n\geq1}Y_n$ such that $Y_{n+1}\subset Y_n$ and $\nu(Y_n)<\infty$ for all $n$. Consider $f_n(x)=\nu(E_x\cap Y_n)$ and the collection $\Lambda\subset\mathcal{X}\otimes\mathcal{Y}$ of all $E\in\mathcal{X}\otimes\mathcal{Y}$ such that $f_n$ is measurable for all $n$. Then $\mathcal{X}\times\mathcal{Y}\subset\Lambda$ since $f_n(x)=\nu(B\cap Y_n)\1_A(x)$ is measurable for all $n$ and $A\times B\in\mathcal{X}\times\mathcal{Y}$. Check easily that $\Lambda$ is also a $\lambda$-system. Since $\mathcal{X}\otimes\mathcal{Y}$, by \hyperref[Dynkin's]{Dynkin's} $\Lambda=\mathcal{X}\times\mathcal{Y}$. Hence $f_n:x\mapsto\nu(E_x\cap Y_n)$ is measurable for all $n$. Then by downward continuity of $\nu$,
+\[\int_Y\1_E(x,y)\,d\nu(y)=\nu(E_x)=\lim_{n\to\infty}\nu(E_x\cap Y_n),\]
+which means that $f=\1_E$ is measurable. By the same token the result holds for any measurable $f$.
+\end{prop}
 
 \section{Basic Probability}
 
@@ -132,6 +155,29 @@ properties of integral
 
 \begin{prop}
 See Rudin, it's crystal clear
+\end{prop}
+
+\begin{prop}
+To illustrate
+\[
+  \begin{tikzcd}
+    F\begin{cases}
+\textrm{non-decreasing }\mathbb{R}\to[0,1]\\
+\textrm{right-continuous}\\
+\lim_{t\to-\infty}F(t)=0\textrm{ and }\lim_{t\to+\infty}F(t)=1
+\end{cases}\textrm{(cdf)} \arrow{r}{!} & \textrm{Borel probability measure }\mu\textrm{ on }\mathbb{R}\textrm{ (law)}\arrow{l} \arrow{d} \\
+     & \textrm{measurable }X\textrm{ (r.v.)} \arrow{ul}
+  \end{tikzcd}
+\]
+Given a probability space $(\Omega,\mathcal{F},\mathbb{P})$ and a r.v. $X$, the distribution $F_X$ is by definition non-decreasing, $\lim_{t\to-\infty}F_X(t)=0$, and $\lim_{t\to+\infty}F_X(t)=1$. The right-continuity results from \hyperref[Prop 1.2]{Prop 1.2}: if $t_n\to t$ then
+$F_X(t_n)=\mathbb{P}(X\leq t_n)\to F_X(t)=\mathbb{P}(X\leq t)$.\medbreak
+A law uniquely defines a cdf by definition. Conversely, given a function $F$ with the above properties define $\mu_F((a,b])=F(b)-F(a)$, which is a pre-measure on the Boolean algebra of finite unions of disjoint half-open intervals. If $\mu_F$ is downward continuous we apply \hyperref[Prop 1.4]{Prop 1.4} to extend $\mu_F$ to the Borel probability measure. Indeed,\medbreak
+$\mu_F$ agrees with $F$ on the $\pi$-system of all half-open intervals which generates $\mathcal{B}(\mathbb{R})$. Hence by \hyperref[Prop 1.3]{Prop 1.3} $\mu_F$ obtained is unique.\medbreak
+Given a Borel probability measure $\mu$ on $\mathbb{R}$ and the Lebesgue measure space $((0,1),\mathcal{B}(0,1),m)$. For the corresponding cdf $F_\mu$ define $X(\omega)=\inf\{t\in\mathbb{R}:F_\mu(t)\geq\omega\}$. Then $X$ is measurable, and $\mu$ is the law of $X$:
+\begin{align*}
+\mathbb{P}(X\in(a,b])&=m(\{\omega\in(0,1):a<X(\omega)\leq b\})\\
+&=m(\{\omega\in(0,1):F(a)<\omega\leq F(b)\})=F(b)-F(a)=\mu((a,b])
+\end{align*}
 \end{prop}
 
 \subsection{Independence and tail events}
@@ -331,6 +377,42 @@ Now by independence and properties of characteristic function $\phi_{s_n}(t)=\pr
     &\leq n\E\left(\min\left\{t^2x^2,\frac{\abs{t}^3\abs{X_1}^3}{6\sqrt{n}}\right\}\right).
 \end{align*}
 The result then follows.
+\end{prop}
+
+\section{Construction of Brownian motion}
+
+\begin{prop}
+Since $B_n(0)=0$ for all $n$, $B(0)=0$.\medbreak
+Fix $m$ and $0<t_1<t_2<\cdots<t_m\leq1$. For $k_i=\left\lfloor{nt_i}\right\rfloor$ define
+\[W_{n,i}=n\sum_{j=1}^{k_i}X_j,\textrm{ and }W_n=(W_{n,1},W_{n,2}-W_{n,1},\cdots,W_{n,m}-W_{n,m-1}).\]
+Then $\Var[W_{n,i}]=\frac{1}{n}k_i$ and $S_n^2=\sum_{i=1}^m\Var[W_{n,i}]=\frac{1}{n}\sum_{i=1}^mk_i$. Since $\E[W_{n,i}]=0$, for any $\epsilon>0$ we can find large enough $N$ such that $\abs{W_{n,i}}<\epsilon S_n$ when $n>N$. Hence for any $\delta>0$ we can let
+\[\E[(W_{n,i})^2\1_{\{\abs{W_{n,i}}\geq\epsilon S_n\}}]<\frac{1}{2^i}\delta\]
+and thus
+\[\frac{1}{S_n^2}\sum_{i=1}^{k_n}\E[(W_{n,i})^2\1_{\{\abs{W_{n,i}}\geq\epsilon S_n\}}]<\delta\]
+for large enough $n$. Then by Lindeberg-Feller Central Limit Theorem
+\[\frac{\sum_{i=1}^{k_n}X_{n,i}}{S_n}\xrightarrow{d}\mathcal{N}(0,1).\]
+Finally by \textcolor{red}{unknown} $W_{n,i+1}-W_{n,i}\xrightarrow{d}\mathcal{N}(0,t_{i+1}-t_i)$. Note also that the coordinates of $W_n$ are independent. Indeed, since $X_i$ are independent and $\E[X_i]=0$,
+\begin{align*}
+&\E[(W_{n,i}-W_{n,i-1})(W_{n,i'}-W_{n,i'-1})]\\
+=&\E[W_{n,i}W_{n,i'}]+\E[W_{n,i-1}W_{n,i'}]-\E[W_{n,i}W_{n,i'-1}]+\E[W_{n,i-1}W_{n,i'-1}]\\
+=&n^{-1}(\abs{k_{i'}-k_i}+\abs{k_{i'-1}-k_i}-\abs{k_{i'}-k_{i-1}}-\abs{k_{i'-1}-k_{i-1}})\\
+=&0=\E[(W_{n,i}-W_{n,i-1})][(W_{n,i'}-W_{n,i'-1})].
+\end{align*}
+In conclusion, $W_n\xrightarrow{d}(z_1,z_2,\cdots,z_m)$ where $z_i$ are independent and $z_i\sim\mathcal{N}(0,t_i-t_{i-1})$ for each $i\in[1,m]\cap\mathbb{Z}$.
+\medbreak
+Now since
+\[\abs{W_{n,i}-B_n(t_i)}=\abs{\frac{1}{\sqrt{n}}\sum_{j=1}^{k_i}X_j-\frac{1}{\sqrt{n}}\left(\sum_{j=1}^{k_i}X_j+(nt_i-k_i)X_{k_i}\right)}\leq\frac{\abs{X_{k_i}}}{\sqrt{n}},\]
+by Chebyshev's Inequality we conclude that $\mathbb{P}(\abs{W_{n,i}-B_n(t_i)}>\epsilon)\to0$. Hence by \textcolor{red}{unknown}
+\[(B_n(t_1),B_n(t_2)-B_n(t_1),\cdots,B_n(m)-B_n(m-1))\xrightarrow{\mathbb{P}}(z_1,z_2,\dots,z_m)\]
+\medbreak
+Then, by simple calculation and the fact that $z_i$ are independent $\Var(B(t_1))=t_1$. Then by induction we can show that $\Var(B(t_i))=t_i$ for all $i\in[1,m]\cap\mathbb{Z}$. Since $z_i$ are independent,
+\begin{align*}
+\Cov(B(t_i),B(t_{i+1}))&=\Var(B(t_i))+\Cov(B(t_i),B(t_{i+1})-B(t_i))\\
+&=t_i+\Cov(B(t_i)-B(t_{i-1}),B(t_{i+1})-B(t_i))+\Cov(B(t_{i-1}),B(t_{i+1})-B(t_i))\\
+&=t_i+\Cov(B(t_{i-1}),B(t_{i+1})-B(t_i))\\
+&=\cdots=t_i+\Cov(B(t_1),B(t_{i+1})-B(t_i))=t_i.
+\end{align*}
+Then by induction $(B(t_1),B(t_2),\cdots,B(t_m))\sim\mathcal{N}_m(\0,\Sigma)$ where $\Sigma_{ij}=\Cov(B(t_i),B(t_j))=\min\{t_i,t_j\}$.
 \end{prop}
 
 
