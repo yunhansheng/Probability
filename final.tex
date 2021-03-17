@@ -11,8 +11,9 @@
 \usepackage{color}
 \usepackage{physics}
 \usepackage{nicefrac}
-
 \usepackage{eucal}
+\usepackage[a4paper,hmargin=2cm,vmargin=2.5cm]{geometry}
+
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
@@ -26,18 +27,8 @@
 \newtheorem*{soln}{Solution}
 \newtheorem{prop}{Proposition}
 
-\setlength{\topmargin}{-.5 in}
-\setlength{\oddsidemargin}{0in}
-\setlength{\evensidemargin}{0in}
-\setlength{\textheight}{9.in}
-\setlength{\textwidth}{6.5in}
-\pagestyle{empty}
-
-\newcommand{\x}{\mathbf{x}}
-\newcommand{\y}{\mathbf{y}}
-\newcommand{\z}{\mathbf{z}}
-\newcommand{\0}{\mathbf{0}}
 \newcommand{\E}{\mathbb{E}}
+\linespread{1}
 
 
 
@@ -45,56 +36,64 @@
 
 \begin{center}
 {\Large\textbf STAT 38100 \hspace{0.1cm} Final}\\
-\Large{Alex Sheng}
+\large{Alex Sheng}
 \end{center}
 
-\vspace{0.2 cm}
+\vspace{0.1 cm}
 
 \begin{enumerate}
 
-\item Problem \#1\smallbreak
-If $\sigma_n\to\sigma$, then $\sigma_n^2\to\sigma^2$. Since $X_n\sim\mathcal{N}(0,\sigma_n^2)$ is uniformly integrable, $X_n\xrightarrow{L^2}X$, which means that $X_n\xrightarrow{d}X$.\smallbreak
+\item If $\sigma_n\to\sigma$, then $\sigma_n^2\to\sigma^2$. Since $X_n\sim\mathcal{N}(0,\sigma_n^2)$ is uniformly integrable, $X_n\xrightarrow{L^2}X$, which means that $X_n\xrightarrow{d}X$.\smallbreak
 On the other hand, if $X_n\xrightarrow{d}X$, by Lévy Continuity Theorem $\phi_{X_n}(x)\to\phi_X(x)$. Since $X_n\sim\mathcal{N}(0,\sigma_n^2)$, $\phi_{X_n}(x)=e^{-\sigma_n^2x^2/2}$, from which we can see that $\phi_{X_n}(x)$ converges only when $\sigma_n^2\to\sigma^2$ for some $\sigma$, which implies $\sigma_n\to\sigma$. In this case, $\phi_X(x)=e^{-\sigma^2x^2/2}$ implies that $X\sim\mathcal{N}(0,\sigma^2)$.
 
-\item Problem \#2\smallbreak
+\item First note that $c<\infty$. We say $\E\abs{X_1}=\infty$ because
+\[\E\abs{X_1}=\frac{1}{c}\sum_{k=2}^\infty\frac{1}{k\log k}\geq\frac{1}{c}\int_2^\infty\frac{1}{x\log x}\,dx=\infty.\]
+Since
+\begin{align*}
+x\mathbb{P}(\abs{X_1}>x)=\frac{x}{c}\sum_{i=\left\lfloor{x}\right\rfloor+1}^\infty\frac{1}{i^2\log i}&\leq\frac{x}{c\log\left\lfloor{x}\right\rfloor}\sum_{i=\left\lfloor{x}\right\rfloor+1}^\infty\frac{1}{i^2-i}\\
+&=\frac{x}{c\log\left\lfloor{x}\right\rfloor}\sum_{i=\left\lfloor{x}\right\rfloor+1}^\infty(\frac{1}{i-1}-\frac{1}{i})=\frac{x}{c\left\lfloor{x}\right\rfloor\log\left\lfloor{x}\right\rfloor},
+\end{align*}
+then $\lim_{x\to\infty}x\mathbb{P}(\abs{X_1}>x)=0$. Hence we can apply Weak Law of Large Numbers:
+\[\frac{1}{n}\sum_{i=1}^nX_i-\E[X_1\mathbf{1}_{\{\abs{X_1}\leq n\}}]\xrightarrow{\mathbb{P}}0\]
+as $n\to\infty$. Since $\E[X_1\mathbf{1}_{\{\abs{X_1}\leq n\}}]=\frac{1}{c}\sum_{k=2}^n(-1)^k\frac{1}{k\log k}$ is an alternating sequence whose terms converges to 0, it is finite.
 
-
-
-\item Problem \#3\smallbreak
-When $n=2k$,
+\item When $n=2k$,
 \begin{align*}
 \frac{1}{n}P_n&=\frac{X_1X_2+X_2X_3+\cdots+X_{2k-1}X_{2k}}{2k}\\
 &=\frac{X_1X_2+X_3X_4+\cdots+X_{2k-1}X_{2k}}{2k}+\frac{X_2X_3+X_4X_5+\cdots+X_{2k-1}X_{2k-2}}{2k}\\
 &=A+B
 \end{align*}
-By independence $\E[X_iX_{i+1}]=\E[X_i]\E[X_{i+1}]=\mu^2$ for all $i\in\mathbb{N}$, hence we can apply Strong Law of Large Numbers and obtain $A,B\xrightarrow{a.s.}\mu^2$. Hence $\frac{1}{n}P_n\xrightarrow{a.s.}\mu^2$ for $n=2k$.\smallbreak
-By the same token $\frac{1}{n}P_n\xrightarrow{a.s.}\mu^2$ for $n=2k-1$. Hence $\frac{1}{n}P_n\xrightarrow{a.s.}\mu^2$ for all $n\in\mathbb{N}$.
+Since $\E[X_1^4]\leq\infty$, we are safe to apply Strong Law of Large Numbers and obtain $A,B\xrightarrow{a.s.}\mu^2$. Hence $\frac{1}{n}P_n\xrightarrow{a.s.}\mu^2$ for $n=2k$. Similarly $\frac{1}{n}P_n\xrightarrow{a.s.}\mu^2$ for $n=2k-1$, hence $\frac{1}{n}P_n\xrightarrow{a.s.}\mu^2$ for all $n\in\mathbb{N}$.
 
-\item Problem \#4\smallbreak
+\item rrr
 
-\item Problem \#5\smallbreak
-For any $K>0$, since $\mathbb{P}(B(t)>K\sqrt{t})=1-\phi(K)>0$ where $\phi(K)$ is the distribution function of $\mathcal{N}(0,1)$, we have $\mathbb{P}(\limsup_{n\to\infty}\frac{B(t)}{\sqrt{t}}=\infty)>0$. By Kolmogorov's 0-1 Law 
+\item For any $K>0$, since $\mathbb{P}(B(t)>K\sqrt{t})=1-\phi(K)>0$ where $\phi(K)$ is the distribution function of $\mathcal{N}(0,1)$, we have $\mathbb{P}(\limsup_{n\to\infty}\frac{B(t)}{\sqrt{t}}=\infty)>0$. By Kolmogorov's 0-1 Law 
 \[\mathbb{P}(\limsup_{n\to\infty}\frac{B(t)}{\sqrt{t}}=\infty)=1.\]
 By the same token $\mathbb{P}(B(t)<-K\sqrt{t})=\phi(-K)>0$ implies
 \[\mathbb{P}(\liminf_{n\to\infty}\frac{B(t)}{\sqrt{t}}=-\infty)=1.\]
 Or alternatively use the reflection principle: $-\liminf_{n\to\infty}\frac{B(t)}{\sqrt{t}}=\limsup_{n\to\infty}\frac{-B(t)}{\sqrt{t}}=\infty$.
 
-\item Problem \#6\smallbreak
-(1) Let $X=\frac{1}{\sqrt{s}}B(S),Y=\frac{1}{\sqrt{t-s}}(B(t)-B(s))\sim\mathcal{N}(0,1)$, then $X$ and $Y$ are independent and
+\item (1) Let $X=\frac{1}{\sqrt{s}}B(S),Y=\frac{1}{\sqrt{t-s}}(B(t)-B(s))\sim\mathcal{N}(0,1)$, then $X$ and $Y$ are independent and
 \begin{align*}
 \mathbb{P}(B(t)>0\textrm{ and }B(s)>0)&=\mathbb{P}(X>0\textrm{ and }\sqrt{s}X+\sqrt{t-s}Y>0)\\
+&=\int_0^\infty\,dx\int_{-x}^\infty\frac{1}{\sqrt{2\pi s}}e^{-\frac{x^2}{2s}}\frac{1}{\sqrt{2\pi(t-s)}}e^{-\frac{y^2}{2(t-s)}}\,dy\\
 &=\int_{-\tan^{-1}\sqrt{\frac{s}{t-s}}}^\frac{\pi}{2}\,d\theta\int_0^\infty\frac{1}{2\pi}e^{-\frac{r^2}{2}}r\,dr\\
 &=\frac{\frac{\pi}{2}+\tan^{-1}\sqrt{\frac{s}{t-s}}}{2\pi}
 \end{align*}
-(2) Since $B(1)\sim\mathcal{N}(0,1)$, $\E[B(1)^2]=$. Then
+(2) Since $B(1)\sim\mathcal{N}(0,1)$,
+\begin{align*}
+\E[B(1)^4]&=\frac{1}{\sqrt{2\pi}}\left(-x^3e^{-\frac{x^2}{2}}|_{-\infty}^\infty+3\int_{-\infty}^\infty x^2e^{-\frac{x^2}{2}}\,dx\right)\\
+&=\frac{1}{\sqrt{2\pi}}3\int_{-\infty}^\infty x^2e^{-\frac{x^2}{2}}\,dx\\
+&=3\E[B(1)^2]=3.
+\end{align*}
+Then since $B(3)-B(2)$ and $B(2)-B(1)$ are independent standard normal variables:
 \begin{align*}
 \E[B(1)^2B(2)B(3)]&=\E[B(1)^2B(2)(B(2)+B(3)-B(2))]\\
 &=\E[B(1)^2B(2)^2]+\E[B(1)^2B(2)]\E[B(3)-B(2)]\\
 &=\E[B(1)^2(B(1)+B(2)-B(1))^2]+0\\
 &=\E[B(1)^4]+\E[B(1)^22B(1)]\E[B(2)-B(1)]+\E[B(1)^2]\E[(B(2)-B(1))^2]\\
-&=3+0+1\cdot1=4
+&=3+0+1\cdot1=4.
 \end{align*}
-by using the fact that $B(3)-B(2)$ and $B(2)-B(1)$ are independent standard normal variables.
 
 \end{enumerate}
 
